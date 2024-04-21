@@ -10,13 +10,13 @@ public class Rhino : MonoBehaviour
     [SerializeField] private BoxCollider2D airCollider;
 
     // value variables to change in player
-    [SerializeField] private float runSpeed = 100f;
-    [SerializeField] private float runRate = 0.9f;
+    [SerializeField] private float runClamp = 100f;
+    private float runRate;
     private float walkClamp;
     private float walkRate;
 
     // variables for breaking
-    private Vector2 previousVelocity;
+    private Vector2 bufferVelocity;
     private bool collided;
 
     // variables for breaking destructible tilemap
@@ -36,15 +36,16 @@ public class Rhino : MonoBehaviour
         walkClamp = movement.DefaultMoveClamp;
         walkRate = movement.DefaultMoveRate;
 
+        runRate = (walkClamp / runClamp) * walkRate;
+
         //GameObject des = GameObject.FindGameObjectWithTag("Destructibles");
         //desTiles = des.GetComponent<Tilemap>();
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
-        previousVelocity = rb.velocity;
 
         if (collision.gameObject.CompareTag("Destructibles")
-        && (rb.velocity.magnitude > desBreakPoint))
+        && (bufferVelocity.magnitude >= desBreakPoint))
         {
             desTilemap = collision.gameObject.GetComponent<Tilemap>();
             Vector3 hitPosition;
@@ -54,12 +55,12 @@ public class Rhino : MonoBehaviour
                 hitPosition = hit.point;
 
                 // these ifs check if the normals of the player's velocity are strong enough to actually break a tile
-                if ( Mathf.Abs(rb.velocity.normalized.y) > RatioToBreak )
+                if ( Mathf.Abs(bufferVelocity.normalized.x) > RatioToBreak )
                 {
-                    hitPosition.x += 1f * hit.normal.x;
+                    hitPosition.x -= 1f * hit.normal.x;
                 }
 
-                if ( Mathf.Abs(rb.velocity.normalized.y) > RatioToBreak )
+                if ( Mathf.Abs(bufferVelocity.normalized.y) > RatioToBreak )
                 {
                     hitPosition.y += 1f * hit.normal.y;
                 }
@@ -77,21 +78,23 @@ public class Rhino : MonoBehaviour
         // this checks if it has had a breaking collision and if true it sets the velocity to the previous velocity
         if (collided)
         {
-            rb.velocity = previousVelocity;
+            rb.velocity = bufferVelocity;
             collided = false;
         }
+
+        bufferVelocity = rb.velocity;
 }
     void Update()
     {
-        if  ( Input.GetKey(KeyCode.JoystickButton5) )
+        if  ( Input.GetKey(KeyCode.JoystickButton5) && ( movement.IsGrounded ) )
         {
-            if ( (movement.moveClamp != runSpeed) || (movement.moveRate != runRate) )
+            if ( (movement.moveClamp != runClamp) || (movement.moveRate != runRate) )
             {
-                movement.moveClamp = runSpeed;
+                movement.moveClamp = runClamp;
                 movement.moveRate = runRate;
             }
         }
-        else
+        else if ( movement.IsGrounded )
         {
             if ( (movement.moveClamp != walkClamp) || (movement.moveRate != walkRate) )
             {

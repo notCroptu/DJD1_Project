@@ -29,10 +29,14 @@ public class Movement : MonoBehaviour
 
     private Rigidbody2D rb;
     private Vector3 moveVector;
-    private bool isGrounded;
+    public bool IsGrounded { get; set; }
     private bool actualIsGrounded;
     private float coyoteTimer;
     private float defaultGravity;
+
+    private bool jumped;
+    private bool isJumping;
+    private float deltaX;
 
     void Start()
     {
@@ -46,37 +50,39 @@ public class Movement : MonoBehaviour
         UpdateGroundState();
 
         // change from air to ground collider or ground to air collider
-        groundCollider.enabled = isGrounded;
-        airCollider.enabled = !isGrounded;
-
-        float deltaX = Input.GetAxis("Horizontal");
+        groundCollider.enabled = IsGrounded;
+        airCollider.enabled = !IsGrounded;
 
         moveVector = rb.velocity;
 
+        /*
         // sets the horizontal move to be gradual(optional by changing moveRate to 1)
-        if ( (deltaX < 0 && rb.velocity.x <= 0) || (deltaX > 0 && rb.velocity.x >= 0) )
+        if ( (deltaX < 0 && rb.velocity.x <= 0) || (deltaX > 0 && rb.velocity.x >= 0) || !IsGrounded)
         {
             moveVector.x = Mathf.Lerp(rb.velocity.x, moveClamp * deltaX, moveRate);
-            Debug.Log($"moveRate before: {moveVector.x}");
         }
         // including when switching direction and velocity is not 0
         else
         {
             moveVector.x = Mathf.Lerp(rb.velocity.x, 0, moveRate);
-        }
+        }*/
+
+        moveVector.x = Mathf.Lerp(rb.velocity.x, moveClamp * deltaX, moveRate);
+
         
         // relative movement since the last frame, as we are calculating physics in Update
         // (as opposed to Fixed Update)
         //moveVector.x *= Time.deltaTime;
 
-        if ( Input.GetButton("Jump") && (isGrounded) )
+        if ( jumped && IsGrounded )
         {
+            rb.gravityScale = 2f;
             moveVector.y = jumpSpeed;
-            rb.gravityScale = 1f;
+            jumped = false;
         }
-        if ( Input.GetButton("Jump") )
+        if ( isJumping )
         {
-            rb.gravityScale = 1f;
+            rb.gravityScale = 2f;
         }
         else
         {
@@ -84,6 +90,24 @@ public class Movement : MonoBehaviour
         }
 
         rb.velocity = moveVector;
+    }
+    void Update()
+    {
+        if ( Input.GetButtonDown("Jump") ) jumped = true;
+
+        isJumping = Input.GetButton("Jump");
+        deltaX = Input.GetAxis("Horizontal");
+
+        // Animation
+
+        if (( deltaX < 0 ) && ( transform.right.x > 0 ))
+        {
+            transform.rotation = Quaternion.Euler( 0, 180, 0);
+        }
+        else if (( deltaX > 0 ) && ( transform.right.x < 0 ))
+        {
+            transform.rotation = Quaternion.identity;
+        }
     }
     void UpdateGroundState()
     {
@@ -98,35 +122,23 @@ public class Movement : MonoBehaviour
             int n = Physics2D.OverlapCollider(groundCheckCollider, contactFilter, results);
             if (n > 0)
             {
-                actualIsGrounded = true;
-                isGrounded = true;
+                coyoteTimer = coyoteTime;
+                IsGrounded = true;
                 return;
             }
             else
             {
-                actualIsGrounded = false;
-                if (rb.velocity.y != 0)
-                {
-                    coyoteTimer -= Time.deltaTime;
-                }
+                coyoteTimer -= Time.deltaTime;
             }
         }
 
-        if (actualIsGrounded)
-        {
-            // rb.velocity = new Vector2(rb.velocity.x, 0f);
-            coyoteTimer = coyoteTime;
-        }
-
-        actualIsGrounded = false;
-
         if (coyoteTimer > 0)
         {
-            isGrounded = true;
+            IsGrounded = true;
             return;
         }
 
-        isGrounded = false;
+        IsGrounded = false;
     }
     public void ResetValues()
     {

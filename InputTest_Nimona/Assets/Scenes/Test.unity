@@ -1771,7 +1771,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 360
+  orthographic size: 387.47192
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1796,7 +1796,7 @@ Transform:
   m_GameObject: {fileID: 1995717630}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: -28.74, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1898,33 +1898,37 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4158115915677998132, guid: 2f85fbfa2c80c5c41bcd14153351d1be, type: 3}
-      propertyPath: m_Offset.x
-      value: 2.82
-      objectReference: {fileID: 0}
-    - target: {fileID: 7746226718850344014, guid: 2f85fbfa2c80c5c41bcd14153351d1be, type: 3}
-      propertyPath: runRate
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7746226718850344014, guid: 2f85fbfa2c80c5c41bcd14153351d1be, type: 3}
-      propertyPath: runSpeed
-      value: 1000
-      objectReference: {fileID: 0}
-    - target: {fileID: 7746226718850344014, guid: 2f85fbfa2c80c5c41bcd14153351d1be, type: 3}
-      propertyPath: walkRate
+    - target: {fileID: 7311567042564984195, guid: 2f85fbfa2c80c5c41bcd14153351d1be, type: 3}
+      propertyPath: m_CollisionDetection
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7746226718850344014, guid: 2f85fbfa2c80c5c41bcd14153351d1be, type: 3}
-      propertyPath: walkSpeed
-      value: 100
+      propertyPath: runClamp
+      value: 800
+      objectReference: {fileID: 0}
+    - target: {fileID: 7746226718850344014, guid: 2f85fbfa2c80c5c41bcd14153351d1be, type: 3}
+      propertyPath: desBreakPoint
+      value: 700
+      objectReference: {fileID: 0}
+    - target: {fileID: 8461857375051673034, guid: 2f85fbfa2c80c5c41bcd14153351d1be, type: 3}
+      propertyPath: m_Size.y
+      value: 1.3496094
+      objectReference: {fileID: 0}
+    - target: {fileID: 8461857375051673034, guid: 2f85fbfa2c80c5c41bcd14153351d1be, type: 3}
+      propertyPath: m_Offset.x
+      value: 2.8900003
+      objectReference: {fileID: 0}
+    - target: {fileID: 8461857375051673034, guid: 2f85fbfa2c80c5c41bcd14153351d1be, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.6748047
       objectReference: {fileID: 0}
     - target: {fileID: 8786279668513431141, guid: 2f85fbfa2c80c5c41bcd14153351d1be, type: 3}
-      propertyPath: defaultMoveClamp
-      value: 200
+      propertyPath: coyoteTime
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 8786279668513431141, guid: 2f85fbfa2c80c5c41bcd14153351d1be, type: 3}
-      propertyPath: groundLayerMask.m_Bits
-      value: 8
+      propertyPath: defaultMoveRate
+      value: 0.3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
