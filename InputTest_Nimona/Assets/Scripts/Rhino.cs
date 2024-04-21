@@ -12,8 +12,8 @@ public class Rhino : MonoBehaviour
     // value variables to change in player
     [SerializeField] private float runSpeed = 100f;
     [SerializeField] private float runRate = 0.9f;
-    [SerializeField] private float walkSpeed = 100f;
-    [SerializeField] private float walkRate = 0.9f;
+    private float walkClamp;
+    private float walkRate;
 
     // variables for breaking
     private Vector2 previousVelocity;
@@ -33,6 +33,8 @@ public class Rhino : MonoBehaviour
         player = transform.parent.gameObject;
         movement = player.GetComponent<Movement>();
         rb = player.GetComponent<Rigidbody2D>();
+        walkClamp = movement.DefaultMoveClamp;
+        walkRate = movement.DefaultMoveRate;
 
         //GameObject des = GameObject.FindGameObjectWithTag("Destructibles");
         //desTiles = des.GetComponent<Tilemap>();
@@ -91,9 +93,9 @@ public class Rhino : MonoBehaviour
         }
         else
         {
-            if ( (movement.moveClamp != walkSpeed) || (movement.moveRate != walkRate) )
+            if ( (movement.moveClamp != walkClamp) || (movement.moveRate != walkRate) )
             {
-                movement.moveClamp = walkSpeed;
+                movement.moveClamp = walkClamp;
                 movement.moveRate = walkRate;
             }
         }

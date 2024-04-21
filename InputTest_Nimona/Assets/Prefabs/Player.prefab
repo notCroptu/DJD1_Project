@@ -295,12 +295,12 @@ MonoBehaviour:
   <moveClamp>k__BackingField: 0
   <moveRate>k__BackingField: 0
   <jumpSpeed>k__BackingField: 0
-  defaultMoveClamp: 100
-  defaultMoveRate: 1
+  defaultMoveClamp: 200
+  defaultMoveRate: 0.5
   defaultJumpSpeed: 200
   groundLayerMask:
     serializedVersion: 2
-    m_Bits: 520
+    m_Bits: 8
   coyoteTime: 0.4
 --- !u!114 &821559898152726468
 MonoBehaviour:
@@ -500,10 +500,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   groundCollider: {fileID: 1969449015072125636}
   airCollider: {fileID: 2214102187115744988}
-  runSpeed: 900
-  runRate: 0.1
-  walkSpeed: 300
-  walkRate: 0.3
+  runSpeed: 800
+  runRate: 0.25
   desBreakPoint: 0
   RatioToBreak: 0.3
 --- !u!1 &5061011348551062651
@@ -791,7 +789,7 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 2.9939423, y: 9.983994}
+  m_Offset: {x: 2.82, y: 9.983994}
   m_Size: {x: 5.8279724, y: 19.96811}
   m_Direction: 0
 --- !u!61 &9013819727544050668

@@ -25,49 +25,21 @@ public class Shapeshifting : MonoBehaviour
         if (rJoystickX == 1)
         {
             ChangeShape(rhino);
-            /*
-            rhino.SetActive(true);
-
-            human.SetActive(false);
-            dragon.SetActive(false);
-            gorilla.SetActive(false);
-            */
         }
 
         else if (rJoystickY == -1)
         {
             ChangeShape(human);
-            /*
-            human.SetActive(true);
-
-            rhino.SetActive(false);
-            dragon.SetActive(false);
-            gorilla.SetActive(false);
-            */
         }
         
         else if (rJoystickY == 1)
         {
             ChangeShape(dragon);
-            /*
-            dragon.SetActive(true);
-
-            rhino.SetActive(false);
-            human.SetActive(false);
-            gorilla.SetActive(false);
-            */
         }
 
         else if (rJoystickX == -1)
         {
             ChangeShape(gorilla);
-            /*
-            gorilla.SetActive(true);
-
-            rhino.SetActive(false);
-            human.SetActive(false);
-            dragon.SetActive(false);
-            */
         }
     }
     public void ChangeShape(GameObject newShape)
@@ -87,17 +59,17 @@ public class Shapeshifting : MonoBehaviour
         currentShape = newShape; // Update current shape reference
 
         // Update the ground check collider size and offset
-        CapsuleCollider2D newGroundCollider;
-        newGroundCollider = newShape.GetComponent<CapsuleCollider2D>();
+        BoxCollider2D newAirCollider;
+        newAirCollider = newShape.GetComponent<BoxCollider2D>();
 
 
-        if (newGroundCollider != null && groundCheckCollider != null)
+        if (newAirCollider != null && groundCheckCollider != null)
         {
             Vector2 newSize;
             Vector2 newOffset;
 
-            newSize = new Vector2(newGroundCollider.size.x, groundCheckCollider.size.y);
-            newOffset = new Vector2(newGroundCollider.offset.x, groundCheckCollider.offset.y);
+            newSize = new Vector2(newAirCollider.size.x - 5f, groundCheckCollider.size.y);
+            newOffset = new Vector2(newAirCollider.offset.x, groundCheckCollider.offset.y);
 
             groundCheckCollider.size = newSize;
             groundCheckCollider.offset = newOffset;
@@ -106,8 +78,8 @@ public class Shapeshifting : MonoBehaviour
         // Update movement colliders
         if (movement != null)
         {
-            movement.groundCollider = newGroundCollider;
-            movement.airCollider = newShape.GetComponent<BoxCollider2D>();
+            movement.groundCollider = newShape.GetComponent<CapsuleCollider2D>();
+            movement.airCollider = newAirCollider;
         }
     }
 }

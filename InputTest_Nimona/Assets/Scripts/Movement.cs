@@ -53,13 +53,13 @@ public class Movement : MonoBehaviour
 
         moveVector = rb.velocity;
 
-        // sets the horizontal move to be gradual(optional by changing moveAccel to 1)
+        // sets the horizontal move to be gradual(optional by changing moveRate to 1)
         if ( (deltaX < 0 && rb.velocity.x <= 0) || (deltaX > 0 && rb.velocity.x >= 0) )
         {
             moveVector.x = Mathf.Lerp(rb.velocity.x, moveClamp * deltaX, moveRate);
             Debug.Log($"moveRate before: {moveVector.x}");
         }
-        // including when switching direction and velocity is not 0 or not moving
+        // including when switching direction and velocity is not 0
         else
         {
             moveVector.x = Mathf.Lerp(rb.velocity.x, 0, moveRate);
