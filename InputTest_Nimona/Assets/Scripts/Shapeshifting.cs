@@ -19,7 +19,10 @@ public class Shapeshifting : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        float rJoystickX = Input.GetAxis("JoyStickR_X");
+        float rJoystickY = Input.GetAxis("JoyStickR_Y");
+
+        if (rJoystickX == 1)
         {
             ChangeShape(rhino);
             /*
@@ -31,7 +34,7 @@ public class Shapeshifting : MonoBehaviour
             */
         }
 
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        else if (rJoystickY == -1)
         {
             ChangeShape(human);
             /*
@@ -43,7 +46,7 @@ public class Shapeshifting : MonoBehaviour
             */
         }
         
-        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        else if (rJoystickY == 1)
         {
             ChangeShape(dragon);
             /*
@@ -55,7 +58,7 @@ public class Shapeshifting : MonoBehaviour
             */
         }
 
-        else if (Input.GetKeyDown(KeyCode.Alpha4))
+        else if (rJoystickX == -1)
         {
             ChangeShape(gorilla);
             /*
