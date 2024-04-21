@@ -296,11 +296,11 @@ MonoBehaviour:
   <moveRate>k__BackingField: 0
   <jumpSpeed>k__BackingField: 0
   defaultMoveClamp: 100
-  defaultMoveRate: 0.9
+  defaultMoveRate: 1
   defaultJumpSpeed: 200
   groundLayerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 520
   coyoteTime: 0.4
 --- !u!114 &821559898152726468
 MonoBehaviour:
@@ -504,6 +504,8 @@ MonoBehaviour:
   runRate: 0.1
   walkSpeed: 300
   walkRate: 0.3
+  desBreakPoint: 0
+  RatioToBreak: 0.3
 --- !u!1 &5061011348551062651
 GameObject:
   m_ObjectHideFlags: 0

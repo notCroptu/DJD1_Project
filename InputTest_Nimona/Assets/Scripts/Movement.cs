@@ -32,22 +32,22 @@ public class Movement : MonoBehaviour
     private bool isGrounded;
     private bool actualIsGrounded;
     private float coyoteTimer;
+    private float defaultGravity;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+
+        defaultGravity = rb.gravityScale;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         UpdateGroundState();
 
         // change from air to ground collider or ground to air collider
         groundCollider.enabled = isGrounded;
         airCollider.enabled = !isGrounded;
-        // change gravity scale to update according to groundState
-        if ( isGrounded ) rb.gravityScale = 1;
-        else rb.gravityScale = 4;
 
         float deltaX = Input.GetAxis("Horizontal");
 
@@ -57,6 +57,7 @@ public class Movement : MonoBehaviour
         if ( (deltaX < 0 && rb.velocity.x <= 0) || (deltaX > 0 && rb.velocity.x >= 0) )
         {
             moveVector.x = Mathf.Lerp(rb.velocity.x, moveClamp * deltaX, moveRate);
+            Debug.Log($"moveRate before: {moveVector.x}");
         }
         // including when switching direction and velocity is not 0 or not moving
         else
@@ -66,11 +67,20 @@ public class Movement : MonoBehaviour
         
         // relative movement since the last frame, as we are calculating physics in Update
         // (as opposed to Fixed Update)
-        moveVector.x *= Time.deltaTime;
+        //moveVector.x *= Time.deltaTime;
 
         if ( Input.GetButton("Jump") && (isGrounded) )
         {
             moveVector.y = jumpSpeed;
+            rb.gravityScale = 1f;
+        }
+        if ( Input.GetButton("Jump") )
+        {
+            rb.gravityScale = 1f;
+        }
+        else
+        {
+            rb.gravityScale = defaultGravity;
         }
 
         rb.velocity = moveVector;
