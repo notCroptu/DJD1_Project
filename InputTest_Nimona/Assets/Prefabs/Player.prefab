@@ -230,7 +230,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!61 &8461857375051673034
 BoxCollider2D:
@@ -264,7 +264,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 2.89, y: -1.7716827}
+  m_Offset: {x: 2.8900003, y: -0.6748047}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
@@ -275,7 +275,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 8.25, y: 3.5433655}
+  m_Size: {x: 8.25, y: 1.3496094}
   m_EdgeRadius: 0
 --- !u!114 &8786279668513431141
 MonoBehaviour:
@@ -296,12 +296,12 @@ MonoBehaviour:
   <moveRate>k__BackingField: 0
   <jumpSpeed>k__BackingField: 0
   defaultMoveClamp: 200
-  defaultMoveRate: 0.5
+  defaultMoveRate: 0.3
   defaultJumpSpeed: 200
   groundLayerMask:
     serializedVersion: 2
     m_Bits: 8
-  coyoteTime: 0.4
+  coyoteTime: 0.2
 --- !u!114 &821559898152726468
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -500,9 +500,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   groundCollider: {fileID: 1969449015072125636}
   airCollider: {fileID: 2214102187115744988}
-  runSpeed: 800
-  runRate: 0.25
-  desBreakPoint: 0
+  runClamp: 800
+  desBreakPoint: 700
   RatioToBreak: 0.3
 --- !u!1 &5061011348551062651
 GameObject:

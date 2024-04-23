@@ -67,6 +67,9 @@ public class Rhino : MonoBehaviour
 
                 if (desTilemap.GetTile(desTilemap.WorldToCell(hitPosition)) != null)
                 {
+                    Camera camera = Camera.main;
+                    camera.GetComponent<Shaker>().Shake(0.7f, 10);
+
                     desTilemap.SetTile(desTilemap.WorldToCell(hitPosition), null);
                     collided = true;
                 }
