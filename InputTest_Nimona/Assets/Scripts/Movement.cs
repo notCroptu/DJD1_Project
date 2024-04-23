@@ -100,11 +100,11 @@ public class Movement : MonoBehaviour
 
         // Animation
 
-        if (( deltaX < 0 ) && ( transform.right.x > 0 ))
+        if (( deltaX < 0 ))
         {
             transform.rotation = Quaternion.Euler( 0, 180, 0);
         }
-        else if (( deltaX > 0 ) && ( transform.right.x < 0 ))
+        else if (( deltaX > 0 ))
         {
             transform.rotation = Quaternion.identity;
         }

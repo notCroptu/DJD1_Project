@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!4 &914828345 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3359410053028576424, guid: 2f85fbfa2c80c5c41bcd14153351d1be, type: 3}
+  m_PrefabInstance: {fileID: 2090281554}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1253239843
 GameObject:
   m_ObjectHideFlags: 0
@@ -1721,6 +1726,8 @@ GameObject:
   - component: {fileID: 1995717632}
   - component: {fileID: 1995717631}
   - component: {fileID: 1995717634}
+  - component: {fileID: 1995717635}
+  - component: {fileID: 1995717636}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1846,6 +1853,32 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
+--- !u!114 &1995717635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1995717630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3eba8443e2fcffa458fbfc3688a4b0aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectToFollow: {fileID: 914828345}
+  rateToFollow: 0.3
+--- !u!114 &1995717636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1995717630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4b18fab574345a4a82b938c0050c8c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2090281554
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1898,37 +1931,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7311567042564984195, guid: 2f85fbfa2c80c5c41bcd14153351d1be, type: 3}
-      propertyPath: m_CollisionDetection
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7746226718850344014, guid: 2f85fbfa2c80c5c41bcd14153351d1be, type: 3}
-      propertyPath: runClamp
-      value: 800
-      objectReference: {fileID: 0}
-    - target: {fileID: 7746226718850344014, guid: 2f85fbfa2c80c5c41bcd14153351d1be, type: 3}
-      propertyPath: desBreakPoint
-      value: 700
-      objectReference: {fileID: 0}
-    - target: {fileID: 8461857375051673034, guid: 2f85fbfa2c80c5c41bcd14153351d1be, type: 3}
-      propertyPath: m_Size.y
-      value: 1.3496094
-      objectReference: {fileID: 0}
-    - target: {fileID: 8461857375051673034, guid: 2f85fbfa2c80c5c41bcd14153351d1be, type: 3}
-      propertyPath: m_Offset.x
-      value: 2.8900003
-      objectReference: {fileID: 0}
-    - target: {fileID: 8461857375051673034, guid: 2f85fbfa2c80c5c41bcd14153351d1be, type: 3}
-      propertyPath: m_Offset.y
-      value: -0.6748047
-      objectReference: {fileID: 0}
     - target: {fileID: 8786279668513431141, guid: 2f85fbfa2c80c5c41bcd14153351d1be, type: 3}
-      propertyPath: coyoteTime
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8786279668513431141, guid: 2f85fbfa2c80c5c41bcd14153351d1be, type: 3}
-      propertyPath: defaultMoveRate
-      value: 0.3
+      propertyPath: <moveClamp>k__BackingField
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

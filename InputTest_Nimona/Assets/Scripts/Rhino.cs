@@ -84,7 +84,7 @@ public class Rhino : MonoBehaviour
             rb.velocity = bufferVelocity;
             collided = false;
         }
-
+        
         bufferVelocity = rb.velocity;
 }
     void Update()
