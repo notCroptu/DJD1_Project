@@ -11,6 +11,7 @@ public class Rhino : MonoBehaviour
 
     // value variables to change in player
     [SerializeField] private float runClamp = 100f;
+    public float RunClamp => runClamp;
     private float runRate;
     private float walkClamp;
     private float walkRate;
@@ -43,38 +44,47 @@ public class Rhino : MonoBehaviour
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
-
-        if (collision.gameObject.CompareTag("Destructibles")
-        && (bufferVelocity.magnitude >= desBreakPoint))
+        if (bufferVelocity.magnitude >= desBreakPoint)
         {
-            desTilemap = collision.gameObject.GetComponent<Tilemap>();
-            Vector3 hitPosition;
-
-            foreach(ContactPoint2D hit in collision.contacts)
+            if (collision.gameObject.CompareTag("Destructibles"))
             {
-                hitPosition = hit.point;
+                desTilemap = collision.gameObject.GetComponent<Tilemap>();
+                Vector3 hitPosition;
 
-                // these ifs check if the normals of the player's velocity are strong enough to actually break a tile
-                if ( Mathf.Abs(bufferVelocity.normalized.x) > RatioToBreak )
+                foreach(ContactPoint2D hit in collision.contacts)
                 {
-                    hitPosition.x -= 1f * hit.normal.x;
-                }
+                    hitPosition = hit.point;
 
-                if ( Mathf.Abs(bufferVelocity.normalized.y) > RatioToBreak )
-                {
-                    hitPosition.y += 1f * hit.normal.y;
-                }
+                    // these ifs check if the normals of the player's velocity are strong enough to actually break a tile
+                    if ( Mathf.Abs(bufferVelocity.normalized.x) > RatioToBreak )
+                    {
+                        hitPosition.x -= 1f * hit.normal.x;
+                    }
 
-                if (desTilemap.GetTile(desTilemap.WorldToCell(hitPosition)) != null)
-                {
-                    Camera camera = Camera.main;
-                    camera.GetComponent<Shaker>().Shake(0.7f, 10);
+                    if ( Mathf.Abs(bufferVelocity.normalized.y) > RatioToBreak )
+                    {
+                        hitPosition.y += 1f * hit.normal.y;
+                    }
 
-                    desTilemap.SetTile(desTilemap.WorldToCell(hitPosition), null);
-                    collided = true;
+                    if (desTilemap.GetTile(desTilemap.WorldToCell(hitPosition)) != null)
+                    {
+                        Camera camera = Camera.main;
+                        camera.GetComponent<Shaker>().Shake(0.7f, 10);
+
+                        desTilemap.SetTile(desTilemap.WorldToCell(hitPosition), null);
+                        collided = true;
+                    }
                 }
             }
+            else if (collision.gameObject.CompareTag("Shield"))
+            {
+                Camera camera = Camera.main;
+                camera.GetComponent<Shaker>().Shake(0.5f, 7);
+
+                collision.gameObject.GetComponent<Shield>().DieSequence();
+            }
         }
+        
     }
     void FixedUpdate()
     {

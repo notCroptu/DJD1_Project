@@ -4,10 +4,19 @@ using UnityEngine;
 
 public class Shield : MonoBehaviour
 {
+    [SerializeField] private LayerMask excludeLayersOnDie;
+
+    [SerializeField] private GameObject rhino;
+    [SerializeField] private float knockback = 2;
+
+    private Rigidbody2D rb;
     private Rigidbody2D rbP;
     private GameObject player;
 
     private Vector2 bufferVelocity;
+    private float clamp;
+
+    private bool dead;
     void Start()
     {
         
@@ -17,13 +26,13 @@ public class Shield : MonoBehaviour
 
         if ( collision.gameObject.CompareTag("Player") )
         {
-            float clamp = player.GetComponent<Movement>().moveClamp;
-
-
             float parryForce = Mathf.Sign(bufferVelocity.x) * clamp - bufferVelocity.x;
-            float newXvelocity = - parryForce * 2;
+            parryForce *= knockback;
+            Vector2 newVelocity = new Vector2(- parryForce, 0f);
 
-            rbP.velocity = new Vector2(newXvelocity, 0f);
+            Debug.Log("This is bufferVelocity " + bufferVelocity);
+            Debug.Log("This is newVelocity " + newVelocity);
+            rbP.AddForce(newVelocity, ForceMode2D.Impulse);
         }
     }
 
@@ -36,6 +45,21 @@ public class Shield : MonoBehaviour
         if ( rbP != null )
         {
             bufferVelocity = rbP.velocity;
+            clamp = rhino.GetComponent<Rhino>().RunClamp;
         }
+
+        if ( dead && (Mathf.Abs(rb.velocity.x) <  30) )
+        {
+            Destroy(gameObject);
+        }
+    }
+    public void DieSequence()
+    {
+        rb = GetComponent<Rigidbody2D>();
+        rb.excludeLayers = excludeLayersOnDie;
+
+        rb.AddForce(new Vector2(bufferVelocity.x * rb.mass, 0f), ForceMode2D.Impulse);
+
+        dead = true;
     }
 }
