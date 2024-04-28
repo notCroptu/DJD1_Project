@@ -22,8 +22,13 @@ public class Shield : MonoBehaviour
             GameObject rhino = collision.gameObject.transform.Find("Rhino").gameObject;
             clamp = rhino.GetComponent<Rhino>().RunClamp;
 
+            Rigidbody2D rb = GetComponent<Rigidbody2D>();
+
+            Vector2 dirToPlayer = rbP.position - rb.position;
+            dirToPlayer = dirToPlayer.normalized;
+
             float parryForce = Mathf.Sign(bufferVelocity.x) * clamp - bufferVelocity.x;
-            parryForce *= knockback;
+            parryForce *= knockback * Mathf.Abs(dirToPlayer.x);
             Vector2 newVelocity = new Vector2(- parryForce, 0f);
 
             rbP.AddForce(newVelocity, ForceMode2D.Impulse);

@@ -28,7 +28,11 @@ public class KnightMovement : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         rbP = player.GetComponent<Rigidbody2D>();
 
-        if ( rbP != null )
+        if ( dead && (Mathf.Abs(rb.velocity.magnitude) <  30) )
+        {
+            Destroy(gameObject);
+        }
+        else if ( rbP != null && !dead )
         {
             Vector2 dirToPlayer = rbP.position - rb.position;
             dirToPlayer = dirToPlayer.normalized;
@@ -52,18 +56,17 @@ public class KnightMovement : MonoBehaviour
             //update the buffervelocity
             bufferVelocity = rbP.velocity;
         }
-
-        if ( dead && (Mathf.Abs(rb.velocity.x) <  30) )
-        {
-            Destroy(gameObject);
-        }
     }
     public void DieSequence()
     {
         rb = GetComponent<Rigidbody2D>();
         rb.excludeLayers = excludeLayersOnDie;
 
-        rb.AddForce(new Vector2(bufferVelocity.x * rb.mass, 0f), ForceMode2D.Impulse);
+        Vector2 bounce = new Vector2(bufferVelocity.x, bufferVelocity.y + 50f * rb.mass);
+
+        rb.AddForce(bounce, ForceMode2D.Impulse);
+
+        rbP.AddForce(bufferVelocity, ForceMode2D.Impulse);
 
         dead = true;
     }
