@@ -135,10 +135,12 @@ GameObject:
   - component: {fileID: 696701640}
   - component: {fileID: 696701639}
   - component: {fileID: 696701638}
+  - component: {fileID: 696701643}
   - component: {fileID: 696701637}
-  m_Layer: 0
+  - component: {fileID: 696701642}
+  m_Layer: 8
   m_Name: ShieldKnight
-  m_TagString: Untagged
+  m_TagString: Knight
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -155,6 +157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29e29d9715751c746b93a82063ac567e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  knockback: 2
 --- !u!70 &696701638
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -278,12 +281,68 @@ Transform:
   m_GameObject: {fileID: 696701636}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 411, y: -317, z: -3.680065}
+  m_LocalPosition: {x: -149.8, y: -312.9, z: -3.680065}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &696701642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 696701636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cffbb246811094845935c029aa2b0958, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  excludeLayersOnDie:
+    serializedVersion: 2
+    m_Bits: 1
+  speed: 100
+  stopDistance: 128
+  sightDistance: 256
+  collidables:
+    serializedVersion: 2
+    m_Bits: 521
+--- !u!58 &696701643
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 696701636}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 35.49227, y: 11.284866}
+  serializedVersion: 2
+  m_Radius: 114.23417
 --- !u!4 &914828345 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3359410053028576424, guid: 2f85fbfa2c80c5c41bcd14153351d1be, type: 3}
@@ -2054,11 +2113,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3359410053028576424, guid: 2f85fbfa2c80c5c41bcd14153351d1be, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -358.5
+      value: -558
       objectReference: {fileID: 0}
     - target: {fileID: 3359410053028576424, guid: 2f85fbfa2c80c5c41bcd14153351d1be, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -304.8
+      value: -314
       objectReference: {fileID: 0}
     - target: {fileID: 3359410053028576424, guid: 2f85fbfa2c80c5c41bcd14153351d1be, type: 3}
       propertyPath: m_LocalPosition.z

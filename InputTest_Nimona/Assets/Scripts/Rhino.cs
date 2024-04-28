@@ -81,7 +81,7 @@ public class Rhino : MonoBehaviour
                 Camera camera = Camera.main;
                 camera.GetComponent<Shaker>().Shake(0.5f, 7);
 
-                collision.gameObject.GetComponent<Shield>().DieSequence();
+                collision.gameObject.GetComponent<KnightMovement>().DieSequence();
             }
         }
         
