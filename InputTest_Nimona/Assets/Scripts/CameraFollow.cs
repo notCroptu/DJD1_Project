@@ -6,7 +6,7 @@ public class cameraFollow : MonoBehaviour
 {
     [SerializeField] private Transform objectToFollow;
     [SerializeField] private float rateToFollow = 0.5f;
-    void Update()
+    void FixedUpdate()
     {
         Vector3 targetPosition = objectToFollow.position;
         targetPosition.z = transform.position.z;

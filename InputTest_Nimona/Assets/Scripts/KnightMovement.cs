@@ -28,7 +28,7 @@ public class KnightMovement : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         rbP = player.GetComponent<Rigidbody2D>();
 
-        if ( dead && (Mathf.Abs(rb.velocity.magnitude) <  30) )
+        if ( dead && (Mathf.Abs(rb.velocity.magnitude) <  15) )
         {
             Destroy(gameObject);
         }
@@ -45,10 +45,21 @@ public class KnightMovement : MonoBehaviour
 
             if (( hit.collider != null ))
             {
-                Debug.Log(hit.transform.tag);
                 if ( hit.transform.tag == "Player" )
                 {
-                    rb.velocity = new Vector2(speed * Mathf.Sign(dirToPlayer.x), 0f);
+                    // Animation
+                    if (( dirToPlayer.x < 0 ))
+                    {
+                        transform.rotation = Quaternion.Euler( 0, 180, 0);
+                    }
+                    else if (( dirToPlayer.x > 0 ))
+                    {
+                        transform.rotation = Quaternion.identity;
+                    }
+
+                    Vector2 newVelocity = rb.velocity;
+                    newVelocity.x = Mathf.Lerp(rb.velocity.x, speed * Mathf.Sign(dirToPlayer.x), 0.3f);
+                    rb.velocity = newVelocity;
                 }
                 
             }
@@ -62,7 +73,7 @@ public class KnightMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         rb.excludeLayers = excludeLayersOnDie;
 
-        Vector2 bounce = new Vector2(bufferVelocity.x, bufferVelocity.y + 50f * rb.mass);
+        Vector2 bounce = new Vector2(bufferVelocity.x, bufferVelocity.y + 100f * rb.mass);
 
         rb.AddForce(bounce, ForceMode2D.Impulse);
 

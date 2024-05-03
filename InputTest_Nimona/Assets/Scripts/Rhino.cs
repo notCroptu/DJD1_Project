@@ -23,6 +23,7 @@ public class Rhino : MonoBehaviour
     // variables for breaking destructible tilemap
     [SerializeField] private float desBreakPoint;
     [SerializeField] private float RatioToBreak = 0.3f;
+    [SerializeField] private float shakeForce = 10f;
     private Tilemap desTilemap;
 
     // player variables
@@ -68,8 +69,9 @@ public class Rhino : MonoBehaviour
 
                     if (desTilemap.GetTile(desTilemap.WorldToCell(hitPosition)) != null)
                     {
+                        float shake = bufferVelocity.magnitude * shakeForce / RunClamp;
                         Camera camera = Camera.main;
-                        camera.GetComponent<Shaker>().Shake(0.7f, 10);
+                        camera.GetComponent<Shaker>().Shake(0.7f, shake);
 
                         desTilemap.SetTile(desTilemap.WorldToCell(hitPosition), null);
                         collided = true;
@@ -78,8 +80,9 @@ public class Rhino : MonoBehaviour
             }
             else if (collision.gameObject.CompareTag("Shield"))
             {
+                float shake = bufferVelocity.magnitude * shakeForce / RunClamp;
                 Camera camera = Camera.main;
-                camera.GetComponent<Shaker>().Shake(0.5f, 7);
+                camera.GetComponent<Shaker>().Shake(0.4f, shake);
 
                 collision.gameObject.GetComponent<KnightMovement>().DieSequence();
             }

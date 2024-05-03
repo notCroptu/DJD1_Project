@@ -10,9 +10,10 @@ public class Movement : MonoBehaviour
     [field:SerializeField] public BoxCollider2D airCollider { get; set; }
 
     // other variables that will be changed throughout shapes (the field serialize is purely for inspector viewing of variable changes)
-    [field:SerializeField] public float moveClamp { get; set; }
-    [field:SerializeField] public float moveRate { get; set; }
-    [field:SerializeField] public float jumpSpeed { get; set; }
+    public float moveClamp { get; set; }
+    public float moveRate { get; set; }
+    public float jumpSpeed { get; set; }
+    public float fallingGravity { get; set; }
 
     // The previous variable's default states and their getters
     [SerializeField] private float defaultMoveClamp = 100f;
@@ -21,6 +22,8 @@ public class Movement : MonoBehaviour
     public float DefaultMoveRate => defaultMoveRate;
     [SerializeField] private float defaultJumpSpeed = 200f;
     public float DefaultJumpSpeed => defaultJumpSpeed;
+    [SerializeField] private float defaultGravity = 4f;
+    public float DefaultGravity => defaultGravity;
 
     // variables that will be the same throughout shapes
     [SerializeField] private LayerMask groundLayerMask;
@@ -30,23 +33,21 @@ public class Movement : MonoBehaviour
     private Rigidbody2D rb;
     private Vector3 moveVector;
     public bool IsGrounded { get; set; }
-    private bool actualIsGrounded;
+    private bool canJump;
     private float coyoteTimer;
-    private float defaultGravity;
 
-    private bool jumped;
+    public bool Jumped { get; set; }
     private bool isJumping;
     private float deltaX;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-
-        defaultGravity = rb.gravityScale;
     }
 
     void FixedUpdate()
     {
+        Debug.Log("This is moveClamp " + moveClamp + " This is moveRate " + moveRate);
         UpdateGroundState();
 
         // change from air to ground collider or ground to air collider
@@ -74,11 +75,12 @@ public class Movement : MonoBehaviour
         // (as opposed to Fixed Update)
         //moveVector.x *= Time.deltaTime;
 
-        if ( jumped && IsGrounded )
+        if ( Jumped && canJump && IsGrounded )
         {
             rb.gravityScale = 2f;
             moveVector.y = jumpSpeed;
-            jumped = false;
+            Jumped = false;
+            canJump = false;
         }
         if ( isJumping )
         {
@@ -86,25 +88,25 @@ public class Movement : MonoBehaviour
         }
         else
         {
-            rb.gravityScale = defaultGravity;
+            rb.gravityScale = fallingGravity;
         }
 
         rb.velocity = moveVector;
     }
     void Update()
     {
-        if ( Input.GetButtonDown("Jump") ) jumped = true;
+        if ( Input.GetButtonDown("Jump") ) Jumped = true;
 
         isJumping = Input.GetButton("Jump");
         deltaX = Input.GetAxis("Horizontal");
 
         // Animation
 
-        if (( deltaX < 0 ))
+        if (( deltaX < 0 ) && (transform.right.x > 0) )
         {
             transform.rotation = Quaternion.Euler( 0, 180, 0);
         }
-        else if (( deltaX > 0 ))
+        else if (( deltaX > 0 ) && (transform.right.x < 0) )
         {
             transform.rotation = Quaternion.identity;
         }
@@ -122,6 +124,7 @@ public class Movement : MonoBehaviour
             int n = Physics2D.OverlapCollider(groundCheckCollider, contactFilter, results);
             if (n > 0)
             {
+                canJump = true;
                 coyoteTimer = coyoteTime;
                 IsGrounded = true;
                 return;
@@ -146,5 +149,6 @@ public class Movement : MonoBehaviour
         moveClamp = defaultMoveClamp;
         moveRate = defaultMoveRate;
         jumpSpeed = defaultJumpSpeed;
+        fallingGravity = defaultGravity;
     }
 }
