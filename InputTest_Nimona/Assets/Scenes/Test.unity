@@ -2267,21 +2267,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2214102187115744988, guid: 2f85fbfa2c80c5c41bcd14153351d1be, type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 2474396092445469980, guid: 2f85fbfa2c80c5c41bcd14153351d1be, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 2605392763479240287, guid: 2f85fbfa2c80c5c41bcd14153351d1be, type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3062152664244081189, guid: 2f85fbfa2c80c5c41bcd14153351d1be, type: 3}
-      propertyPath: m_Material
-      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 3359410053028576424, guid: 2f85fbfa2c80c5c41bcd14153351d1be, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2322,26 +2310,6 @@ PrefabInstance:
     - target: {fileID: 3359410053028576424, guid: 2f85fbfa2c80c5c41bcd14153351d1be, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8406045373574292493, guid: 2f85fbfa2c80c5c41bcd14153351d1be, type: 3}
-      propertyPath: jumpSpeed
-      value: 200
-      objectReference: {fileID: 0}
-    - target: {fileID: 8406045373574292493, guid: 2f85fbfa2c80c5c41bcd14153351d1be, type: 3}
-      propertyPath: maxFallSpeed
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 8406045373574292493, guid: 2f85fbfa2c80c5c41bcd14153351d1be, type: 3}
-      propertyPath: fallingGravity
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8406045373574292493, guid: 2f85fbfa2c80c5c41bcd14153351d1be, type: 3}
-      propertyPath: glidingGravity
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 9013819727544050668, guid: 2f85fbfa2c80c5c41bcd14153351d1be, type: 3}
-      propertyPath: m_Material
-      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

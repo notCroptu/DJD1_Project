@@ -32,7 +32,7 @@ public class DragonWings : MonoBehaviour
 
         glideRate = (movement.DefaultMoveClamp / glideClamp) * movement.DefaultMoveRate;
         
-        movement.jumpSpeed = jumpSpeed;
+        movement.JumpSpeed = jumpSpeed;
     }
     void Update()
     {
@@ -55,10 +55,10 @@ public class DragonWings : MonoBehaviour
             }
             else if ( Input.GetKey(KeyCode.JoystickButton5) )
             {
-                if ( (movement.moveClamp != glideClamp) || (movement.moveRate != glideRate) )
+                if ( (movement.MoveClamp != glideClamp) || (movement.MoveRate != glideRate) )
                 {
-                    movement.moveClamp = glideClamp;
-                    movement.moveRate = glideRate;
+                    movement.MoveClamp = glideClamp;
+                    movement.MoveRate = glideRate;
                 }
                 
                 Vector3 currentVelocity = rb.velocity;
@@ -71,10 +71,10 @@ public class DragonWings : MonoBehaviour
 
             if ( !Input.GetKey(KeyCode.JoystickButton5) )
             {
-                if ( (movement.moveClamp == glideClamp) || (movement.moveRate == glideRate) )
+                if ( (movement.MoveClamp == glideClamp) || (movement.MoveRate == glideRate) )
                 {
-                    movement.moveClamp = movement.DefaultMoveClamp;
-                    movement.moveRate = movement.DefaultMoveRate;
+                    movement.MoveClamp = movement.DefaultMoveClamp;
+                    movement.MoveRate = movement.DefaultMoveRate;
                 }
             }
 
@@ -84,10 +84,10 @@ public class DragonWings : MonoBehaviour
         {
             jumpsExecuted = 0;
 
-            if ( (movement.moveClamp == glideClamp) || (movement.moveRate == glideRate) )
+            if ( (movement.MoveClamp == glideClamp) || (movement.MoveRate == glideRate) )
             {
-                movement.moveClamp = movement.DefaultMoveClamp;
-                movement.moveRate = movement.DefaultMoveRate;
+                movement.MoveClamp = movement.DefaultMoveClamp;
+                movement.MoveRate = movement.DefaultMoveRate;
             }
         }
     }

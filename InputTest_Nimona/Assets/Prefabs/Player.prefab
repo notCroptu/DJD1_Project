@@ -131,7 +131,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 1788895623032444735}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: a1282313549df9c4ba3ace9449b778da, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -181,10 +181,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   groundCollider: {fileID: 7686688880238732305}
   airCollider: {fileID: 3062152664244081189}
-  jumpSpeed: 300
+  jumpSpeed: 200
   glideClamp: 400
   jumpsAllowed: 3
-  maxFallSpeed: 5
+  maxFallSpeed: 20
 --- !u!1 &2474396092445469980
 GameObject:
   m_ObjectHideFlags: 0
@@ -467,7 +467,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 3540671578641059649}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: a1282313549df9c4ba3ace9449b778da, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -651,7 +651,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 5061011348551062651}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: a1282313549df9c4ba3ace9449b778da, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -818,7 +818,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 7196989955669048276}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: a1282313549df9c4ba3ace9449b778da, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0

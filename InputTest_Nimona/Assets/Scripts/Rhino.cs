@@ -22,8 +22,8 @@ public class Rhino : MonoBehaviour
 
     // variables for breaking destructible tilemap
     [SerializeField] private float desBreakPoint;
-    [SerializeField] private float RatioToBreak = 0.3f;
     [SerializeField] private float shakeForce = 10f;
+    [SerializeField] private float breakAngle = 45f;
     private Tilemap desTilemap;
 
     // player variables
@@ -39,9 +39,6 @@ public class Rhino : MonoBehaviour
         walkRate = movement.DefaultMoveRate;
 
         runRate = (walkClamp / runClamp) * walkRate;
-
-        //GameObject des = GameObject.FindGameObjectWithTag("Destructibles");
-        //desTiles = des.GetComponent<Tilemap>();
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
@@ -49,34 +46,7 @@ public class Rhino : MonoBehaviour
         {
             if (collision.gameObject.CompareTag("Destructibles"))
             {
-                desTilemap = collision.gameObject.GetComponent<Tilemap>();
-                Vector3 hitPosition;
-
-                foreach(ContactPoint2D hit in collision.contacts)
-                {
-                    hitPosition = hit.point;
-
-                    // these ifs check if the normals of the player's velocity are strong enough to actually break a tile
-                    if ( Mathf.Abs(bufferVelocity.normalized.x) > RatioToBreak )
-                    {
-                        hitPosition.x -= 1f * hit.normal.x;
-                    }
-
-                    if ( Mathf.Abs(bufferVelocity.normalized.y) > RatioToBreak )
-                    {
-                        hitPosition.y += 1f * hit.normal.y;
-                    }
-
-                    if (desTilemap.GetTile(desTilemap.WorldToCell(hitPosition)) != null)
-                    {
-                        float shake = bufferVelocity.magnitude * shakeForce / RunClamp;
-                        Camera camera = Camera.main;
-                        camera.GetComponent<Shaker>().Shake(0.7f, shake);
-
-                        desTilemap.SetTile(desTilemap.WorldToCell(hitPosition), null);
-                        collided = true;
-                    }
-                }
+                DestroyTilemap(collision);
             }
             else if (collision.gameObject.CompareTag("Shield"))
             {
@@ -85,37 +55,80 @@ public class Rhino : MonoBehaviour
                 camera.GetComponent<Shaker>().Shake(0.4f, shake);
 
                 collision.gameObject.GetComponent<KnightMovement>().DieSequence();
+                collided = true;
             }
         }
-        
+    }
+    void OnCollisionStay2D (Collision2D collision)
+    {
+        if (bufferVelocity.magnitude >= desBreakPoint)
+        {
+            if (collision.gameObject.CompareTag("Destructibles"))
+            {
+                DestroyTilemap(collision);
+            }
+        }
+    }
+
+    void DestroyTilemap(Collision2D collision)
+    {
+        desTilemap = collision.gameObject.GetComponent<Tilemap>();
+        Vector3 hitPosition;
+
+        foreach(ContactPoint2D hit in collision.contacts)
+        {
+            hitPosition = hit.point;
+
+            float velocityAngle = Mathf.Atan2(bufferVelocity.y, bufferVelocity.x) * Mathf.Rad2Deg;
+            float hitAngle = Mathf.Atan2(hit.normal.y, -hit.normal.x) * Mathf.Rad2Deg;
+            float angleDifference = Mathf.DeltaAngle(velocityAngle, hitAngle);
+
+            if ( Mathf.Abs(angleDifference) <= breakAngle )
+            {
+                hitPosition.x -= 1f * hit.normal.x;
+                hitPosition.y -= 1f * hit.normal.y;
+            }
+
+            if (desTilemap.GetTile(desTilemap.WorldToCell(hitPosition)) != null)
+            {
+                float shake = bufferVelocity.magnitude * shakeForce / RunClamp;
+                Camera camera = Camera.main;
+                camera.GetComponent<Shaker>().Shake(0.7f, shake);
+
+                desTilemap.SetTile(desTilemap.WorldToCell(hitPosition), null);
+                collided = true;
+            }
+        }
     }
     void FixedUpdate()
     {
         // this checks if it has had a breaking collision and if true it sets the velocity to the previous velocity
-        if (collided)
+        if ( collided )
         {
             rb.velocity = bufferVelocity;
             collided = false;
         }
-        
-        bufferVelocity = rb.velocity;
-}
+        else
+        {
+            bufferVelocity = rb.velocity;
+        }
+    }
     void Update()
     {
         if  ( Input.GetKey(KeyCode.JoystickButton5) && ( movement.IsGrounded ) )
         {
-            if ( (movement.moveClamp != runClamp) || (movement.moveRate != runRate) )
+            if ( (movement.MoveClamp != runClamp) || (movement.MoveRate != runRate) )
             {
-                movement.moveClamp = runClamp;
-                movement.moveRate = runRate;
+                movement.MoveClamp = runClamp;
+                movement.MoveRate = runRate;
             }
         }
         else if ( movement.IsGrounded )
         {
-            if ( (movement.moveClamp != walkClamp) || (movement.moveRate != walkRate) )
+            if ( (movement.MoveClamp != walkClamp) || (movement.MoveRate != walkRate) )
             {
-                movement.moveClamp = walkClamp;
-                movement.moveRate = walkRate;
+                movement.MoveClamp = walkClamp;
+                movement.MoveRate = walkRate;
             }
         }
     }

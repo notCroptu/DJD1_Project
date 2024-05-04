@@ -10,10 +10,10 @@ public class Movement : MonoBehaviour
     [field:SerializeField] public BoxCollider2D airCollider { get; set; }
 
     // other variables that will be changed throughout shapes (the field serialize is purely for inspector viewing of variable changes)
-    public float moveClamp { get; set; }
-    public float moveRate { get; set; }
-    public float jumpSpeed { get; set; }
-    public float fallingGravity { get; set; }
+    public float MoveClamp { get; set; }
+    public float MoveRate { get; set; }
+    public float JumpSpeed { get; set; }
+    public float FallingGravity { get; set; }
 
     // The previous variable's default states and their getters
     [SerializeField] private float defaultMoveClamp = 100f;
@@ -47,7 +47,6 @@ public class Movement : MonoBehaviour
 
     void FixedUpdate()
     {
-        Debug.Log("This is moveClamp " + moveClamp + " This is moveRate " + moveRate);
         UpdateGroundState();
 
         // change from air to ground collider or ground to air collider
@@ -56,29 +55,12 @@ public class Movement : MonoBehaviour
 
         moveVector = rb.velocity;
 
-        /*
-        // sets the horizontal move to be gradual(optional by changing moveRate to 1)
-        if ( (deltaX < 0 && rb.velocity.x <= 0) || (deltaX > 0 && rb.velocity.x >= 0) || !IsGrounded)
-        {
-            moveVector.x = Mathf.Lerp(rb.velocity.x, moveClamp * deltaX, moveRate);
-        }
-        // including when switching direction and velocity is not 0
-        else
-        {
-            moveVector.x = Mathf.Lerp(rb.velocity.x, 0, moveRate);
-        }*/
-
-        moveVector.x = Mathf.Lerp(rb.velocity.x, moveClamp * deltaX, moveRate);
-
-        
-        // relative movement since the last frame, as we are calculating physics in Update
-        // (as opposed to Fixed Update)
-        //moveVector.x *= Time.deltaTime;
+        moveVector.x = Mathf.Lerp(rb.velocity.x, MoveClamp * deltaX, MoveRate);
 
         if ( Jumped && canJump && IsGrounded )
         {
             rb.gravityScale = 2f;
-            moveVector.y = jumpSpeed;
+            moveVector.y = JumpSpeed;
             Jumped = false;
             canJump = false;
         }
@@ -88,7 +70,8 @@ public class Movement : MonoBehaviour
         }
         else
         {
-            rb.gravityScale = fallingGravity;
+            rb.gravityScale = FallingGravity;
+            Jumped = false;
         }
 
         rb.velocity = moveVector;
@@ -146,9 +129,9 @@ public class Movement : MonoBehaviour
     public void ResetValues()
     {
         // here the states are reset to their original forms
-        moveClamp = defaultMoveClamp;
-        moveRate = defaultMoveRate;
-        jumpSpeed = defaultJumpSpeed;
-        fallingGravity = defaultGravity;
+        MoveClamp = defaultMoveClamp;
+        MoveRate = defaultMoveRate;
+        JumpSpeed = defaultJumpSpeed;
+        FallingGravity = defaultGravity;
     }
 }
