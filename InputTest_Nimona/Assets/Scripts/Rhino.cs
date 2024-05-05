@@ -11,6 +11,7 @@ public class Rhino : MonoBehaviour
 
     // value variables to change in player
     [SerializeField] private float runClamp = 100f;
+    [SerializeField] private float fallingGravity = 4f;
     public float RunClamp => runClamp;
     private float runRate;
     private float walkClamp;
@@ -23,7 +24,7 @@ public class Rhino : MonoBehaviour
     // variables for breaking destructible tilemap
     [SerializeField] private float desBreakPoint;
     [SerializeField] private float shakeForce = 10f;
-    [SerializeField] private float breakAngle = 45f;
+    [SerializeField] private float breakAngle = 60f;
     private Tilemap desTilemap;
 
     // player variables
@@ -37,6 +38,8 @@ public class Rhino : MonoBehaviour
         rb = player.GetComponent<Rigidbody2D>();
         walkClamp = movement.DefaultMoveClamp;
         walkRate = movement.DefaultMoveRate;
+
+        movement.FallingGravity = fallingGravity;
 
         runRate = (walkClamp / runClamp) * walkRate;
     }

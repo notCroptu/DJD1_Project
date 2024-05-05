@@ -22,8 +22,8 @@ public class Movement : MonoBehaviour
     public float DefaultMoveRate => defaultMoveRate;
     [SerializeField] private float defaultJumpSpeed = 200f;
     public float DefaultJumpSpeed => defaultJumpSpeed;
-    [SerializeField] private float defaultGravity = 4f;
-    public float DefaultGravity => defaultGravity;
+    [SerializeField] private float defaultFallingGravity = 2f;
+    public float DefaultFallingGravity => defaultFallingGravity;
 
     // variables that will be the same throughout shapes
     [SerializeField] private LayerMask groundLayerMask;
@@ -59,18 +59,18 @@ public class Movement : MonoBehaviour
 
         if ( Jumped && canJump && IsGrounded )
         {
-            rb.gravityScale = 2f;
+            rb.gravityScale = FallingGravity;
             moveVector.y = JumpSpeed;
             Jumped = false;
             canJump = false;
         }
         if ( isJumping )
         {
-            rb.gravityScale = 2f;
+            rb.gravityScale = FallingGravity;
         }
         else
         {
-            rb.gravityScale = FallingGravity;
+            rb.gravityScale = 4f;
             Jumped = false;
         }
 
@@ -132,6 +132,6 @@ public class Movement : MonoBehaviour
         MoveClamp = defaultMoveClamp;
         MoveRate = defaultMoveRate;
         JumpSpeed = defaultJumpSpeed;
-        FallingGravity = defaultGravity;
+        FallingGravity = defaultFallingGravity;
     }
 }
