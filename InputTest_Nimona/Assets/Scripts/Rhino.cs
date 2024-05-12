@@ -49,7 +49,11 @@ public class Rhino : MonoBehaviour
         {
             if (collision.gameObject.CompareTag("Destructibles"))
             {
-                DestroyTilemap(collision);
+                Destroy(collision.gameObject);
+                rb.velocity = bufferVelocity;
+                float shake = bufferVelocity.magnitude * shakeForce / RunClamp;
+                Camera camera = Camera.main;
+                camera.GetComponent<Shaker>().Shake(0.7f, shake);
             }
             else if (collision.gameObject.CompareTag("Shield"))
             {
@@ -68,7 +72,8 @@ public class Rhino : MonoBehaviour
         {
             if (collision.gameObject.CompareTag("Destructibles"))
             {
-                DestroyTilemap(collision);
+                Destroy(collision.gameObject);
+
             }
         }
     }
@@ -118,7 +123,7 @@ public class Rhino : MonoBehaviour
     }
     void Update()
     {
-        if  ( Input.GetKey(KeyCode.JoystickButton5) && ( movement.IsGrounded ) )
+        if  ( Input.GetKey(KeyCode.JoystickButton7) && ( movement.IsGrounded ) )
         {
             if ( (movement.MoveClamp != runClamp) || (movement.MoveRate != runRate) )
             {

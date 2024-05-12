@@ -53,7 +53,7 @@ public class DragonWings : MonoBehaviour
 
                 jumpsExecuted++;
             }
-            else if ( Input.GetKey(KeyCode.JoystickButton5) )
+            else if ( Input.GetKey(KeyCode.JoystickButton7) )
             {
                 if ( (movement.MoveClamp != glideClamp) || (movement.MoveRate != glideRate) )
                 {
@@ -69,7 +69,7 @@ public class DragonWings : MonoBehaviour
                 }
             }
 
-            if ( !Input.GetKey(KeyCode.JoystickButton5) )
+            if ( !Input.GetKey(KeyCode.JoystickButton7) )
             {
                 if ( (movement.MoveClamp == glideClamp) || (movement.MoveRate == glideRate) )
                 {

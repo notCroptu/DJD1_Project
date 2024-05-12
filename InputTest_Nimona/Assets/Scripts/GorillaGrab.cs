@@ -7,7 +7,8 @@ using UnityEngine;
 public class GorillaGrab : MonoBehaviour
 {
     [SerializeField] private float throwForce;
-    [SerializeField] private Collider2D grabCollider;
+    [SerializeField] private float grabRadius = 30;
+    [SerializeField] private CircleCollider2D grabCollider;
     [SerializeField] private Transform grabPoint;
     [SerializeField] private KeyCode grabKey;
     [SerializeField] private KeyCode throwKey;
@@ -20,7 +21,7 @@ public class GorillaGrab : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        grabCollider.radius = grabRadius;
     }
 
     // Update is called once per frame
@@ -77,7 +78,7 @@ public class GorillaGrab : MonoBehaviour
                 Debug.Log("STEP 1");
                 Vector3 otherVector = other.transform.position; // Get other object position
 
-                Debug.Log($"{Vector3.Distance(otherVector, transform.position)} < {Vector3.Distance(grabVector, transform.position)} ? ");
+                //Debug.Log($"{Vector3.Distance(otherVector, transform.position)} < {Vector3.Distance(grabVector, transform.position)} ? {Vector3.Distance(otherVector, transform.position) < Vector3.Distance(grabVector, transform.position)}");
 
                 // Check if other is closer to the player then the current grabObject
                 if (Vector3.Distance(otherVector, transform.position) < Vector3.Distance(grabVector, transform.position))
@@ -93,6 +94,15 @@ public class GorillaGrab : MonoBehaviour
         Debug.Log("DONE");
         Debug.Log("grab: " + grabObject);
 
+    }
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        Debug.Log("OBJECT LEFT");
+        if (other == grabObject)
+        {
+            Debug.Log("IS GRAB");
+            grabObject = null;
+        }
     }
     // Grabbing mechanic logic
     private void GrabingObject()
