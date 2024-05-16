@@ -10,10 +10,11 @@ public class KnightMovement : MonoBehaviour
     [SerializeField] private float stopDistance = 128f;
     [SerializeField] private float sightDistance = 256f;
     [SerializeField] private LayerMask collidables;
+    [SerializeField] private PhysicsMaterial2D bouncy;
 
     private Rigidbody2D rb;
     private Rigidbody2D rbP;
-    private GameObject player;
+    private Movement player;
 
     private Vector2 bufferVelocity;
     private bool dead;
@@ -25,13 +26,12 @@ public class KnightMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
-        rbP = player.GetComponent<Rigidbody2D>();
-
-        if ( dead && (Mathf.Abs(rb.velocity.magnitude) <  15) )
+        if ( player == null )
         {
-            Destroy(gameObject);
+            player = FindObjectOfType<Movement>();
+            rbP = player.GetComponent<Rigidbody2D>();
         }
+
         else if ( rbP != null && !dead )
         {
             Vector2 dirToPlayer = rbP.position - rb.position;
@@ -61,7 +61,6 @@ public class KnightMovement : MonoBehaviour
                     newVelocity.x = Mathf.Lerp(rb.velocity.x, speed * Mathf.Sign(dirToPlayer.x), 0.3f);
                     rb.velocity = newVelocity;
                 }
-                
             }
 
             //update the buffervelocity
@@ -70,15 +69,21 @@ public class KnightMovement : MonoBehaviour
     }
     public void DieSequence()
     {
+        StartCoroutine(DieSequenceCR());
+    }
+    IEnumerator DieSequenceCR()
+    {
+        dead = true;
         rb = GetComponent<Rigidbody2D>();
         rb.excludeLayers = excludeLayersOnDie;
+        rb.sharedMaterial = bouncy;
 
         Vector2 bounce = new Vector2(bufferVelocity.x, bufferVelocity.y + 100f * rb.mass);
-
         rb.AddForce(bounce, ForceMode2D.Impulse);
-
         rbP.AddForce(bufferVelocity, ForceMode2D.Impulse);
 
-        dead = true;
+        yield return new WaitForSeconds(1.2f);
+
+        Destroy(gameObject);
     }
 }

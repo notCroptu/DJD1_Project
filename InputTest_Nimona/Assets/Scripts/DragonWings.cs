@@ -16,6 +16,8 @@ public class DragonWings : MonoBehaviour
 
     
     private int jumpsExecuted;
+    private Vector3 newJump;
+    private Vector3 currentVelocity;
 
     // player variables
     private GameObject player;
@@ -44,8 +46,6 @@ public class DragonWings : MonoBehaviour
                 Debug.Log("has flapped");
                 rb.gravityScale = 2f;
 
-                Vector3 newJump;
-
                 newJump = rb.velocity;
                 newJump.y = jumpSpeed;
 
@@ -61,7 +61,7 @@ public class DragonWings : MonoBehaviour
                     movement.MoveRate = glideRate;
                 }
                 
-                Vector3 currentVelocity = rb.velocity;
+                currentVelocity = rb.velocity;
                 if (rb.velocity.y < -maxFallSpeed)
                 {
                     currentVelocity.y = -maxFallSpeed;

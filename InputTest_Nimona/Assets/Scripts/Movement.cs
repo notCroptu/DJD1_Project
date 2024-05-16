@@ -27,8 +27,8 @@ public class Movement : MonoBehaviour
 
     // variables that will be the same throughout shapes
     [SerializeField] private LayerMask groundLayerMask;
-
     [SerializeField] private float coyoteTime;
+    [SerializeField] private float knockOutTime = 1f;
 
     private Rigidbody2D rb;
     private Vector3 moveVector;
@@ -39,9 +39,10 @@ public class Movement : MonoBehaviour
     public bool Jumped { get; set; }
     private bool isJumping;
     private float deltaX;
-
+    private bool inputEnabled;
     void Start()
     {
+        inputEnabled = true;
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -53,28 +54,32 @@ public class Movement : MonoBehaviour
         groundCollider.enabled = IsGrounded;
         airCollider.enabled = !IsGrounded;
 
-        moveVector = rb.velocity;
-
-        moveVector.x = Mathf.Lerp(rb.velocity.x, MoveClamp * deltaX, MoveRate);
-
-        if ( Jumped && canJump && IsGrounded )
+        if ( inputEnabled)
         {
-            rb.gravityScale = FallingGravity;
-            moveVector.y = JumpSpeed;
-            Jumped = false;
-            canJump = false;
-        }
-        if ( isJumping )
-        {
-            rb.gravityScale = FallingGravity;
-        }
-        else
-        {
-            rb.gravityScale = 4f;
-            Jumped = false;
+            moveVector = rb.velocity;
+
+            moveVector.x = Mathf.Lerp(rb.velocity.x, MoveClamp * deltaX, MoveRate);
+
+            if ( Jumped && canJump && IsGrounded )
+            {
+                rb.gravityScale = FallingGravity;
+                moveVector.y = JumpSpeed;
+                Jumped = false;
+                canJump = false;
+            }
+            if ( isJumping )
+            {
+                rb.gravityScale = FallingGravity;
+            }
+            else
+            {
+                rb.gravityScale = 4f;
+                Jumped = false;
+            }
+
+            rb.velocity = moveVector;
         }
 
-        rb.velocity = moveVector;
     }
     void Update()
     {
@@ -125,6 +130,17 @@ public class Movement : MonoBehaviour
         }
 
         IsGrounded = false;
+    }
+    public void ImpulsePlayer(Vector2 impulse)
+    {
+        StartCoroutine(ImpulsePlayerCR(impulse));
+    }
+    IEnumerator ImpulsePlayerCR(Vector2 impulse)
+    {
+        rb.velocity = impulse;
+        inputEnabled = false;
+        yield return new WaitForSeconds(knockOutTime);
+        inputEnabled = true;
     }
     public void ResetValues()
     {
