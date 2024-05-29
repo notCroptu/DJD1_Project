@@ -17,16 +17,19 @@ public class Shapeshifting : MonoBehaviour
     [SerializeField] private Image gorillaBar;
     [SerializeField] private Image dragonBar;
     [SerializeField] private Image rhinoBar;
-
-    public float GorillaPoints { get; set; } = 5;
-    public float DragonPoints { get; set; } = 5;
-    public float RhinoPoints { get; set; } = 5;
+    [SerializeField] private float maxPoints; 
+    public float GorillaPoints { get; set; }
+    public float DragonPoints { get; set; }
+    public float RhinoPoints { get; set; }
 
     private GameObject currentShape;
     void Start()
     {
         // Initialize with human shape at the start
         ChangeShape(human);
+        RhinoPoints = maxPoints;
+        GorillaPoints = maxPoints;
+        DragonPoints = maxPoints;
     }
     void Update()
     {
@@ -127,7 +130,7 @@ public class Shapeshifting : MonoBehaviour
     }
     public void UpdateBars(float shapePoints, Image shapeBar)
     {
-        float barValue = Mathf.InverseLerp(0f, 5f, shapePoints);
+        float barValue = Mathf.InverseLerp(0f, maxPoints, shapePoints);
         shapeBar.fillAmount = barValue;
     }
 
