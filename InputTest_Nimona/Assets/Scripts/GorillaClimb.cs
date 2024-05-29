@@ -7,7 +7,7 @@ public class GorillaClimb : MonoBehaviour
 {
     [SerializeField] private Collider2D wallCol;
     [SerializeField] private KeyCode climbKey;
-    [SerializeField] private GameObject playerObject;
+    [SerializeField] private string climbTag;
     public bool WallCheck { get; private set; } = false;
     private Movement movScript;
     private ClimbMovement climbScript;
@@ -15,8 +15,8 @@ public class GorillaClimb : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        movScript = playerObject.GetComponent<Movement>();
-        climbScript = playerObject.GetComponent<ClimbMovement>();
+        movScript = GetComponentInParent<Movement>();
+        climbScript = GetComponentInParent<ClimbMovement>();
     }
 
     // Update is called once per frame
@@ -38,14 +38,14 @@ public class GorillaClimb : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Wall"))
+        if (other.CompareTag(climbTag))
         {
             WallCheck = true;
         }
     }
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Wall"))
+        if (other.CompareTag(climbTag))
         {
             WallCheck = false;
         }

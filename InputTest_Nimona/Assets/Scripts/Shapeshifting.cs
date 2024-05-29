@@ -18,9 +18,9 @@ public class Shapeshifting : MonoBehaviour
     [SerializeField] private Image dragonBar;
     [SerializeField] private Image rhinoBar;
 
-    [field:SerializeField] public float GorillaPoints { get; set; } = 5;
+    public float GorillaPoints { get; set; } = 5;
     public float DragonPoints { get; set; } = 5;
-    [field:SerializeField] public float RhinoPoints { get; set; } = 5;
+    public float RhinoPoints { get; set; } = 5;
 
     private GameObject currentShape;
     void Start()

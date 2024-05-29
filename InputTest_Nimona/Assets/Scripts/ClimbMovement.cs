@@ -14,11 +14,16 @@ public class ClimbMovement : MonoBehaviour
     private bool isWallJumping;
     private float wallJumpingDirection;
     private float wallJumpingCounter;
+    private float Vx;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+    }
+    void OnEnable()
+    {
+        Vx = rb.velocity.x;
     }
 
     // Update is called once per frame
@@ -31,9 +36,10 @@ public class ClimbMovement : MonoBehaviour
         Vector3 currentVel = rb.velocity;
 
         currentVel.y = verticalMovement * climbSpeed;
+        Vx =  Mathf.Sign(Vx)*(Mathf.Abs(Vx)*0.1f);
 
-        rb.velocity = new Vector3 (currentVel.x, currentVel.y, 0f);
-        WallJump();
+        rb.velocity = new Vector3 (Vx, currentVel.y, 0f);
+        // WallJump();
 
         if (!isWallJumping)
         {

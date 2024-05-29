@@ -10,6 +10,7 @@ TagManager:
   - Shield
   - Wall
   - Point
+  - Stairs
   layers:
   - Default
   - TransparentFX
