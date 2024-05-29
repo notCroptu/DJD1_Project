@@ -9,6 +9,7 @@ TagManager:
   - Knight
   - Shield
   - Wall
+  - Point
   layers:
   - Default
   - TransparentFX

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Shapeshifting : MonoBehaviour
 {
@@ -10,6 +11,16 @@ public class Shapeshifting : MonoBehaviour
     [SerializeField] private GameObject gorilla;
 
     [SerializeField] private BoxCollider2D groundCheckCollider;
+
+    // GD2 Spaeshift points test mechanic
+    [SerializeField] private bool testShapeshiftPoints = true;
+    [SerializeField] private Image gorillaBar;
+    [SerializeField] private Image dragonBar;
+    [SerializeField] private Image rhinoBar;
+
+    [field:SerializeField] public float GorillaPoints { get; set; } = 5;
+    public float DragonPoints { get; set; } = 5;
+    [field:SerializeField] public float RhinoPoints { get; set; } = 5;
 
     private GameObject currentShape;
     void Start()
@@ -22,25 +33,48 @@ public class Shapeshifting : MonoBehaviour
         float rJoystickX = Input.GetAxis("JoyStickR_X");
         float rJoystickY = Input.GetAxis("JoyStickR_Y");
 
-        if (rJoystickX == 1)
+        if (testShapeshiftPoints)
         {
-            ChangeShape(rhino);
+            if ((rJoystickX == 1 || Input.GetKeyDown(KeyCode.Alpha1)) && RhinoPoints > 0)
+            {
+                ChangeShape(rhino);
+            }
+            else if (rJoystickY == -1 || Input.GetKeyDown(KeyCode.Alpha4))
+            {
+                ChangeShape(human);
+            }
+            else if ((rJoystickY == 1 || Input.GetKeyDown(KeyCode.Alpha2)) && DragonPoints > 0)
+            {
+                ChangeShape(dragon);
+            }
+            else if ((rJoystickX == -1 || Input.GetKeyDown(KeyCode.Alpha3)) && GorillaPoints > 0)
+            {
+                ChangeShape(gorilla);
+            }
         }
-
-        else if (rJoystickY == -1)
+        else
         {
-            ChangeShape(human);
+            if (rJoystickX == 1)
+            {
+                ChangeShape(rhino);
+            }
+            else if (rJoystickY == -1)
+            {
+                ChangeShape(human);
+            }
+            else if (rJoystickY == 1)
+            {
+                ChangeShape(dragon);
+            }
+            else if (rJoystickX == -1)
+            {
+                ChangeShape(gorilla);
+            }
         }
         
-        else if (rJoystickY == 1)
-        {
-            ChangeShape(dragon);
-        }
-
-        else if (rJoystickX == -1)
-        {
-            ChangeShape(gorilla);
-        }
+        UpdateBars(GorillaPoints,gorillaBar);
+        UpdateBars(DragonPoints,dragonBar);
+        UpdateBars(RhinoPoints,rhinoBar);
     }
     public void ChangeShape(GameObject newShape)
     {
@@ -82,4 +116,42 @@ public class Shapeshifting : MonoBehaviour
             movement.airCollider = newAirCollider;
         }
     }
+    public void DecreasePointUse(float shapePoints)
+    {
+        shapePoints -= 1;
+        Debug.Log($"DECREASE VARIABLE TO {shapePoints}");
+    }
+    public float DecreasePointTime(float shapePoints)
+    {
+        return shapePoints - Time.deltaTime;
+    }
+    public void UpdateBars(float shapePoints, Image shapeBar)
+    {
+        float barValue = Mathf.InverseLerp(0f, 5f, shapePoints);
+        shapeBar.fillAmount = barValue;
+    }
+
+    public void OnTriggerEnter2D(Collider2D other)
+    {
+        Debug.Log("AAAAAAAAAAA");
+        if (other.CompareTag("Point"))
+        {
+            Points pts = other.GetComponent<Points>();
+
+            if (pts.ShareType == PointsShape.Rhino)
+            {
+                RhinoPoints += 1;
+            }
+            else if (pts.ShareType == PointsShape.Gorilla)
+            {
+                GorillaPoints += 1;
+            }
+            else if (pts.ShareType == PointsShape.Dragon)
+            {
+                DragonPoints += 1;
+            }
+            Destroy(other.gameObject);
+        }
+    }
+
 }

@@ -18,11 +18,21 @@ public class GorillaGrab : MonoBehaviour
     public bool IsGrabbing { get; private set;  } = false;
     public bool IsThrowing { get; private set; } = false;
 
+    // Shapeshift points mechanic
+    private Shapeshifting shpshift;
+
     // Start is called before the first frame update
     void Start()
     {
         grabCollider.radius = grabRadius;
     }
+    void OnEnable()
+    {
+        shpshift = GetComponentInParent<Shapeshifting>();
+        Debug.Log($"GET SHAPESHIFTING : {shpshift}");
+        shpshift.GorillaPoints -= 1;
+    }
+    
 
     // Update is called once per frame
     void Update()

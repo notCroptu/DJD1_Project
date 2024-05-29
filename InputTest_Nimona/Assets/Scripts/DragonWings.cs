@@ -24,6 +24,9 @@ public class DragonWings : MonoBehaviour
     private Movement movement;
     private Rigidbody2D rb;
 
+    // Shapeshift points mechanic
+    private Shapeshifting shpshift;
+
     void Start()
     {
         player = transform.parent.gameObject;
@@ -35,6 +38,12 @@ public class DragonWings : MonoBehaviour
         glideRate = (movement.DefaultMoveClamp / glideClamp) * movement.DefaultMoveRate;
         
         movement.JumpSpeed = jumpSpeed;
+    }
+    void OnEnable()
+    {
+        shpshift = GetComponentInParent<Shapeshifting>();
+        Debug.Log($"GET SHAPESHIFTING : {shpshift}");
+        shpshift.DragonPoints -= 1;
     }
     void Update()
     {

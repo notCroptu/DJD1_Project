@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -31,6 +32,10 @@ public class Rhino : MonoBehaviour
     private GameObject player;
     private Movement movement;
     private Rigidbody2D rb;
+
+    // Shapeshift points mechanic
+    private Shapeshifting shpshift;
+
     void Start()
     {
         player = transform.parent.gameObject;
@@ -42,6 +47,12 @@ public class Rhino : MonoBehaviour
         movement.FallingGravity = fallingGravity;
 
         runRate = (walkClamp / runClamp) * walkRate;
+    }
+    void OnEnable()
+    {
+        shpshift = GetComponentInParent<Shapeshifting>();
+        Debug.Log($"GET SHAPESHIFTING : {shpshift}");
+        shpshift.RhinoPoints -= 1;
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
