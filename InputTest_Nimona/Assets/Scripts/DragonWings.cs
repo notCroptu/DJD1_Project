@@ -12,9 +12,11 @@ public class DragonWings : MonoBehaviour
     [SerializeField] private float glideClamp = 400f;
     private float glideRate;
     [SerializeField] private int jumpsAllowed = 3;
+    [SerializeField] private float maxGlideTime = 5;
     [SerializeField] private float maxFallSpeed = 20f;
 
     
+    private float glideTimer;
     private int jumpsExecuted;
     private Vector3 newJump;
     private Vector3 currentVelocity;
@@ -62,7 +64,7 @@ public class DragonWings : MonoBehaviour
 
                 jumpsExecuted++;
             }
-            else if ( Input.GetKey(KeyCode.JoystickButton7) )
+            else if ( Input.GetKey(KeyCode.JoystickButton7) && (glideTimer > 0) )
             {
                 if ( (movement.MoveClamp != glideClamp) || (movement.MoveRate != glideRate) )
                 {
@@ -76,6 +78,8 @@ public class DragonWings : MonoBehaviour
                     currentVelocity.y = -maxFallSpeed;
                     rb.velocity = currentVelocity;
                 }
+
+                glideTimer -= Time.deltaTime;
             }
 
             if ( !Input.GetKey(KeyCode.JoystickButton7) )
@@ -92,6 +96,7 @@ public class DragonWings : MonoBehaviour
         else if (movement.IsGrounded)
         {
             jumpsExecuted = 0;
+            glideTimer = maxGlideTime;
 
             if ( (movement.MoveClamp == glideClamp) || (movement.MoveRate == glideRate) )
             {

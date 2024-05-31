@@ -184,6 +184,7 @@ MonoBehaviour:
   jumpSpeed: 200
   glideClamp: 300
   jumpsAllowed: 3
+  maxGlideTime: 2
   maxFallSpeed: 20
 --- !u!1 &2313281540671889592
 GameObject:
@@ -408,6 +409,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   coyoteTime: 0.2
+  knockOutTime: 1
 --- !u!114 &821559898152726468
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -425,6 +427,11 @@ MonoBehaviour:
   dragon: {fileID: 1788895623032444735}
   gorilla: {fileID: 5061011348551062651}
   groundCheckCollider: {fileID: 8461857375051673034}
+  testShapeshiftPoints: 1
+  gorillaBar: {fileID: 0}
+  dragonBar: {fileID: 0}
+  rhinoBar: {fileID: 0}
+  maxPoints: 3
 --- !u!114 &653492808286860330
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -838,6 +845,7 @@ GameObject:
   - component: {fileID: 7165292893728418409}
   - component: {fileID: 6557083072279207426}
   - component: {fileID: 6278066296593074151}
+  - component: {fileID: 8851477968927487618}
   m_Layer: 7
   m_Name: Climbing
   m_TagString: Untagged
@@ -903,7 +911,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 25, y: 26}
+  m_Size: {x: 25, y: 24}
   m_EdgeRadius: 0
 --- !u!114 &6278066296593074151
 MonoBehaviour:
@@ -919,7 +927,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wallCol: {fileID: 6557083072279207426}
   climbKey: 337
-  playerObject: {fileID: 2474396092445469980}
+  climbTag: Wall
+--- !u!114 &8851477968927487618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6924865775416864981}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 728015e59783af64da7cedf77436fc04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wallCol: {fileID: 6557083072279207426}
+  climbKey: 0
+  climbTag: Stairs
 --- !u!1 &7196989955669048276
 GameObject:
   m_ObjectHideFlags: 0
