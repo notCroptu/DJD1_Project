@@ -23,6 +23,8 @@ public class Shapeshifting : MonoBehaviour
     public float RhinoPoints { get; set; }
 
     private GameObject currentShape;
+
+    [SerializeField] private ParticleSystem ps;
     void Start()
     {
         // Initialize with human shape at the start
@@ -95,6 +97,13 @@ public class Shapeshifting : MonoBehaviour
         newShape.SetActive(true); // Activate new shape
         currentShape = newShape; // Update current shape reference
 
+        // Activate shapeshift particles
+        SpriteRenderer sr = newShape.GetComponent<SpriteRenderer>();
+        var emissionSR = ps.shape;
+        emissionSR.sprite = sr.sprite;
+        // emissionSR.texture = (Texture2D) sr.sprite;
+        // var emission = ps.emission;
+
         // Update the ground check collider size and offset
         BoxCollider2D newAirCollider;
         newAirCollider = newShape.GetComponent<BoxCollider2D>();
@@ -131,7 +140,7 @@ public class Shapeshifting : MonoBehaviour
     public void UpdateBars(float shapePoints, Image shapeBar)
     {
         float barValue = Mathf.InverseLerp(0f, maxPoints, shapePoints);
-        shapeBar.fillAmount = barValue;
+        if (shapeBar != null) shapeBar.fillAmount = barValue;
     }
 
     public void OnTriggerEnter2D(Collider2D other)

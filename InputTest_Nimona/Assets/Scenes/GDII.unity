@@ -1666,13 +1666,13 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1377272001}
     - target: {fileID: 821559898152726468, guid: 2f85fbfa2c80c5c41bcd14153351d1be, type: 3}
-      propertyPath: maxPoints
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 821559898152726468, guid: 2f85fbfa2c80c5c41bcd14153351d1be, type: 3}
       propertyPath: gorillaBar
       value: 
       objectReference: {fileID: 1377272002}
+    - target: {fileID: 821559898152726468, guid: 2f85fbfa2c80c5c41bcd14153351d1be, type: 3}
+      propertyPath: testShapeshiftPoints
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2474396092445469980, guid: 2f85fbfa2c80c5c41bcd14153351d1be, type: 3}
       propertyPath: m_Name
       value: Player
@@ -1717,29 +1717,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5061011348551062651, guid: 2f85fbfa2c80c5c41bcd14153351d1be, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6278066296593074151, guid: 2f85fbfa2c80c5c41bcd14153351d1be, type: 3}
-      propertyPath: climbTag
-      value: Wall
-      objectReference: {fileID: 0}
-    - target: {fileID: 6557083072279207426, guid: 2f85fbfa2c80c5c41bcd14153351d1be, type: 3}
-      propertyPath: m_Size.y
-      value: 24
-      objectReference: {fileID: 0}
-    - target: {fileID: 8406045373574292493, guid: 2f85fbfa2c80c5c41bcd14153351d1be, type: 3}
-      propertyPath: maxGlideTime
-      value: 2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6924865775416864981, guid: 2f85fbfa2c80c5c41bcd14153351d1be, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1923791117}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f85fbfa2c80c5c41bcd14153351d1be, type: 3}
 --- !u!4 &837581429 stripped
 Transform:
@@ -2763,31 +2744,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e5f8c5038c53f14db9e368ecfaa4355, type: 3}
---- !u!1 &1923791113 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6924865775416864981, guid: 2f85fbfa2c80c5c41bcd14153351d1be, type: 3}
-  m_PrefabInstance: {fileID: 837581428}
-  m_PrefabAsset: {fileID: 0}
---- !u!61 &1923791115 stripped
-BoxCollider2D:
-  m_CorrespondingSourceObject: {fileID: 6557083072279207426, guid: 2f85fbfa2c80c5c41bcd14153351d1be, type: 3}
-  m_PrefabInstance: {fileID: 837581428}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1923791117
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1923791113}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 728015e59783af64da7cedf77436fc04, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  wallCol: {fileID: 1923791115}
-  climbKey: 0
-  climbTag: Stairs
 --- !u!1 &1934403223
 GameObject:
   m_ObjectHideFlags: 0
