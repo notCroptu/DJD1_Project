@@ -184,7 +184,7 @@ MonoBehaviour:
   jumpSpeed: 200
   glideClamp: 300
   jumpsAllowed: 3
-  maxGlideTime: 2
+  maxGlideTime: 1.5
   maxFallSpeed: 20
 --- !u!1 &2313281540671889592
 GameObject:
