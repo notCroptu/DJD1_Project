@@ -12,7 +12,7 @@ public class Shapeshifting : MonoBehaviour
 
     [SerializeField] private BoxCollider2D groundCheckCollider;
 
-    // GD2 Spaeshift points test mechanic
+    // GD2 Shapeshift points test mechanic
     [SerializeField] private bool testShapeshiftPoints = true;
     [SerializeField] private Image gorillaBar;
     [SerializeField] private Image dragonBar;
@@ -23,8 +23,15 @@ public class Shapeshifting : MonoBehaviour
     public float RhinoPoints { get; set; }
 
     private GameObject currentShape;
+    [SerializeField] private Movement movement;
 
-    [SerializeField] private ParticleSystem ps;
+    [SerializeField] private ParticleSystem shapeParticleSystem;
+    [SerializeField] private ParticleSystemForceField forceField;
+    private ParticleSystem.ShapeModule shapeModule;
+    private ParticleSystem.EmissionModule emissionModule;
+    private SpriteRenderer spriteRenderer;
+    private float ParticleEffectArea;
+    [SerializeField] private Gradient color;
     void Start()
     {
         // Initialize with human shape at the start
@@ -86,8 +93,7 @@ public class Shapeshifting : MonoBehaviour
         if (newShape == currentShape) return; // Don't switch to the same shape
 
         // reset default values
-        Movement movement = GetComponent<Movement>();
-        if (movement != null) movement.ResetValues();
+        movement.ResetValues();
 
         if (currentShape != null)
         {
@@ -96,13 +102,6 @@ public class Shapeshifting : MonoBehaviour
 
         newShape.SetActive(true); // Activate new shape
         currentShape = newShape; // Update current shape reference
-
-        // Activate shapeshift particles
-        SpriteRenderer sr = newShape.GetComponent<SpriteRenderer>();
-        var emissionSR = ps.shape;
-        emissionSR.sprite = sr.sprite;
-        // emissionSR.texture = (Texture2D) sr.sprite;
-        // var emission = ps.emission;
 
         // Update the ground check collider size and offset
         BoxCollider2D newAirCollider;
@@ -127,6 +126,56 @@ public class Shapeshifting : MonoBehaviour
             movement.groundCollider = newShape.GetComponent<CapsuleCollider2D>();
             movement.airCollider = newAirCollider;
         }
+
+        // Activate shapeshift particles
+        spriteRenderer = newShape.GetComponent<SpriteRenderer>();
+        shapeModule = shapeParticleSystem.shape;
+        shapeModule.spriteRenderer = spriteRenderer;
+        shapeModule.texture = spriteRenderer.sprite.texture;
+
+        // Change the force field according to shape size
+        forceField.endRange = newAirCollider.size.y;
+
+        // Emit Particles and flash player
+        StartCoroutine(StartAndStopEmission());
+    }
+    private IEnumerator StartAndStopEmission()
+    {
+
+        emissionModule = shapeParticleSystem.emission;
+
+        // Start emission
+        emissionModule.enabled = true;
+        shapeParticleSystem.Play();
+
+        Color originalColor = spriteRenderer.color;
+        float timer = 1f;
+        Material originalMaterial = spriteRenderer.material;
+
+        Material newMaterial = new Material(originalMaterial);
+        newMaterial.shader = Shader.Find("Shader Graphs/FlashShader");
+        spriteRenderer.material = newMaterial;
+
+        // Flash
+        do
+        {
+            float t = 1.0f - timer;
+            Color newColor = color.Evaluate(t);
+
+            newMaterial.SetColor("_FlashColor", newColor);
+
+            timer -= Time.deltaTime;
+            yield return null;
+
+        } while (timer > 0);
+
+        // Set back to the original color
+        spriteRenderer.material = originalMaterial;
+
+
+        // Stop emission
+        emissionModule.enabled = false;
+        shapeParticleSystem.Stop();
     }
     public void DecreasePointUse(float shapePoints)
     {
