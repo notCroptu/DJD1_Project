@@ -40,14 +40,20 @@ public class GorillaClimb : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag(climbTag))
+        Climbable climbable =
+            other.gameObject.GetComponent<Climbable>();
+
+        if ( climbable != null )
         {
             WallCheck = true;
         }
     }
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag(climbTag))
+        Climbable climbable =
+            other.gameObject.GetComponent<Climbable>();
+
+        if ( climbable != null )
         {
             WallCheck = false;
         }

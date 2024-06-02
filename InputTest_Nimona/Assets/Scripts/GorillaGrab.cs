@@ -13,7 +13,7 @@ public class GorillaGrab : MonoBehaviour
     [SerializeField] private Transform grabPoint;
     [SerializeField] private GameObject playerObject;
     private GameObject grabObject;
-    private GameObject grabingObject;
+    private GameObject grabbingObject;
     public bool IsGrabbing { get; private set;  } = false;
     public bool IsThrowing { get; private set; } = false;
 
@@ -41,8 +41,8 @@ public class GorillaGrab : MonoBehaviour
         // Check if isGrabbing is true
         if (IsGrabbing)
         {
-            // If true execute GrabingObject()
-            GrabingObject();
+            // If true execute GrabbingObject()
+            GrabbingObject();
             ThrowObject();
         }
         // Check if grabObject is not null
@@ -54,7 +54,7 @@ public class GorillaGrab : MonoBehaviour
                 // If true set isGrabbing as true
                 IsGrabbing = true;
                 // Set grabbingObject as grabObject
-                grabingObject = grabObject;
+                grabbingObject = grabObject;
             }
         }
 
@@ -67,12 +67,15 @@ public class GorillaGrab : MonoBehaviour
         // Initialize grab vector
         Vector3 grabVector;
 
+        Grabbable grabbable = 
+            other.gameObject.GetComponent<Grabbable>();
+
         // Check if grabObject is null
         if (grabObject == null)
         {
             Debug.Log("STEP 1");
             // If true check if other is a grabbable
-            if (other.CompareTag("Grabbable"))
+            if ( grabbable != null )
             {
                 Debug.Log("STEP 2");
                 // If true set other as grabObject
@@ -82,7 +85,7 @@ public class GorillaGrab : MonoBehaviour
         else
         {
             // If false check if other is a grabbable
-            if (other.CompareTag("Grabbable"))
+            if ( grabbable != null )
             {
                 // If true do as follows
                 grabVector = grabObject.transform.position; // Get the current grabObject position
@@ -116,24 +119,24 @@ public class GorillaGrab : MonoBehaviour
         }
     }
     // Grabbing mechanic logic
-    private void GrabingObject()
+    private void GrabbingObject()
     {
         // Set grabbingObject position as teh same as grabPoint
-        grabingObject.transform.position = grabPoint.transform.position;
+        grabbingObject.transform.position = grabPoint.transform.position;
         // Freeze grabbingObject rotation
-        grabingObject.GetComponent<Rigidbody2D>().freezeRotation = true;
+        grabbingObject.GetComponent<Rigidbody2D>().freezeRotation = true;
         // Check for input in grabKey
-        if (playerActions.Ability.WasPressed)
+        if ( playerActions.Ability.WasPressed )
         {
             // Apply a forward vector to the grabbingObject position
-            grabingObject.transform.position += new Vector3(transform.right.x * 10f, 0f, 0f);
+            grabbingObject.transform.position += new Vector3(transform.right.x * 10f, 0f, 0f);
             UnGrabObject();
         }
     }
     private void ThrowObject()
     {
-        float rJoystickX = playerActions.AimX;
-        float rJoystickY = playerActions.AimY;
+        float rJoystickX = playerActions.AimX.Value;
+        float rJoystickY = playerActions.AimY.Value;
 
         if (playerActions.Throw.WasPressed)
         {
@@ -149,12 +152,12 @@ public class GorillaGrab : MonoBehaviour
 
             if (zRotation > 10f && zRotation < 170f)
             {
-                grabingObject.transform.rotation = Quaternion.Euler(0f, 0f, zRotation);
+                grabbingObject.transform.rotation = Quaternion.Euler(0f, 0f, zRotation);
             }
         }
         if (playerActions.Throw.WasReleased)
         {
-            grabingObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(-rJoystickX * throwForce, rJoystickY * throwForce),ForceMode2D.Impulse);
+            grabbingObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(-rJoystickX * throwForce, rJoystickY * throwForce),ForceMode2D.Impulse);
             UnGrabObject();
             Invoke("TurnOnShapeshift", 0.5f);
         }
@@ -166,11 +169,11 @@ public class GorillaGrab : MonoBehaviour
     private void UnGrabObject()
     {
         // Unfreeze grabbingObject rotation
-        grabingObject.GetComponent<Rigidbody2D>().freezeRotation = false;
+        grabbingObject.GetComponent<Rigidbody2D>().freezeRotation = false;
         // Set isGrabbing to false
         IsGrabbing = false;
-        // Set grabingObject and grabObject as null
-        grabingObject = null;
+        // Set grabbingObject and grabObject as null
+        grabbingObject = null;
         grabObject = null;
     }
 }

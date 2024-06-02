@@ -17,7 +17,10 @@ public class Die : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Grabbable"))
+        Grabbable grabbable = 
+            collision.gameObject.GetComponent<Grabbable>();
+
+        if ( grabbable != null )
         {
             Destroy(gameObject);
         }

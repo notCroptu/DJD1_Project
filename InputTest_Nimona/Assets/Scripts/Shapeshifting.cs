@@ -178,6 +178,7 @@ public class Shapeshifting : MonoBehaviour
         if (shapeBar != null) shapeBar.fillAmount = barValue;
     }
 
+    // For GDII
     public void OnTriggerEnter2D(Collider2D other)
     {
         Debug.Log("AAAAAAAAAAA");

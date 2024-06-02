@@ -65,16 +65,23 @@ public class Rhino : MonoBehaviour , IShapeColliders
         {
             float shake = bufferVelocity.magnitude * shakeForce / RunClamp;
             Camera camera = Camera.main;
-            if (collision.gameObject.CompareTag("Destructibles"))
+
+            KnightMovement knightMovement =
+                collision.gameObject.GetComponent<KnightMovement>();
+
+            Destructibles destructibles =
+                collision.gameObject.GetComponent<Destructibles>();
+
+            if ( destructibles != null )
             {
                 DestroyTilemap(collision);
                 camera.GetComponent<Shaker>().Shake(0.7f, shake);
                 collided = true;
             }
-            else if (collision.gameObject.CompareTag("Shield"))
+            else if ( knightMovement != null )
             {
                 camera.GetComponent<Shaker>().Shake(0.4f, shake);
-                collision.gameObject.GetComponent<KnightMovement>().DieSequence();
+                knightMovement.DieSequence();
                 collided = true;
             }
         }
