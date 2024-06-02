@@ -54,10 +54,8 @@ public class DragonWings : MonoBehaviour , IShapeColliders
     }
     void Update()
     {
-        if ( playerActions.Jump.WasPressed )
-        {
-            rb.gravityScale = movement.FallingGravity;
-        }
+        // If not jumping change the gravity scale
+        if ( ! playerActions.Jump.IsPressed )
         {
             rb.gravityScale = movement.DefaultWalkingGravity;
         }
@@ -67,6 +65,8 @@ public class DragonWings : MonoBehaviour , IShapeColliders
             if ( jumpsExecuted < jumpsAllowed && playerActions.Jump.WasPressed )
             {
                 Debug.Log("has flapped");
+
+                rb.gravityScale = movement.FallingGravity;
 
                 newJump = rb.velocity;
                 newJump.y = jumpSpeed;
