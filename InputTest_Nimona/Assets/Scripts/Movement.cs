@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using InControl;
 
 public class Movement : MonoBehaviour
 {
+    PlayerActions playerActions;
+
     // class variables that will be changed throughout shapes
     [SerializeField] private BoxCollider2D groundCheckCollider;
     [field:SerializeField] public CapsuleCollider2D groundCollider { get; set; }
@@ -44,6 +47,8 @@ public class Movement : MonoBehaviour
     {
         inputEnabled = true;
         rb = GetComponent<Rigidbody2D>();
+
+        playerActions = GetComponent<PlayerActions>();
     }
 
     void FixedUpdate()
@@ -83,10 +88,10 @@ public class Movement : MonoBehaviour
     }
     void Update()
     {
-        if ( Input.GetButtonDown("Jump") ) Jumped = true;
+        if ( playerActions.Jump ) Jumped = true;
 
-        isJumping = Input.GetButton("Jump");
-        deltaX = Input.GetAxis("Horizontal");
+        isJumping = playerActions.Jump.IsPressed;
+        deltaX = playerActions.Move;
 
         // Animation
 

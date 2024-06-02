@@ -49,13 +49,19 @@ public class DragonWings : MonoBehaviour
     }
     void Update()
     {
+        if ( Input.GetButtonDown("Jump") )
+        {
+            rb.gravityScale = movement.FallingGravity;
+        }
+        {
+            rb.gravityScale = 4f;
+        }
+
         if (!movement.IsGrounded)
         {
-
             if ( jumpsExecuted < jumpsAllowed && Input.GetButtonDown("Jump") )
             {
                 Debug.Log("has flapped");
-                rb.gravityScale = 2f;
 
                 newJump = rb.velocity;
                 newJump.y = jumpSpeed;
