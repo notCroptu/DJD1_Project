@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ClimbMovement : MonoBehaviour
 {
+    PlayerActions playerActions;
     [SerializeField] private GorillaClimb climbScript;
     [SerializeField] private float climbSpeed;
     [SerializeField] private float wallJumpingTime = 0.2f;
@@ -20,6 +21,8 @@ public class ClimbMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+
+        playerActions = GetComponentInParent<PlayerActions>();
     }
     void OnEnable()
     {
@@ -29,8 +32,8 @@ public class ClimbMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float horizontalMovement = Input.GetAxis("Horizontal");
-        float verticalMovement = Input.GetAxis("Vertical");
+        float horizontalMovement = playerActions.MoveX;
+        float verticalMovement = playerActions.MoveY;
         rb.gravityScale = 0;
 
         Vector3 currentVel = rb.velocity;
@@ -67,7 +70,7 @@ public class ClimbMovement : MonoBehaviour
             wallJumpingCounter -= Time.deltaTime;
         }
 
-        if (Input.GetButton("Jump") && wallJumpingCounter > 0f)
+        if ( playerActions.Jump.IsPressed && wallJumpingCounter > 0f)
         {
             isWallJumping = true;
             rb.velocity = new Vector3(wallJumpingDirection * wallJumpingPower.x, wallJumpingPower.y, 0f);

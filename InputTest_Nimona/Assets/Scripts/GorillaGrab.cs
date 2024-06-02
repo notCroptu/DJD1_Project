@@ -6,12 +6,11 @@ using UnityEngine;
 
 public class GorillaGrab : MonoBehaviour
 {
+    PlayerActions playerActions;
     [SerializeField] private float throwForce;
     [SerializeField] private float grabRadius = 30;
     [SerializeField] private CircleCollider2D grabCollider;
     [SerializeField] private Transform grabPoint;
-    [SerializeField] private KeyCode grabKey;
-    [SerializeField] private KeyCode throwKey;
     [SerializeField] private GameObject playerObject;
     private GameObject grabObject;
     private GameObject grabingObject;
@@ -24,6 +23,8 @@ public class GorillaGrab : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        playerActions = GetComponentInParent<PlayerActions>();
+
         grabCollider.radius = grabRadius;
     }
     void OnEnable()
@@ -48,7 +49,7 @@ public class GorillaGrab : MonoBehaviour
         if (grabObject != null)
         {
             // Check for grabKey input and if isGrabbing is false
-            if (Input.GetKeyDown(grabKey) && !IsGrabbing)
+            if (playerActions.Ability.WasPressed && !IsGrabbing)
             {
                 // If true set isGrabbing as true
                 IsGrabbing = true;
@@ -122,7 +123,7 @@ public class GorillaGrab : MonoBehaviour
         // Freeze grabbingObject rotation
         grabingObject.GetComponent<Rigidbody2D>().freezeRotation = true;
         // Check for input in grabKey
-        if (Input.GetKeyDown(grabKey))
+        if (playerActions.Ability.WasPressed)
         {
             // Apply a forward vector to the grabbingObject position
             grabingObject.transform.position += new Vector3(transform.right.x * 10f, 0f, 0f);
@@ -131,14 +132,14 @@ public class GorillaGrab : MonoBehaviour
     }
     private void ThrowObject()
     {
-        float rJoystickX = Input.GetAxis("RotationX");
-        float rJoystickY = Input.GetAxis("RotationY");
+        float rJoystickX = playerActions.AimX;
+        float rJoystickY = playerActions.AimY;
 
-        if (Input.GetKeyDown(throwKey))
+        if (playerActions.Throw.WasPressed)
         {
             playerObject.GetComponent<Shapeshifting>().enabled = false;
         }
-        if (Input.GetKey(throwKey))
+        if (playerActions.Throw.IsPressed)
         {
             Debug.Log("THROWWW");
             
@@ -151,7 +152,7 @@ public class GorillaGrab : MonoBehaviour
                 grabingObject.transform.rotation = Quaternion.Euler(0f, 0f, zRotation);
             }
         }
-        if (Input.GetKeyUp(throwKey))
+        if (playerActions.Throw.WasReleased)
         {
             grabingObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(-rJoystickX * throwForce, rJoystickY * throwForce),ForceMode2D.Impulse);
             UnGrabObject();

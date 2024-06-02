@@ -6,6 +6,8 @@ using UnityEngine.Tilemaps;
 
 public class Rhino : MonoBehaviour
 {
+    PlayerActions playerActions;
+
     // reference variables to change in player
     [SerializeField] private CapsuleCollider2D groundCollider;
     [SerializeField] private BoxCollider2D airCollider;
@@ -47,6 +49,8 @@ public class Rhino : MonoBehaviour
         movement.FallingGravity = fallingGravity;
 
         runRate = (walkClamp / runClamp) * walkRate;
+
+        playerActions = GetComponentInParent<PlayerActions>();
     }
     void OnEnable()
     {
@@ -152,7 +156,7 @@ public class Rhino : MonoBehaviour
     }
     void Update()
     {
-        if  ( Input.GetKey(KeyCode.JoystickButton7) && ( movement.IsGrounded ) )
+        if  ( playerActions.Ability.IsPressed && ( movement.IsGrounded ) )
         {
             if ( (movement.MoveClamp != runClamp) || (movement.MoveRate != runRate) )
             {

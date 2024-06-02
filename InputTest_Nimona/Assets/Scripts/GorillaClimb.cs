@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class GorillaClimb : MonoBehaviour
 {
+    PlayerActions playerActions;
     [SerializeField] private Collider2D wallCol;
-    [SerializeField] private KeyCode climbKey;
     [SerializeField] private string climbTag;
     public bool WallCheck { get; private set; } = false;
     private Movement movScript;
@@ -17,6 +17,8 @@ public class GorillaClimb : MonoBehaviour
     {
         movScript = GetComponentInParent<Movement>();
         climbScript = GetComponentInParent<ClimbMovement>();
+
+        playerActions = GetComponentInParent<PlayerActions>();
     }
 
     // Update is called once per frame
@@ -24,7 +26,7 @@ public class GorillaClimb : MonoBehaviour
     {
         Debug.Log($"WALLCHECK:{WallCheck}");
 
-        if (WallCheck && Input.GetKey(climbKey) )
+        if (WallCheck && playerActions.Ability.IsPressed )
         {
             Debug.Log("ISCLIMBING");
             movScript.enabled = false;

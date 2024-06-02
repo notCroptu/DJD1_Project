@@ -271,8 +271,6 @@ MonoBehaviour:
   grabRadius: 20
   grabCollider: {fileID: 7266007602164569576}
   grabPoint: {fileID: 8797141027905068111}
-  grabKey: 337
-  throwKey: 341
   playerObject: {fileID: 2474396092445469980}
 --- !u!1 &2474396092445469980
 GameObject:
@@ -291,6 +289,7 @@ GameObject:
   - component: {fileID: 8267702688835211205}
   - component: {fileID: 8527624170488343410}
   - component: {fileID: 7237966642751362532}
+  - component: {fileID: 32140806462777670}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -5836,6 +5835,18 @@ ParticleSystemForceField:
         m_RotationOrder: 4
     m_MultiplyDragByParticleSize: 1
     m_MultiplyDragByParticleVelocity: 1
+--- !u!114 &32140806462777670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2474396092445469980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e7e337c7932a0345b6d85ede37e6863, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3000480016782387620
 GameObject:
   m_ObjectHideFlags: 0
@@ -6313,7 +6324,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wallCol: {fileID: 6557083072279207426}
-  climbKey: 337
   climbTag: Wall
 --- !u!114 &8851477968927487618
 MonoBehaviour:
@@ -6328,7 +6338,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wallCol: {fileID: 6557083072279207426}
-  climbKey: 0
   climbTag: Stairs
 --- !u!1 &7196989955669048276
 GameObject:

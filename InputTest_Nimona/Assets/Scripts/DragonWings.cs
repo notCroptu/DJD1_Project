@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class DragonWings : MonoBehaviour
 {
+    PlayerActions playerActions;
+
     // reference variables to change in player
     [SerializeField] private CapsuleCollider2D groundCollider;
     [SerializeField] private BoxCollider2D airCollider;
@@ -40,6 +42,8 @@ public class DragonWings : MonoBehaviour
         glideRate = (movement.DefaultMoveClamp / glideClamp) * movement.DefaultMoveRate;
         
         movement.JumpSpeed = jumpSpeed;
+
+        playerActions = GetComponentInParent<PlayerActions>();
     }
     void OnEnable()
     {
@@ -49,7 +53,7 @@ public class DragonWings : MonoBehaviour
     }
     void Update()
     {
-        if ( Input.GetButtonDown("Jump") )
+        if ( playerActions.Jump.WasPressed )
         {
             rb.gravityScale = movement.FallingGravity;
         }
@@ -59,7 +63,7 @@ public class DragonWings : MonoBehaviour
 
         if (!movement.IsGrounded)
         {
-            if ( jumpsExecuted < jumpsAllowed && Input.GetButtonDown("Jump") )
+            if ( jumpsExecuted < jumpsAllowed && playerActions.Jump.WasPressed )
             {
                 Debug.Log("has flapped");
 
@@ -70,7 +74,7 @@ public class DragonWings : MonoBehaviour
 
                 jumpsExecuted++;
             }
-            else if ( Input.GetKey(KeyCode.JoystickButton7) && (glideTimer > 0) )
+            else if ( playerActions.Ability.IsPressed && (glideTimer > 0) )
             {
                 if ( (movement.MoveClamp != glideClamp) || (movement.MoveRate != glideRate) )
                 {
@@ -88,7 +92,7 @@ public class DragonWings : MonoBehaviour
                 glideTimer -= Time.deltaTime;
             }
 
-            if ( !Input.GetKey(KeyCode.JoystickButton7) )
+            if ( !playerActions.Ability.IsPressed )
             {
                 if ( (movement.MoveClamp == glideClamp) || (movement.MoveRate == glideRate) )
                 {

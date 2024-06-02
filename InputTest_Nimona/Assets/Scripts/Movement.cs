@@ -91,7 +91,7 @@ public class Movement : MonoBehaviour
         if ( playerActions.Jump ) Jumped = true;
 
         isJumping = playerActions.Jump.IsPressed;
-        deltaX = playerActions.Move;
+        deltaX = playerActions.MoveX;
 
         // Animation
 

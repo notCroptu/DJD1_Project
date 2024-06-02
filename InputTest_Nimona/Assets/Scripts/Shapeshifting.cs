@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class Shapeshifting : MonoBehaviour
 {
+    PlayerActions playerActions;
     [SerializeField] private GameObject rhino;
     [SerializeField] private GameObject human;
     [SerializeField] private GameObject dragon;
@@ -39,46 +40,50 @@ public class Shapeshifting : MonoBehaviour
         RhinoPoints = maxPoints;
         GorillaPoints = maxPoints;
         DragonPoints = maxPoints;
+
+        playerActions = GetComponent<PlayerActions>();
     }
     void Update()
     {
-        float rJoystickX = Input.GetAxis("JoyStickR_X");
-        float rJoystickY = Input.GetAxis("JoyStickR_Y");
+        float rJoystickX = playerActions.ShapeshiftX;
+        float rJoystickY = playerActions.ShapeshiftY;
+
+        Debug.Log(rJoystickX);
 
         if (testShapeshiftPoints)
         {
-            if ((rJoystickX == 1 || Input.GetKeyDown(KeyCode.Alpha1)) && RhinoPoints > 0)
+            if ((rJoystickX > 0.71f || Input.GetKeyDown(KeyCode.Alpha1)) && RhinoPoints > 0)
             {
                 ChangeShape(rhino);
             }
-            else if (rJoystickY == -1 || Input.GetKeyDown(KeyCode.Alpha4))
+            else if (rJoystickY < -0.71f || Input.GetKeyDown(KeyCode.Alpha4))
             {
                 ChangeShape(human);
             }
-            else if ((rJoystickY == 1 || Input.GetKeyDown(KeyCode.Alpha2)) && DragonPoints > 0)
+            else if ((rJoystickY > 0.71f || Input.GetKeyDown(KeyCode.Alpha2)) && DragonPoints > 0)
             {
                 ChangeShape(dragon);
             }
-            else if ((rJoystickX == -1 || Input.GetKeyDown(KeyCode.Alpha3)) && GorillaPoints > 0)
+            else if ((rJoystickX < -0.71f || Input.GetKeyDown(KeyCode.Alpha3)) && GorillaPoints > 0)
             {
                 ChangeShape(gorilla);
             }
         }
         else
         {
-            if (rJoystickX == 1)
+            if (rJoystickX > 0.71f)
             {
                 ChangeShape(rhino);
             }
-            else if (rJoystickY == -1)
+            else if (rJoystickY < -0.71f)
             {
                 ChangeShape(human);
             }
-            else if (rJoystickY == 1)
+            else if (rJoystickY > 0.71f)
             {
                 ChangeShape(dragon);
             }
-            else if (rJoystickX == -1)
+            else if (rJoystickX < -0.71f)
             {
                 ChangeShape(gorilla);
             }
