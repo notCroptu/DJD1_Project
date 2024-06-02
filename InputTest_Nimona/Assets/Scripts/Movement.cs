@@ -13,14 +13,14 @@ public class Movement : MonoBehaviour
     [field:SerializeField] public BoxCollider2D airCollider { get; set; }
 
     // other variables that will be changed throughout shapes (the field serialize is purely for inspector viewing of variable changes)
-    public float MoveClamp { get; set; }
+    public float MaxSpeed { get; set; }
     public float MoveRate { get; set; }
     public float JumpSpeed { get; set; }
     public float FallingGravity { get; set; }
 
     // The previous variable's default states and their getters
-    [SerializeField] private float defaultMoveClamp = 100f;
-    public float DefaultMoveClamp => defaultMoveClamp;
+    [SerializeField] private float defaultMaxSpeed = 100f;
+    public float DefaultMaxSpeed => defaultMaxSpeed;
     [SerializeField] private float defaultMoveRate = 0.9f;
     public float DefaultMoveRate => defaultMoveRate;
     [SerializeField] private float defaultJumpSpeed = 200f;
@@ -63,7 +63,7 @@ public class Movement : MonoBehaviour
         {
             moveVector = rb.velocity;
 
-            moveVector.x = Mathf.Lerp(rb.velocity.x, MoveClamp * deltaX, MoveRate);
+            moveVector.x = Mathf.Lerp(rb.velocity.x, MaxSpeed * deltaX, MoveRate);
 
             if ( Jumped && canJump && IsGrounded )
             {
@@ -150,7 +150,7 @@ public class Movement : MonoBehaviour
     public void ResetValues()
     {
         // here the states are reset to their original forms
-        MoveClamp = defaultMoveClamp;
+        MaxSpeed = defaultMaxSpeed;
         MoveRate = defaultMoveRate;
         JumpSpeed = defaultJumpSpeed;
         FallingGravity = defaultFallingGravity;

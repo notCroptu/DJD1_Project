@@ -43,7 +43,7 @@ public class Rhino : MonoBehaviour
         player = transform.parent.gameObject;
         movement = player.GetComponent<Movement>();
         rb = player.GetComponent<Rigidbody2D>();
-        walkClamp = movement.DefaultMoveClamp;
+        walkClamp = movement.DefaultMaxSpeed;
         walkRate = movement.DefaultMoveRate;
 
         movement.FallingGravity = fallingGravity;
@@ -158,17 +158,17 @@ public class Rhino : MonoBehaviour
     {
         if  ( playerActions.Ability.IsPressed && ( movement.IsGrounded ) )
         {
-            if ( (movement.MoveClamp != runClamp) || (movement.MoveRate != runRate) )
+            if ( (movement.MaxSpeed != runClamp) || (movement.MoveRate != runRate) )
             {
-                movement.MoveClamp = runClamp;
+                movement.MaxSpeed = runClamp;
                 movement.MoveRate = runRate;
             }
         }
         else if ( movement.IsGrounded )
         {
-            if ( (movement.MoveClamp != walkClamp) || (movement.MoveRate != walkRate) )
+            if ( (movement.MaxSpeed != walkClamp) || (movement.MoveRate != walkRate) )
             {
-                movement.MoveClamp = walkClamp;
+                movement.MaxSpeed = walkClamp;
                 movement.MoveRate = walkRate;
             }
         }
