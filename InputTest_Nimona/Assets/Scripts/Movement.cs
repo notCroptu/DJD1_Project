@@ -8,25 +8,30 @@ public class Movement : MonoBehaviour
     PlayerActions playerActions;
 
     // class variables that will be changed throughout shapes
-    [SerializeField] private BoxCollider2D groundCheckCollider;
-    [field:SerializeField] public CapsuleCollider2D groundCollider { get; set; }
-    [field:SerializeField] public BoxCollider2D airCollider { get; set; }
+    [field:SerializeField] public BoxCollider2D GroundCheckCollider { get; set; }
+    [field:SerializeField] public CapsuleCollider2D GroundCollider { get; set; }
+    [field:SerializeField] public BoxCollider2D AirCollider { get; set; }
 
     // other variables that will be changed throughout shapes (the field serialize is purely for inspector viewing of variable changes)
     public float MaxSpeed { get; set; }
-    public float MoveRate { get; set; }
+    // public float MoveRate { get; set; }
     public float JumpSpeed { get; set; }
     public float FallingGravity { get; set; }
 
     // The previous variable's default states and their getters
     [SerializeField] private float defaultMaxSpeed = 100f;
     public float DefaultMaxSpeed => defaultMaxSpeed;
-    [SerializeField] private float defaultMoveRate = 0.9f;
-    public float DefaultMoveRate => defaultMoveRate;
+    /*[SerializeField] private float defaultMoveRate = 0.9f;
+    public float DefaultMoveRate => defaultMoveRate;*/
     [SerializeField] private float defaultJumpSpeed = 200f;
     public float DefaultJumpSpeed => defaultJumpSpeed;
     [SerializeField] private float defaultFallingGravity = 2f;
     public float DefaultFallingGravity => defaultFallingGravity;
+    [SerializeField] private float defaultWalkingGravity = 4f;
+    public float DefaultWalkingGravity => defaultWalkingGravity;
+    [SerializeField] private float acceleration = 8f;
+    public float Acceleration => acceleration;
+
 
     // variables that will be the same throughout shapes
     [SerializeField] private LayerMask groundLayerMask;
@@ -56,14 +61,18 @@ public class Movement : MonoBehaviour
         UpdateGroundState();
 
         // change from air to ground collider or ground to air collider
-        groundCollider.enabled = IsGrounded;
-        airCollider.enabled = !IsGrounded;
+        GroundCollider.enabled = IsGrounded;
+        AirCollider.enabled = !IsGrounded;
 
-        if ( inputEnabled)
+        if ( inputEnabled )
         {
             moveVector = rb.velocity;
 
-            moveVector.x = Mathf.Lerp(rb.velocity.x, MaxSpeed * deltaX, MoveRate);
+            // moveVector.x = Mathf.Lerp(rb.velocity.x, MaxSpeed * deltaX, MoveRate);
+
+            moveVector.x += deltaX * acceleration;
+
+            moveVector.x = Mathf.Clamp(moveVector.x, -MaxSpeed, MaxSpeed);
 
             if ( Jumped && canJump && IsGrounded )
             {
@@ -78,11 +87,12 @@ public class Movement : MonoBehaviour
             }
             else
             {
-                rb.gravityScale = 4f;
+                rb.gravityScale = DefaultWalkingGravity;
                 Jumped = false;
             }
 
             rb.velocity = moveVector;
+            Debug.Log("V " + rb.velocity);
         }
 
     }
@@ -106,7 +116,7 @@ public class Movement : MonoBehaviour
     }
     void UpdateGroundState()
     {
-        if (groundCheckCollider)
+        if (GroundCheckCollider)
         {
             ContactFilter2D contactFilter = new ContactFilter2D();
             contactFilter.useLayerMask = true;
@@ -114,7 +124,7 @@ public class Movement : MonoBehaviour
 
             Collider2D[] results = new Collider2D[128];
 
-            int n = Physics2D.OverlapCollider(groundCheckCollider, contactFilter, results);
+            int n = Physics2D.OverlapCollider(GroundCheckCollider, contactFilter, results);
             if (n > 0)
             {
                 canJump = true;
@@ -151,7 +161,7 @@ public class Movement : MonoBehaviour
     {
         // here the states are reset to their original forms
         MaxSpeed = defaultMaxSpeed;
-        MoveRate = defaultMoveRate;
+        // MoveRate = defaultMoveRate;
         JumpSpeed = defaultJumpSpeed;
         FallingGravity = defaultFallingGravity;
     }

@@ -2,15 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Human : MonoBehaviour
+public class Human : MonoBehaviour, IShapeColliders
 {
-    [SerializeField] private CapsuleCollider2D groundCollider;
-    [SerializeField] private BoxCollider2D airCollider;
+    [field:SerializeField] public CapsuleCollider2D GroundCollider { get; set; }
+    [field:SerializeField] public BoxCollider2D AirCollider { get; set; }
+    [field:SerializeField] public BoxCollider2D GroundCheckCollider { get; set; }
 
-    private GameObject player;
+    /*private GameObject player;
+
     void OnEnable()
     {
-        /*
         player = transform.parent.gameObject;
 
         // updating the ground check collider to accomodate for size change using the other colliders sizes
@@ -33,6 +34,5 @@ public class Human : MonoBehaviour
         BoxCollider2D playerAC = player.GetComponent<Movement>().airCollider;
 
         playerAC = airCollider;
-        */
-    }
+    }*/
 }

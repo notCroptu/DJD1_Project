@@ -2,17 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DragonWings : MonoBehaviour
+public class DragonWings : MonoBehaviour , IShapeColliders 
 {
     PlayerActions playerActions;
 
     // reference variables to change in player
-    [SerializeField] private CapsuleCollider2D groundCollider;
-    [SerializeField] private BoxCollider2D airCollider;
+    [field:SerializeField] public CapsuleCollider2D GroundCollider { get; set; }
+    [field:SerializeField] public BoxCollider2D AirCollider { get; set; }
+    [field:SerializeField] public BoxCollider2D GroundCheckCollider { get; set; }
 
     [SerializeField] private float jumpSpeed = 200f;
     [SerializeField] private float glideClamp = 400f;
-    private float glideRate;
+    // private float glideRate;
     [SerializeField] private int jumpsAllowed = 3;
     [SerializeField] private float maxGlideTime = 5;
     [SerializeField] private float maxFallSpeed = 20f;
@@ -39,7 +40,7 @@ public class DragonWings : MonoBehaviour
 
         jumpsExecuted = 0;
 
-        glideRate = (movement.DefaultMaxSpeed / glideClamp) * movement.DefaultMoveRate;
+        // glideRate = (movement.DefaultMaxSpeed / glideClamp) * movement.DefaultMoveRate;
         
         movement.JumpSpeed = jumpSpeed;
 
@@ -58,7 +59,7 @@ public class DragonWings : MonoBehaviour
             rb.gravityScale = movement.FallingGravity;
         }
         {
-            rb.gravityScale = 4f;
+            rb.gravityScale = movement.DefaultWalkingGravity;
         }
 
         if (!movement.IsGrounded)
@@ -76,10 +77,10 @@ public class DragonWings : MonoBehaviour
             }
             else if ( playerActions.Ability.IsPressed && (glideTimer > 0) )
             {
-                if ( (movement.MaxSpeed != glideClamp) || (movement.MoveRate != glideRate) )
+                if ( (movement.MaxSpeed != glideClamp) /*|| (movement.MoveRate != glideRate)*/ )
                 {
                     movement.MaxSpeed = glideClamp;
-                    movement.MoveRate = glideRate;
+                    //movement.MoveRate = glideRate;
                 }
                 
                 currentVelocity = rb.velocity;
@@ -94,10 +95,10 @@ public class DragonWings : MonoBehaviour
 
             if ( !playerActions.Ability.IsPressed )
             {
-                if ( (movement.MaxSpeed == glideClamp) || (movement.MoveRate == glideRate) )
+                if ( (movement.MaxSpeed == glideClamp) /*|| (movement.MoveRate == glideRate)*/ )
                 {
                     movement.MaxSpeed = movement.DefaultMaxSpeed;
-                    movement.MoveRate = movement.DefaultMoveRate;
+                    // movement.MoveRate = movement.DefaultMoveRate;
                 }
             }
 
@@ -108,10 +109,10 @@ public class DragonWings : MonoBehaviour
             jumpsExecuted = 0;
             glideTimer = maxGlideTime;
 
-            if ( (movement.MaxSpeed == glideClamp) || (movement.MoveRate == glideRate) )
+            if ( (movement.MaxSpeed == glideClamp) /*|| (movement.MoveRate == glideRate)*/ )
             {
                 movement.MaxSpeed = movement.DefaultMaxSpeed;
-                movement.MoveRate = movement.DefaultMoveRate;
+                // movement.MoveRate = movement.DefaultMoveRate;
             }
         }
     }

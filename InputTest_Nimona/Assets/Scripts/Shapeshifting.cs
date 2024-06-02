@@ -36,7 +36,7 @@ public class Shapeshifting : MonoBehaviour
     void Start()
     {
         // Initialize with human shape at the start
-        ChangeShape(human);
+        ChangeShape<Human>(human);
         RhinoPoints = maxPoints;
         GorillaPoints = maxPoints;
         DragonPoints = maxPoints;
@@ -48,44 +48,42 @@ public class Shapeshifting : MonoBehaviour
         float rJoystickX = playerActions.ShapeshiftX;
         float rJoystickY = playerActions.ShapeshiftY;
 
-        Debug.Log(rJoystickX);
-
         if (testShapeshiftPoints)
         {
             if ((rJoystickX > 0.71f || Input.GetKeyDown(KeyCode.Alpha1)) && RhinoPoints > 0)
             {
-                ChangeShape(rhino);
+                ChangeShape<Rhino>(rhino);
             }
             else if (rJoystickY < -0.71f || Input.GetKeyDown(KeyCode.Alpha4))
             {
-                ChangeShape(human);
+                ChangeShape<Human>(human);
             }
             else if ((rJoystickY > 0.71f || Input.GetKeyDown(KeyCode.Alpha2)) && DragonPoints > 0)
             {
-                ChangeShape(dragon);
+                ChangeShape<DragonWings>(dragon);
             }
             else if ((rJoystickX < -0.71f || Input.GetKeyDown(KeyCode.Alpha3)) && GorillaPoints > 0)
             {
-                ChangeShape(gorilla);
+                ChangeShape<Gorilla>(gorilla);
             }
         }
         else
         {
             if (rJoystickX > 0.71f)
             {
-                ChangeShape(rhino);
+                ChangeShape<Rhino>(rhino);
             }
             else if (rJoystickY < -0.71f)
             {
-                ChangeShape(human);
+                ChangeShape<Human>(human);
             }
             else if (rJoystickY > 0.71f)
             {
-                ChangeShape(dragon);
+                ChangeShape<DragonWings>(dragon);
             }
             else if (rJoystickX < -0.71f)
             {
-                ChangeShape(gorilla);
+                ChangeShape<Gorilla>(gorilla);
             }
         }
         
@@ -93,7 +91,7 @@ public class Shapeshifting : MonoBehaviour
         UpdateBars(DragonPoints,dragonBar);
         UpdateBars(RhinoPoints,rhinoBar);
     }
-    public void ChangeShape(GameObject newShape)
+    public void ChangeShape<T>(GameObject newShape) where T : MonoBehaviour, IShapeColliders 
     {
         if (newShape == currentShape) return; // Don't switch to the same shape
 
@@ -108,29 +106,12 @@ public class Shapeshifting : MonoBehaviour
         newShape.SetActive(true); // Activate new shape
         currentShape = newShape; // Update current shape reference
 
-        // Update the ground check collider size and offset
-        BoxCollider2D newAirCollider;
-        newAirCollider = newShape.GetComponent<BoxCollider2D>();
-
-
-        if (newAirCollider != null && groundCheckCollider != null)
-        {
-            Vector2 newSize;
-            Vector2 newOffset;
-
-            newSize = new Vector2(newAirCollider.size.x - 5f, groundCheckCollider.size.y);
-            newOffset = new Vector2(newAirCollider.offset.x, groundCheckCollider.offset.y);
-
-            groundCheckCollider.size = newSize;
-            groundCheckCollider.offset = newOffset;
-        }
+        T ShapeColliders = newShape.GetComponent<T>();
 
         // Update movement colliders
-        if (movement != null)
-        {
-            movement.groundCollider = newShape.GetComponent<CapsuleCollider2D>();
-            movement.airCollider = newAirCollider;
-        }
+        movement.GroundCheckCollider = ShapeColliders.GroundCheckCollider;
+        movement.GroundCollider = ShapeColliders.GroundCollider;
+        movement.AirCollider = ShapeColliders.AirCollider;
 
         // Activate shapeshift particles
         spriteRenderer = newShape.GetComponent<SpriteRenderer>();
@@ -139,7 +120,7 @@ public class Shapeshifting : MonoBehaviour
         shapeModule.texture = spriteRenderer.sprite.texture;
 
         // Change the force field according to shape size
-        forceField.endRange = newAirCollider.size.y;
+        forceField.endRange = ShapeColliders.AirCollider.size.y;
 
         // Emit Particles and flash player
         StartCoroutine(StartAndStopEmission());

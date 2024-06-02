@@ -4,21 +4,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class Rhino : MonoBehaviour
+public class Rhino : MonoBehaviour , IShapeColliders 
 {
     PlayerActions playerActions;
 
     // reference variables to change in player
-    [SerializeField] private CapsuleCollider2D groundCollider;
-    [SerializeField] private BoxCollider2D airCollider;
+    [field:SerializeField] public CapsuleCollider2D GroundCollider { get; set; }
+    [field:SerializeField] public BoxCollider2D AirCollider { get; set; }
+    [field:SerializeField] public BoxCollider2D GroundCheckCollider { get; set; }
 
     // value variables to change in player
     [SerializeField] private float runClamp = 100f;
     [SerializeField] private float fallingGravity = 4f;
     public float RunClamp => runClamp;
-    private float runRate;
+    // private float runRate;
     private float walkClamp;
-    private float walkRate;
+    // private float walkRate;
 
     // variables for breaking
     private Vector3 bufferVelocity;
@@ -44,11 +45,11 @@ public class Rhino : MonoBehaviour
         movement = player.GetComponent<Movement>();
         rb = player.GetComponent<Rigidbody2D>();
         walkClamp = movement.DefaultMaxSpeed;
-        walkRate = movement.DefaultMoveRate;
+        // walkRate = movement.DefaultMoveRate;
 
         movement.FallingGravity = fallingGravity;
 
-        runRate = (walkClamp / runClamp) * walkRate;
+        // runRate = (walkClamp / runClamp) * walkRate;
 
         playerActions = GetComponentInParent<PlayerActions>();
     }
@@ -158,18 +159,18 @@ public class Rhino : MonoBehaviour
     {
         if  ( playerActions.Ability.IsPressed && ( movement.IsGrounded ) )
         {
-            if ( (movement.MaxSpeed != runClamp) || (movement.MoveRate != runRate) )
+            if ( (movement.MaxSpeed != runClamp) /*|| (movement.MoveRate != runRate)*/ )
             {
                 movement.MaxSpeed = runClamp;
-                movement.MoveRate = runRate;
+                // movement.MoveRate = runRate;
             }
         }
         else if ( movement.IsGrounded )
         {
-            if ( (movement.MaxSpeed != walkClamp) || (movement.MoveRate != walkRate) )
+            if ( (movement.MaxSpeed != walkClamp) /* || (movement.MoveRate != walkRate)*/ )
             {
                 movement.MaxSpeed = walkClamp;
-                movement.MoveRate = walkRate;
+                // movement.MoveRate = walkRate;
             }
         }
     }
