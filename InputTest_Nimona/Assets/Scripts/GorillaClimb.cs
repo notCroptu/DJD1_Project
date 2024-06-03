@@ -12,48 +12,64 @@ public class GorillaClimb : MonoBehaviour
     private Movement movScript;
     private ClimbMovement climbScript;
 
+    [SerializeField] private float wallJumpingDuration = 2f;
+
+    public bool Jumped { get; set; }
+
     // Start is called before the first frame update
     void Start()
     {
+        // Initialize the necessary components
         movScript = GetComponentInParent<Movement>();
         climbScript = GetComponentInParent<ClimbMovement>();
-
         playerActions = GetComponentInParent<PlayerActions>();
+        Jumped = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        // Debug.Log($"WALLCHECK:{WallCheck}");
-
-        if (WallCheck && playerActions.Ability.IsPressed )
+        // Check if the player is wall climbing
+        if (WallCheck && playerActions.Ability.IsPressed && !Jumped)
         {
-            Debug.Log("ISCLIMBING");
+            // Disable movement script and enable climbing script
             movScript.enabled = false;
             climbScript.enabled = true;
         }
         else
         {
+            // Enable movement script and disable climbing script
             movScript.enabled = true;
             climbScript.enabled = false;
         }
+        
+        // Start the wall jumping duration coroutine
+        StartCoroutine(WaitForSeconds());
     }
+
+    // Coroutine to handle the wall jumping duration
+    IEnumerator WaitForSeconds()
+    {
+        yield return new WaitForSeconds(wallJumpingDuration);
+    }
+
+    // Trigger detection for entering a climbable wall
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Climbable climbable =
-            other.gameObject.GetComponent<Climbable>();
+        Climbable climbable = other.gameObject.GetComponent<Climbable>();
 
-        if ( climbable != null )
+        if (climbable != null)
         {
             WallCheck = true;
         }
     }
+
+    // Trigger detection for exiting a climbable wall
     private void OnTriggerExit2D(Collider2D other)
     {
-        Climbable climbable =
-            other.gameObject.GetComponent<Climbable>();
+        Climbable climbable = other.gameObject.GetComponent<Climbable>();
 
-        if ( climbable != null )
+        if (climbable != null)
         {
             WallCheck = false;
         }

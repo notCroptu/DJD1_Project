@@ -6,44 +6,59 @@ public class ClimbMovement : MonoBehaviour
 {
     PlayerActions playerActions;
     [SerializeField] private GorillaClimb climbScript;
+    [SerializeField] private Movement movement;
     [SerializeField] private float climbSpeed;
-    [SerializeField] private float wallJumpingTime = 0.2f;
-    [SerializeField] private float wallJumpingDuration = 0.4f;
-    [SerializeField] private Vector2 wallJumpingPower = new Vector2(8f, 16f);
 
     private Rigidbody2D rb;
     private bool isWallJumping;
-    private float wallJumpingDirection;
-    private float wallJumpingCounter;
-    private float Vx;
+    private float initialXVelocity;
 
     // Start is called before the first frame update
     void Start()
     {
+        // Initialize the Rigidbody2D component
         rb = GetComponent<Rigidbody2D>();
 
+        // Get the PlayerActions component from the parent object
         playerActions = GetComponentInParent<PlayerActions>();
     }
+
+    // Called when the script is enabled
     void OnEnable()
     {
-        Vx = rb.velocity.x;
+        rb = GetComponent<Rigidbody2D>();
+        
+        // Store the initial horizontal velocity
+        initialXVelocity = rb.velocity.x;
     }
 
     // Update is called once per frame
     void Update()
     {
+        // Get player input for horizontal and vertical movement
         float horizontalMovement = playerActions.MoveX;
         float verticalMovement = playerActions.MoveY;
+
+        // Disable gravity while climbing
         rb.gravityScale = 0;
 
+        // Adjust vertical velocity based on climb speed
         Vector3 currentVel = rb.velocity;
-
         currentVel.y = verticalMovement * climbSpeed;
-        Vx =  Mathf.Sign(Vx)*(Mathf.Abs(Vx)*0.1f);
 
-        rb.velocity = new Vector3 (Vx, currentVel.y, 0f);
-        // WallJump();
+        // Apply a dampening effect to the initial horizontal velocity
+        initialXVelocity = Mathf.Sign(initialXVelocity) * (Mathf.Abs(initialXVelocity) * 0.1f);
 
+        // Set the new velocity of the Rigidbody2D
+        rb.velocity = new Vector3(initialXVelocity, currentVel.y, 0f);
+
+        // Check for wall jump input
+        if (playerActions.Jump.WasPressed)
+        {
+            WallJump();
+        }
+
+        // Rotate the player to face the direction of movement
         if (!isWallJumping)
         {
             if ((horizontalMovement < 0) && (transform.right.x > 0))
@@ -55,44 +70,36 @@ public class ClimbMovement : MonoBehaviour
                 transform.rotation = Quaternion.identity;
             }
         }
-        
     }
+
+    // Handles the wall jump action
     private void WallJump()
     {
-        if (climbScript.WallCheck)
-        {
-            isWallJumping = false;
-            wallJumpingDirection = -transform.right.x;
-            wallJumpingCounter = wallJumpingTime;
-        }
-        else
-        {
-            wallJumpingCounter -= Time.deltaTime;
-        }
+        // Calculate the new velocity for the wall jump
+        Vector2 moveVector = rb.velocity;
 
-        if ( playerActions.Jump.IsPressed && wallJumpingCounter > 0f)
-        {
-            isWallJumping = true;
-            rb.velocity = new Vector3(wallJumpingDirection * wallJumpingPower.x, wallJumpingPower.y, 0f);
-            wallJumpingCounter = 0f;
+        rb.gravityScale = movement.FallingGravity;
+        moveVector.x = Mathf.Sign(playerActions.MoveX) * movement.MaxSpeed;
+        moveVector.y = movement.JumpSpeed * 1.3f;
 
-            //if (transform.right.x != wallJumpingDirection)
-            //{
-            //    if ((transform.right.x > 0))
-            //    {
-            //        transform.rotation = Quaternion.Euler(0, 180, 0);
-            //    }
-            //    else if ((transform.right.x < 0))
-            //    {
-            //        transform.rotation = Quaternion.identity;
-            //    }
-            //}
+        // Apply the new velocity to the Rigidbody2D
+        rb.velocity = moveVector;
+        Debug.Log("velocity " + rb.velocity);
 
-            Invoke("StopWallJumping", wallJumpingDuration);
-        }
+        // Set the jump state in the climb script
+        climbScript.Jumped = true;
     }
+
+    // Stops the wall jumping action
     private void StopWallJumping()
     {
         isWallJumping = false;
+    }
+
+    // Called when the script is disabled
+    private void OnDisable()
+    {
+        // Reset the jump state in the climb script
+        climbScript.Jumped = false;
     }
 }

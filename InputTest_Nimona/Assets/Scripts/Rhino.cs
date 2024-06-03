@@ -15,7 +15,6 @@ public class Rhino : MonoBehaviour , IShapeColliders
 
     // value variables to change in player
     [SerializeField] private float runClamp = 100f;
-    [SerializeField] private float fallingGravity = 4f;
     public float RunClamp => runClamp;
     // private float runRate;
     private float walkClamp;
@@ -46,8 +45,6 @@ public class Rhino : MonoBehaviour , IShapeColliders
         rb = player.GetComponent<Rigidbody2D>();
         walkClamp = movement.DefaultMaxSpeed;
         // walkRate = movement.DefaultMoveRate;
-
-        movement.FallingGravity = fallingGravity;
 
         // runRate = (walkClamp / runClamp) * walkRate;
 

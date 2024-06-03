@@ -30,15 +30,20 @@ public class Shapeshifting : MonoBehaviour
     [SerializeField] private ParticleSystemForceField forceField;
     private ParticleSystem.ShapeModule shapeModule;
     private ParticleSystem.EmissionModule emissionModule;
-    private SpriteRenderer spriteRenderer;
+    [SerializeField] private SpriteRenderer spriteRenderer;
     private float ParticleEffectArea;
     [SerializeField] private Gradient color;
+    private Color originalColor;
+    private Material originalMaterial;
 
     private bool canShapeshift;
     private bool isThrowing = false;
     private bool ThrowingActivated = false;
     void Start()
     {
+        originalColor = spriteRenderer.color;
+        originalMaterial = spriteRenderer.material;
+
         // Initialize with human shape at the start
         ChangeShape<Human>(human);
         RhinoPoints = maxPoints;
@@ -165,9 +170,7 @@ public class Shapeshifting : MonoBehaviour
         emissionModule.enabled = true;
         shapeParticleSystem.Play();
 
-        Color originalColor = spriteRenderer.color;
         float timer = 1f;
-        Material originalMaterial = spriteRenderer.material;
 
         Material newMaterial = new Material(originalMaterial);
         newMaterial.shader = Shader.Find("Shader Graphs/FlashShader");
@@ -188,6 +191,7 @@ public class Shapeshifting : MonoBehaviour
 
         // Set back to the original color
         spriteRenderer.material = originalMaterial;
+        spriteRenderer.color = originalColor;
 
 
         // Stop emission
