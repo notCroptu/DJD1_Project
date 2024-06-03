@@ -10,7 +10,6 @@ public class ClimbMovement : MonoBehaviour
     [SerializeField] private float climbSpeed;
 
     private Rigidbody2D rb;
-    private bool isWallJumping;
     private float initialXVelocity;
 
     // Start is called before the first frame update
@@ -34,6 +33,7 @@ public class ClimbMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log("Climbing");
         // Get player input for horizontal and vertical movement
         float horizontalMovement = playerActions.MoveX;
         float verticalMovement = playerActions.MoveY;
@@ -58,16 +58,13 @@ public class ClimbMovement : MonoBehaviour
         }
 
         // Rotate the player to face the direction of movement
-        if (!isWallJumping)
+        if ((horizontalMovement < 0) && (transform.right.x > 0))
         {
-            if ((horizontalMovement < 0) && (transform.right.x > 0))
-            {
-                transform.rotation = Quaternion.Euler(0, 180, 0);
-            }
-            else if ((horizontalMovement > 0) && (transform.right.x < 0))
-            {
-                transform.rotation = Quaternion.identity;
-            }
+            transform.rotation = Quaternion.Euler(0, 180, 0);
+        }
+        else if ((horizontalMovement > 0) && (transform.right.x < 0))
+        {
+            transform.rotation = Quaternion.identity;
         }
     }
 
@@ -87,18 +84,6 @@ public class ClimbMovement : MonoBehaviour
 
         // Set the jump state in the climb script
         climbScript.Jumped = true;
-    }
-
-    // Stops the wall jumping action
-    private void StopWallJumping()
-    {
-        isWallJumping = false;
-    }
-
-    // Called when the script is disabled
-    private void OnDisable()
-    {
-        // Reset the jump state in the climb script
-        climbScript.Jumped = false;
+        Debug.Log("Jumped");
     }
 }

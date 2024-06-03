@@ -29,25 +29,26 @@ public class GorillaClimb : MonoBehaviour
     void Update()
     {
         // Check if the player is wall climbing
-        if (WallCheck && playerActions.Ability.IsPressed && !Jumped)
+        if ( !Jumped && WallCheck && playerActions.Ability.IsPressed )
         {
             // Disable movement script and enable climbing script
             movScript.enabled = false;
             climbScript.enabled = true;
+            Debug.Log("Normal Move");
         }
-        else
+        else if (!playerActions.Ability.IsPressed || !WallCheck || Jumped)
         {
+            // If the player has jumped and is not on the wall anymore, reset Jumped
+            if ( Jumped && !WallCheck )
+            {
+                Jumped = false;
+                // StartCoroutine(WaitForSeconds());
+            }
+
             // Enable movement script and disable climbing script
             movScript.enabled = true;
             climbScript.enabled = false;
         }
-        
-    }
-
-    // Coroutine to handle the wall jumping duration
-    IEnumerator WaitForSeconds()
-    {
-        yield return new WaitForSeconds(wallJumpingDuration);
     }
 
     // Trigger detection for entering a climbable wall
