@@ -24,7 +24,7 @@ public class PlayerActions : MonoBehaviour
         ShapeshiftX = inputDevice.RightStickX;
         ShapeshiftY = inputDevice.RightStickY;
         Ability = inputDevice.RightTrigger;
-        Throw = inputDevice.RightStickButton;
+        Throw = inputDevice.RightBumper;
         AimX = inputDevice.RightStickX;
         AimY = inputDevice.RightStickY;
     }

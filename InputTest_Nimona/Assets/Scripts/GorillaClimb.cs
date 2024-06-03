@@ -24,7 +24,7 @@ public class GorillaClimb : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log($"WALLCHECK:{WallCheck}");
+        // Debug.Log($"WALLCHECK:{WallCheck}");
 
         if (WallCheck && playerActions.Ability.IsPressed )
         {

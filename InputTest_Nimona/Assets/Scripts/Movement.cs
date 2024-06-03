@@ -92,7 +92,6 @@ public class Movement : MonoBehaviour
             }
 
             rb.velocity = moveVector;
-            Debug.Log("V " + rb.velocity);
         }
 
     }

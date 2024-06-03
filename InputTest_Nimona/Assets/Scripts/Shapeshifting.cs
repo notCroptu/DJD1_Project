@@ -33,6 +33,10 @@ public class Shapeshifting : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private float ParticleEffectArea;
     [SerializeField] private Gradient color;
+
+    private bool canShapeshift;
+    private bool isThrowing = false;
+    private bool ThrowingActivated = false;
     void Start()
     {
         // Initialize with human shape at the start
@@ -45,45 +49,70 @@ public class Shapeshifting : MonoBehaviour
     }
     void Update()
     {
-        float rJoystickX = playerActions.ShapeshiftX;
-        float rJoystickY = playerActions.ShapeshiftY;
+        float rJoystickX = playerActions.ShapeshiftX.Value;
+        float rJoystickY = playerActions.ShapeshiftY.Value;
 
-        if (testShapeshiftPoints)
+        // Check if gorilla is throwing
+        if ( playerActions.Throw.WasPressed )
         {
-            if ((rJoystickX > 0.71f || Input.GetKeyDown(KeyCode.Alpha1)) && RhinoPoints > 0)
-            {
-                ChangeShape<Rhino>(rhino);
-            }
-            else if (rJoystickY < -0.71f || Input.GetKeyDown(KeyCode.Alpha4))
-            {
-                ChangeShape<Human>(human);
-            }
-            else if ((rJoystickY > 0.71f || Input.GetKeyDown(KeyCode.Alpha2)) && DragonPoints > 0)
-            {
-                ChangeShape<DragonWings>(dragon);
-            }
-            else if ((rJoystickX < -0.71f || Input.GetKeyDown(KeyCode.Alpha3)) && GorillaPoints > 0)
-            {
-                ChangeShape<Gorilla>(gorilla);
-            }
+            isThrowing = true;
+            Debug.Log("Started throwing.");
+        }
+
+        ThrowingActivated = Mathf.Abs(rJoystickX) >= 0.2f && Mathf.Abs(rJoystickY) >= 0.2f;
+
+        if ( (currentShape == gorilla) && isThrowing && ThrowingActivated )
+        {
+            // Allow shapeshifting if joystick is neutral
+            canShapeshift = Mathf.Abs(rJoystickX) < 0.2f && Mathf.Abs(rJoystickY) < 0.2f;
+            isThrowing = !canShapeshift;
+            if ( canShapeshift ) ThrowingActivated = false;
+            if ( !isThrowing ) Debug.Log("RELEASED.");
         }
         else
         {
-            if (rJoystickX > 0.71f)
+            canShapeshift = true;
+        }
+
+        if ( canShapeshift )
+        {
+            if (testShapeshiftPoints)
             {
-                ChangeShape<Rhino>(rhino);
+                if ((rJoystickX > 0.71f || Input.GetKeyDown(KeyCode.Alpha1)) && RhinoPoints > 0)
+                {
+                    ChangeShape<Rhino>(rhino);
+                }
+                else if (rJoystickY < -0.71f || Input.GetKeyDown(KeyCode.Alpha4))
+                {
+                    ChangeShape<Human>(human);
+                }
+                else if ((rJoystickY > 0.71f || Input.GetKeyDown(KeyCode.Alpha2)) && DragonPoints > 0)
+                {
+                    ChangeShape<DragonWings>(dragon);
+                }
+                else if ((rJoystickX < -0.71f || Input.GetKeyDown(KeyCode.Alpha3)) && GorillaPoints > 0)
+                {
+                    ChangeShape<Gorilla>(gorilla);
+                }
             }
-            else if (rJoystickY < -0.71f)
+            else
             {
-                ChangeShape<Human>(human);
-            }
-            else if (rJoystickY > 0.71f)
-            {
-                ChangeShape<DragonWings>(dragon);
-            }
-            else if (rJoystickX < -0.71f)
-            {
-                ChangeShape<Gorilla>(gorilla);
+                if (rJoystickX > 0.71f)
+                {
+                    ChangeShape<Rhino>(rhino);
+                }
+                else if (rJoystickY < -0.71f)
+                {
+                    ChangeShape<Human>(human);
+                }
+                else if (rJoystickY > 0.71f)
+                {
+                    ChangeShape<DragonWings>(dragon);
+                }
+                else if (rJoystickX < -0.71f)
+                {
+                    ChangeShape<Gorilla>(gorilla);
+                }
             }
         }
         
@@ -124,6 +153,8 @@ public class Shapeshifting : MonoBehaviour
 
         // Emit Particles and flash player
         StartCoroutine(StartAndStopEmission());
+
+        canShapeshift = false;
     }
     private IEnumerator StartAndStopEmission()
     {
