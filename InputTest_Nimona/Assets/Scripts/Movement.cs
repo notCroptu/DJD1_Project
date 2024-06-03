@@ -41,6 +41,7 @@ public class Movement : MonoBehaviour
     private Rigidbody2D rb;
     private Vector3 moveVector;
     public bool IsGrounded { get; set; }
+    public bool GroundScore { get; set; }
     private bool canJump;
     private float coyoteTimer;
 
@@ -63,6 +64,8 @@ public class Movement : MonoBehaviour
         // change from air to ground collider or ground to air collider
         GroundCollider.enabled = IsGrounded;
         AirCollider.enabled = !IsGrounded;
+
+        if ( IsGrounded ) GroundScore = true;
 
         if ( inputEnabled )
         {

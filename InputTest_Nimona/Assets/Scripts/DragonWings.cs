@@ -39,6 +39,7 @@ public class DragonWings : MonoBehaviour , IShapeColliders
         rb = player.GetComponent<Rigidbody2D>();
 
         jumpsExecuted = 0;
+        glideTimer = maxGlideTime;
 
         // glideRate = (movement.DefaultMaxSpeed / glideClamp) * movement.DefaultMoveRate;
         
@@ -104,16 +105,16 @@ public class DragonWings : MonoBehaviour , IShapeColliders
 
             movement.Jumped = false;
         }
-        else if (movement.IsGrounded)
+        else if ( movement.MaxSpeed == glideClamp )
+        {
+            movement.MaxSpeed = movement.DefaultMaxSpeed;
+        }
+        
+        if ( movement.GroundScore )
         {
             jumpsExecuted = 0;
             glideTimer = maxGlideTime;
-
-            if ( (movement.MaxSpeed == glideClamp) /*|| (movement.MoveRate == glideRate)*/ )
-            {
-                movement.MaxSpeed = movement.DefaultMaxSpeed;
-                // movement.MoveRate = movement.DefaultMoveRate;
-            }
+            movement.GroundScore = false;
         }
     }
 }

@@ -27,7 +27,6 @@ public class ClimbMovement : MonoBehaviour
     void OnEnable()
     {
         rb = GetComponent<Rigidbody2D>();
-        
         // Store the initial horizontal velocity
         initialXVelocity = rb.velocity.x;
     }

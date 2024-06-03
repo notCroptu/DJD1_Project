@@ -7,7 +7,6 @@ public class GorillaClimb : MonoBehaviour
 {
     PlayerActions playerActions;
     [SerializeField] private Collider2D wallCol;
-    [SerializeField] private string climbTag;
     public bool WallCheck { get; private set; } = false;
     private Movement movScript;
     private ClimbMovement climbScript;
@@ -43,8 +42,6 @@ public class GorillaClimb : MonoBehaviour
             climbScript.enabled = false;
         }
         
-        // Start the wall jumping duration coroutine
-        StartCoroutine(WaitForSeconds());
     }
 
     // Coroutine to handle the wall jumping duration

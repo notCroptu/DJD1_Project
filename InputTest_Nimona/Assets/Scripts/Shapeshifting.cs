@@ -11,7 +11,6 @@ public class Shapeshifting : MonoBehaviour
     [SerializeField] private GameObject dragon;
     [SerializeField] private GameObject gorilla;
 
-    [SerializeField] private BoxCollider2D groundCheckCollider;
 
     // GD2 Shapeshift points test mechanic
     [SerializeField] private bool testShapeshiftPoints = true;

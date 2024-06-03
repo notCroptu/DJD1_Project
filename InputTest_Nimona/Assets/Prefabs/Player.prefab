@@ -346,7 +346,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13e262351173ab546bf4752bb95b6ac8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  throwForce: 150
+  throwForce: 250
   grabRadius: 20
   grabCollider: {fileID: 7266007602164569576}
   grabPoint: {fileID: 8797141027905068111}
@@ -436,7 +436,7 @@ MonoBehaviour:
   <GroundCheckCollider>k__BackingField: {fileID: 8635581587042535986}
   <GroundCollider>k__BackingField: {fileID: 4158115915677998132}
   <AirCollider>k__BackingField: {fileID: 9013819727544050668}
-  defaultMaxSpeed: 100
+  defaultMaxSpeed: 200
   defaultJumpSpeed: 200
   defaultFallingGravity: 3
   defaultWalkingGravity: 4
@@ -471,6 +471,7 @@ MonoBehaviour:
   movement: {fileID: 8786279668513431141}
   shapeParticleSystem: {fileID: 8267702688835211205}
   forceField: {fileID: 7237966642751362532}
+  spriteRenderer: {fileID: 5712632476014911839}
   color:
     serializedVersion: 2
     key0: {r: 1, g: 1, b: 1, a: 1}
@@ -513,11 +514,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f1898152b5610b498dccc27a7598104, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  climbScript: {fileID: 6278066296593074151}
+  climbScript: {fileID: 8851477968927487618}
+  movement: {fileID: 8786279668513431141}
   climbSpeed: 100
-  wallJumpingTime: 0.2
-  wallJumpingDuration: 0.4
-  wallJumpingPower: {x: 8, y: 16}
 --- !u!198 &8267702688835211205
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -6173,7 +6172,6 @@ MonoBehaviour:
   <AirCollider>k__BackingField: {fileID: 2214102187115744988}
   <GroundCheckCollider>k__BackingField: {fileID: 8396774057742794615}
   runClamp: 800
-  fallingGravity: 6
   desBreakPoint: 600
   shakeForce: 15
   breakAngle: 90
@@ -6439,6 +6437,7 @@ MonoBehaviour:
   <GroundCollider>k__BackingField: {fileID: 571959324221567917}
   <AirCollider>k__BackingField: {fileID: 2605392763479240287}
   <GroundCheckCollider>k__BackingField: {fileID: 2133938430389776931}
+  jumpSpeed: 230
 --- !u!1 &6924865775416864981
 GameObject:
   m_ObjectHideFlags: 0
@@ -6449,7 +6448,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7165292893728418409}
   - component: {fileID: 6557083072279207426}
-  - component: {fileID: 6278066296593074151}
   - component: {fileID: 8851477968927487618}
   m_Layer: 7
   m_Name: Climbing
@@ -6516,9 +6514,9 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 25, y: 24}
+  m_Size: {x: 21.75, y: 24}
   m_EdgeRadius: 0
---- !u!114 &6278066296593074151
+--- !u!114 &8851477968927487618
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -6531,21 +6529,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wallCol: {fileID: 6557083072279207426}
-  climbTag: Wall
---- !u!114 &8851477968927487618
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6924865775416864981}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 728015e59783af64da7cedf77436fc04, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  wallCol: {fileID: 6557083072279207426}
-  climbTag: Stairs
+  wallJumpingDuration: 2
 --- !u!1 &7196989955669048276
 GameObject:
   m_ObjectHideFlags: 0
