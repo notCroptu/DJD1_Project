@@ -13,6 +13,7 @@ public class PlayerActions : MonoBehaviour
     public InputControl Throw { get; private set; }
     public InputControl AimX { get; private set; }
     public InputControl AimY { get; private set; }
+    public InputControl PauseBtt { get; private set; }
 
     void Start()
     {
@@ -27,5 +28,7 @@ public class PlayerActions : MonoBehaviour
         Throw = inputDevice.RightBumper;
         AimX = inputDevice.RightStickX;
         AimY = inputDevice.RightStickY;
+        PauseBtt = inputDevice.Action3;
+
     }
 }

@@ -6,7 +6,10 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Sewers - Alley Chase.unity
-    guid: 2481f5cf919c4b64ebb5c6ca191ffb52
+    path: Assets/Scenes/MainMenu.unity
+    guid: 34ee658699a89db48af2432e42d6eb68
+  - enabled: 1
+    path: Assets/Scenes/GDII.unity
+    guid: 3f2340f91ffda0e43b7378b0c9ce7f7c
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: e3c813db6094da94a8e5150b6b7d06db, type: 2}
