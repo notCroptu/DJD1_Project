@@ -11,8 +11,6 @@ public class GorillaClimb : MonoBehaviour
     private Movement movScript;
     private ClimbMovement climbScript;
 
-    [SerializeField] private float wallJumpingDuration = 2f;
-
     public bool Jumped { get; set; }
 
     // Start is called before the first frame update

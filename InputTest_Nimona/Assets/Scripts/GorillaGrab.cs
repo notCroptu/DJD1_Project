@@ -36,56 +36,38 @@ public class GorillaGrab : MonoBehaviour
     void Update()
     {
         // Check for throw input
-        if (playerActions.Throw.WasPressed)
+        if ( playerActions.Throw.WasPressed && grabObject != null )
         {
+            Debug.Log("Grabbed");
+            Debug.Log(IsGrabbing = true);
+            Debug.Log(grabObject);
             IsGrabbing = true;
             grabbingObject = grabObject;
+            grabObject = null;
             playerObject.GetComponent<Shapeshifting>().enabled = false;
         }
-        else if (IsGrabbing && grabObject != null)
+        else if (IsGrabbing && grabbingObject != null)
         {
             GrabbingObject();
-        }
-        else
-        {
-            grabbingObject = null;
         }
     }
 
     // Check for grabbables in a specified area
-    private void OnTriggerStay2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        Vector3 grabVector;
-
         Grabbable grabbable = other.gameObject.GetComponent<Grabbable>();
 
-        if (grabObject == null)
+        if ( grabObject == null && grabbable != null )
         {
-            if (grabbable != null)
-            {
-                grabObject = other.gameObject;
-            }
-        }
-        else
-        {
-            if (grabbable != null)
-            {
-                grabVector = grabObject.transform.position;
-                Vector3 otherVector = other.transform.position;
-
-                if (Vector3.Distance(otherVector, transform.position) < Vector3.Distance(grabVector, transform.position))
-                {
-                    grabObject = other.gameObject;
-                    grabVector = grabObject.transform.position;
-                }
-            }
+            Debug.Log("Grabbed");
+            grabObject = other.gameObject;
         }
     }
 
     // Check for exiting grabbable area
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other == grabObject)
+        if ( other.gameObject == grabObject )
         {
             grabObject = null;
         }
@@ -103,12 +85,8 @@ public class GorillaGrab : MonoBehaviour
         float zRotation = Mathf.Atan2(rJoystickY, rJoystickX) * Mathf.Rad2Deg;
         grabbingObject.transform.rotation = Quaternion.Euler(0f, 0f, zRotation);
 
-        if (playerActions.Throw.WasPressed)
-        {
-            grabbingObject.transform.position += new Vector3(transform.right.x * 10f, 0f, 0f);
-            UnGrabObject();
-        }
-        else if (playerActions.Throw.WasReleased)
+        grabbingObject.transform.position += new Vector3(transform.right.x * 10f, 0f, 0f);
+        if (playerActions.Throw.WasReleased)
         {
             ThrowObject(rJoystickX, rJoystickY);
             UnGrabObject();
@@ -120,12 +98,11 @@ public class GorillaGrab : MonoBehaviour
     private void ThrowObject(float Xinput, float Yinput)
     {
         Rigidbody2D rb = grabbingObject.GetComponent<Rigidbody2D>();
-        if (rb != null)
+        if ( rb != null )
         {
             Vector2 throwDirection = new Vector2(Xinput, Yinput);
             throwDirection *= throwForce;
-            if (throwDirection.y > 0) throwDirection.y *= 1.5f;
-            rb.AddForce(throwDirection, ForceMode2D.Impulse);
+            rb.velocity = throwDirection;
         }
     }
 
@@ -141,6 +118,6 @@ public class GorillaGrab : MonoBehaviour
         grabbingObject.GetComponent<Rigidbody2D>().freezeRotation = false;
         IsGrabbing = false;
         grabbingObject = null;
-        grabObject = null;
+        Debug.Log("Ungrabbed");
     }
 }

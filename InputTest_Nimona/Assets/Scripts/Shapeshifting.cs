@@ -37,7 +37,6 @@ public class Shapeshifting : MonoBehaviour
 
     private bool canShapeshift;
     private bool isThrowing = false;
-    private bool ThrowingActivated = false;
     void Start()
     {
         originalColor = spriteRenderer.color;
@@ -50,28 +49,29 @@ public class Shapeshifting : MonoBehaviour
         DragonPoints = maxPoints;
 
         playerActions = GetComponent<PlayerActions>();
+
+        isThrowing = false;
+    }
+    void OnEnable()
+    {
+        isThrowing = true;
     }
     void Update()
     {
         float rJoystickX = playerActions.ShapeshiftX.Value;
         float rJoystickY = playerActions.ShapeshiftY.Value;
+        Vector2 joystickInput = new Vector2(rJoystickX, rJoystickY);
 
-        // Check if gorilla is throwing
-        if ( playerActions.Throw.WasPressed )
+        canShapeshift = false;
+        
+        if ( isThrowing )
         {
-            isThrowing = true;
-            Debug.Log("Started throwing.");
-        }
-
-        ThrowingActivated = Mathf.Abs(rJoystickX) >= 0.2f && Mathf.Abs(rJoystickY) >= 0.2f;
-
-        if ( (currentShape == gorilla) && isThrowing && ThrowingActivated )
-        {
-            // Allow shapeshifting if joystick is neutral
-            canShapeshift = Mathf.Abs(rJoystickX) < 0.2f && Mathf.Abs(rJoystickY) < 0.2f;
-            isThrowing = !canShapeshift;
-            if ( canShapeshift ) ThrowingActivated = false;
-            if ( !isThrowing ) Debug.Log("RELEASED.");
+            // not Aiming
+            if ( joystickInput.magnitude < 0.2f )
+            {
+                isThrowing = false;
+                // if ( !isThrowing ) Debug.Log("RELEASED.");
+            }
         }
         else
         {
@@ -215,7 +215,6 @@ public class Shapeshifting : MonoBehaviour
     // For GDII
     public void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("AAAAAAAAAAA");
         if (other.CompareTag("Point"))
         {
             Points pts = other.GetComponent<Points>();
