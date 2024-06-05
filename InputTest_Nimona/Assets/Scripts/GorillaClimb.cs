@@ -70,4 +70,10 @@ public class GorillaClimb : MonoBehaviour
             WallCheck = false;
         }
     }
+    void OnDisable()
+    {
+        // Enable movement script and disable climbing script
+        movScript.enabled = true;
+        climbScript.enabled = false;
+    }
 }
