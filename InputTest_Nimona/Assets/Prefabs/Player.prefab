@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5472420562604630103}
   - component: {fileID: 8396774057742794615}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GroundCheckCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 7686688880238732305}
   - component: {fileID: 3062152664244081189}
   - component: {fileID: 8406045373574292493}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Dragon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -368,7 +368,7 @@ GameObject:
   - component: {fileID: 8527624170488343410}
   - component: {fileID: 7237966642751362532}
   - component: {fileID: 32140806462777670}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -5920,7 +5920,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8651405995015630132}
   - component: {fileID: 2133938430389776931}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GroundCheckCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6000,7 +6000,7 @@ GameObject:
   - component: {fileID: 1969449015072125636}
   - component: {fileID: 2214102187115744988}
   - component: {fileID: 7746226718850344014}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Rhino
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6107,8 +6107,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.05716133, y: 16.065443}
-  m_Size: {x: 48.459, y: 32.131405}
+  m_Offset: {x: -0.05716133, y: 13}
+  m_Size: {x: 48.459, y: 26}
   m_Direction: 1
 --- !u!61 &2214102187115744988
 BoxCollider2D:
@@ -6142,7 +6142,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.08215332, y: 16.029182}
+  m_Offset: {x: 0, y: 13}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
@@ -6153,7 +6153,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 48.2417, y: 32.058365}
+  m_Size: {x: 44.8, y: 26}
   m_EdgeRadius: 0
 --- !u!114 &7746226718850344014
 MonoBehaviour:
@@ -6170,8 +6170,8 @@ MonoBehaviour:
   <GroundCollider>k__BackingField: {fileID: 1969449015072125636}
   <AirCollider>k__BackingField: {fileID: 2214102187115744988}
   <GroundCheckCollider>k__BackingField: {fileID: 8396774057742794615}
-  runClamp: 800
-  desBreakPoint: 600
+  runClamp: 700
+  desBreakPoint: 550
   shakeForce: 15
   breakAngle: 90
 --- !u!1 &4485853857263873751
@@ -6184,7 +6184,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2513621802057595994}
   - component: {fileID: 3029348136568773204}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GroundCheckCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6264,7 +6264,7 @@ GameObject:
   - component: {fileID: 571959324221567917}
   - component: {fileID: 2605392763479240287}
   - component: {fileID: 5625074937594102126}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Gorilla
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6374,7 +6374,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 2, y: 13.5}
-  m_Size: {x: 11, y: 27}
+  m_Size: {x: 16, y: 27}
   m_Direction: 0
 --- !u!61 &2605392763479240287
 BoxCollider2D:
@@ -6419,7 +6419,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 11, y: 27}
+  m_Size: {x: 16, y: 27}
   m_EdgeRadius: 0
 --- !u!114 &5625074937594102126
 MonoBehaviour:
@@ -6436,7 +6436,7 @@ MonoBehaviour:
   <GroundCollider>k__BackingField: {fileID: 571959324221567917}
   <AirCollider>k__BackingField: {fileID: 2605392763479240287}
   <GroundCheckCollider>k__BackingField: {fileID: 2133938430389776931}
-  jumpSpeed: 230
+  jumpSpeed: 220
 --- !u!1 &6924865775416864981
 GameObject:
   m_ObjectHideFlags: 0
@@ -6513,7 +6513,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 21.75, y: 24}
+  m_Size: {x: 40, y: 24}
   m_EdgeRadius: 0
 --- !u!114 &8851477968927487618
 MonoBehaviour:
@@ -6541,7 +6541,7 @@ GameObject:
   - component: {fileID: 4158115915677998132}
   - component: {fileID: 9013819727544050668}
   - component: {fileID: 7836608653856479388}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Human
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6648,8 +6648,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 10}
-  m_Size: {x: 6, y: 20}
+  m_Offset: {x: 0, y: 8}
+  m_Size: {x: 6, y: 16}
   m_Direction: 0
 --- !u!61 &9013819727544050668
 BoxCollider2D:
@@ -6683,7 +6683,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 10}
+  m_Offset: {x: 0, y: 8}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
@@ -6694,7 +6694,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 6, y: 20}
+  m_Size: {x: 6, y: 16}
   m_EdgeRadius: 0
 --- !u!114 &7836608653856479388
 MonoBehaviour:
@@ -6721,7 +6721,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6246281791799481467}
   - component: {fileID: 8635581587042535986}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GroundCheckCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}

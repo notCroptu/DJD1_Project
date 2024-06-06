@@ -27,14 +27,14 @@ public class GorillaClimb : MonoBehaviour
     void Update()
     {
         // Check if the player is wall climbing
-        if ( !Jumped && WallCheck && playerActions.Ability.IsPressed )
+        if ( WallCheck && playerActions.Ability.WasPressed && !Jumped )
         {
             // Disable movement script and enable climbing script
             movScript.enabled = false;
             climbScript.enabled = true;
             Debug.Log("Normal Move");
         }
-        else if (!playerActions.Ability.IsPressed || !WallCheck || Jumped)
+        else if ( !playerActions.Ability.IsPressed || !WallCheck || Jumped )
         {
             // If the player has jumped and is not on the wall anymore, reset Jumped
             if ( Jumped && !WallCheck )

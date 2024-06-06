@@ -5,7 +5,6 @@ using UnityEngine;
 public class KnightMovement : MonoBehaviour
 {
     [SerializeField] private LayerMask excludeLayersOnDie;
-
     [SerializeField] private float speed = 100f;
     [SerializeField] private float stopDistance = 128f;
     [SerializeField] private float sightDistance = 256f;
@@ -15,62 +14,87 @@ public class KnightMovement : MonoBehaviour
     private Rigidbody2D rb;
     private Rigidbody2D rbP;
     private Movement player;
-
+    private CapsuleCollider2D capsuleCollider;
     private Vector2 bufferVelocity;
     private bool dead;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        capsuleCollider = GetComponent<CapsuleCollider2D>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if ( player == null )
+        if (player == null)
         {
             player = FindObjectOfType<Movement>();
-            rbP = player.GetComponent<Rigidbody2D>();
+            if (player != null)
+            {
+                rbP = player.GetComponent<Rigidbody2D>();
+            }
         }
-
-        else if ( rbP != null && !dead )
+        else if (rbP != null && !dead)
         {
-            Vector2 dirToPlayer = rbP.position - rb.position;
+            Vector2 dirToPlayer = (rbP.position - new Vector2(0f, 10f)) - rb.position;
             dirToPlayer = dirToPlayer.normalized;
 
-            // make sure there are no obstacles like abscesses or walls and that the player is in sight
-            Vector3 distance = transform.position;
-            distance += new Vector3(stopDistance * Mathf.Sign(dirToPlayer.x), 0f, 0f);
-            RaycastHit2D hit;
-            hit = Physics2D.Raycast(distance, dirToPlayer, sightDistance, collidables);
+            // Get the center of the capsule collider
+            Vector2 currentPosition = capsuleCollider.bounds.center;
+            Vector2 distance = currentPosition + new Vector2(stopDistance * Mathf.Sign(dirToPlayer.x), 0f);
 
-            if (( hit.collider != null ))
+            // Perform the raycast and log the result
+            RaycastHit2D hit = Physics2D.Raycast(currentPosition, dirToPlayer, sightDistance, collidables);
+            Debug.Log($"Raycast hit: {hit.collider != null}");
+
+            // Visualize the raycast in the Scene view
+            Debug.DrawRay(currentPosition, dirToPlayer * sightDistance, Color.red);
+
+            if (hit.collider != null)
             {
-                if ( hit.transform.tag == "Player" )
+                Movement hitPlayer = hit.collider.gameObject.GetComponentInParent<Movement>();
+                if (hitPlayer != null)
                 {
-                    // Animation
-                    if (( dirToPlayer.x < 0 ))
-                    {
-                        transform.rotation = Quaternion.Euler( 0, 180, 0);
-                    }
-                    else if (( dirToPlayer.x > 0 ))
-                    {
-                        transform.rotation = Quaternion.identity;
-                    }
+                    Debug.Log("Player detected!");
 
-                    Vector2 newVelocity = rb.velocity;
-                    newVelocity.x = Mathf.Lerp(rb.velocity.x, speed * Mathf.Sign(dirToPlayer.x), 0.3f);
-                    rb.velocity = newVelocity;
+                    float distanceToPlayer = Vector2.Distance(rb.position, rbP.position);
+
+                    if ( distanceToPlayer > stopDistance )
+                    {
+                        // Animation
+                        if (dirToPlayer.x < 0)
+                        {
+                            transform.rotation = Quaternion.Euler(0, 180, 0);
+                        }
+                        else if (dirToPlayer.x > 0)
+                        {
+                            transform.rotation = Quaternion.identity;
+                        }
+
+                        Vector2 newVelocity = rb.velocity;
+                        newVelocity.x = Mathf.Lerp(rb.velocity.x, speed * Mathf.Sign(dirToPlayer.x), 0.3f);
+                        rb.velocity = newVelocity;
+
+                        // Log velocity change
+                        Debug.Log($"New velocity: {rb.velocity}");
+                    }
+                    else
+                    {
+                        rb.velocity = Vector2.zero;
+                    }
                 }
             }
 
-            //update the buffervelocity
+            // Update the bufferVelocity
             bufferVelocity = rbP.velocity;
         }
     }
+
     public void DieSequence()
     {
         StartCoroutine(DieSequenceCR());
     }
+
     IEnumerator DieSequenceCR()
     {
         dead = true;

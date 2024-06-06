@@ -147,8 +147,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 2.8375092, y: 9.93129}
-  m_Size: {x: 6.1750183, y: 20.179535}
+  m_Offset: {x: -1.28, y: 20.3}
+  m_Size: {x: 18.9, y: 40.59}
   m_Direction: 0
 --- !u!114 &7710622240992285793
 MonoBehaviour:
@@ -177,11 +177,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   excludeLayersOnDie:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 385
   speed: 100
   stopDistance: 128
   sightDistance: 256
   collidables:
     serializedVersion: 2
-    m_Bits: 521
+    m_Bits: 649
   bouncy: {fileID: 6200000, guid: 1b3589290a529ff4f83dcd4cfa213a10, type: 2}
