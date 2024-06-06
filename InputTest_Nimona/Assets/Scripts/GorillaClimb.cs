@@ -50,7 +50,7 @@ public class GorillaClimb : MonoBehaviour
     }
 
     // Trigger detection for entering a climbable wall
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerStay2D(Collider2D other)
     {
         Climbable climbable = other.gameObject.GetComponent<Climbable>();
 
