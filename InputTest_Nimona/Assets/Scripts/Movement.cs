@@ -77,7 +77,7 @@ public class Movement : MonoBehaviour
 
             if ( Mathf.Abs(moveVector.x) > MaxSpeed )
             {
-                moveVector.x -= Mathf.Sign(rb.velocity.x) * acceleration * 1.5f;
+                moveVector.x -= Mathf.Sign(rb.velocity.x) * acceleration * 1.2f;
             }
 
             //moveVector.x = Mathf.Clamp(moveVector.x, -MaxSpeed, MaxSpeed);
