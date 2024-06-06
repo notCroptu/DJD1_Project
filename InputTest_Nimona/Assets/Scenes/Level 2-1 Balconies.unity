@@ -1351,6 +1351,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 821559898152726468, guid: 2f85fbfa2c80c5c41bcd14153351d1be, type: 3}
+      propertyPath: portraitScript
+      value: 
+      objectReference: {fileID: 1103074878}
     - target: {fileID: 2474396092445469980, guid: 2f85fbfa2c80c5c41bcd14153351d1be, type: 3}
       propertyPath: m_Name
       value: Player
@@ -1612,6 +1616,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 82819a85755c2714fa1badf2196c0162, type: 3}
+--- !u!114 &1103074878 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8962934672661916692, guid: 82819a85755c2714fa1badf2196c0162, type: 3}
+  m_PrefabInstance: {fileID: 1103074877}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bb3ee68f0de2fa4abe50b2d086211cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1448163548
 PrefabInstance:
   m_ObjectHideFlags: 0
