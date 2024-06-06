@@ -72,7 +72,6 @@ public class Movement : MonoBehaviour
             moveVector = rb.velocity;
 
             // moveVector.x = Mathf.Lerp(rb.velocity.x, MaxSpeed * deltaX, MoveRate);
-if ( Mathf.Abs(moveVector.x) < MaxSpeed )
             moveVector.x += deltaX * acceleration;
 
             if ( Mathf.Abs(moveVector.x) > MaxSpeed )
