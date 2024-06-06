@@ -75,7 +75,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 47, y: 4}
+  m_Size: {x: 43.5, y: 4}
   m_EdgeRadius: 0
 --- !u!1 &1788895623032444735
 GameObject:
@@ -517,6 +517,7 @@ MonoBehaviour:
   climbScript: {fileID: 8851477968927487618}
   movement: {fileID: 8786279668513431141}
   climbSpeed: 100
+  climbGravity: 2
 --- !u!198 &8267702688835211205
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -5986,7 +5987,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 10, y: 4}
+  m_Size: {x: 13.2, y: 4}
   m_EdgeRadius: 0
 --- !u!1 &3540671578641059649
 GameObject:
