@@ -35,6 +35,8 @@ public class Shapeshifting : MonoBehaviour
     private Color originalColor;
     private Material originalMaterial;
     [SerializeField] private Material flashMaterial;
+    [SerializeField] private Portraits portraitScript;
+    [SerializeField] private List<Sprite> portraitList;
 
     private bool canShapeshift;
     private bool isThrowing = false;
@@ -44,7 +46,7 @@ public class Shapeshifting : MonoBehaviour
         originalMaterial = spriteRenderer.material;
 
         // Initialize with human shape at the start
-        ChangeShape<Human>(human);
+        ChangeShape<Human>(human,0,portraitList[0]);
         RhinoPoints = maxPoints;
         GorillaPoints = maxPoints;
         DragonPoints = maxPoints;
@@ -85,38 +87,38 @@ public class Shapeshifting : MonoBehaviour
             {
                 if ((rJoystickX > 0.71f || Input.GetKeyDown(KeyCode.Alpha1)) && RhinoPoints > 0)
                 {
-                    ChangeShape<Rhino>(rhino);
+                    ChangeShape<Rhino>(rhino,0,portraitList[1]);
                 }
                 else if (rJoystickY < -0.71f || Input.GetKeyDown(KeyCode.Alpha4))
                 {
-                    ChangeShape<Human>(human);
+                    ChangeShape<Human>(human,0,portraitList[0]);
                 }
                 else if ((rJoystickY > 0.71f || Input.GetKeyDown(KeyCode.Alpha2)) && DragonPoints > 0)
                 {
-                    ChangeShape<DragonWings>(dragon);
+                    ChangeShape<DragonWings>(dragon,0,portraitList[2]);
                 }
                 else if ((rJoystickX < -0.71f || Input.GetKeyDown(KeyCode.Alpha3)) && GorillaPoints > 0)
                 {
-                    ChangeShape<Gorilla>(gorilla);
+                    ChangeShape<Gorilla>(gorilla,0,portraitList[3]);
                 }
             }
             else
             {
                 if (rJoystickX > 0.71f)
                 {
-                    ChangeShape<Rhino>(rhino);
+                    ChangeShape<Rhino>(rhino,90,portraitList[1]);
                 }
                 else if (rJoystickY < -0.71f)
                 {
-                    ChangeShape<Human>(human);
+                    ChangeShape<Human>(human,0,portraitList[0]);
                 }
                 else if (rJoystickY > 0.71f)
                 {
-                    ChangeShape<DragonWings>(dragon);
+                    ChangeShape<DragonWings>(dragon,180,portraitList[2]);
                 }
                 else if (rJoystickX < -0.71f)
                 {
-                    ChangeShape<Gorilla>(gorilla);
+                    ChangeShape<Gorilla>(gorilla,270,portraitList[3]);
                 }
             }
         }
@@ -125,9 +127,11 @@ public class Shapeshifting : MonoBehaviour
         UpdateBars(DragonPoints,dragonBar);
         UpdateBars(RhinoPoints,rhinoBar);
     }
-    public void ChangeShape<T>(GameObject newShape) where T : MonoBehaviour, IShapeColliders 
+    public void ChangeShape<T>(GameObject newShape, int angle, Sprite portrait) where T : MonoBehaviour, IShapeColliders 
     {
         if (newShape == currentShape) return; // Don't switch to the same shape
+
+        portraitScript.ChangeShapeView(angle,portrait);
 
         // reset default values
         movement.ResetValues();
