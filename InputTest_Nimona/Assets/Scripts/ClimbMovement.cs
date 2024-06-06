@@ -45,8 +45,7 @@ public class ClimbMovement : MonoBehaviour
         Vector3 currentVel = rb.velocity;
         currentVel.y = verticalMovement * climbSpeed;
 
-        // Apply a dampening effect to the initial horizontal velocity
-        initialXVelocity = Mathf.Sign(initialXVelocity) * (Mathf.Abs(initialXVelocity) * 0.1f);
+        initialXVelocity = initialXVelocity * 0.3f;
 
         // Set the new velocity of the Rigidbody2D
         rb.velocity = new Vector3(initialXVelocity, currentVel.y, 0f);

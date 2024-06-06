@@ -517,6 +517,7 @@ MonoBehaviour:
   climbScript: {fileID: 8851477968927487618}
   movement: {fileID: 8786279668513431141}
   climbSpeed: 100
+  climbGravity: 2
 --- !u!198 &8267702688835211205
 ParticleSystem:
   m_ObjectHideFlags: 0
