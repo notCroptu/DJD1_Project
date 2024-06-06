@@ -501,6 +501,7 @@ MonoBehaviour:
     m_ColorSpace: -1
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
+  flashMaterial: {fileID: 2100000, guid: efb00abb593055249b7e019e269d4f8a, type: 2}
 --- !u!114 &653492808286860330
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6171,7 +6172,7 @@ MonoBehaviour:
   <AirCollider>k__BackingField: {fileID: 2214102187115744988}
   <GroundCheckCollider>k__BackingField: {fileID: 8396774057742794615}
   runClamp: 700
-  desBreakPoint: 550
+  desBreakPoint: 500
   shakeForce: 15
   breakAngle: 90
 --- !u!1 &4485853857263873751
@@ -6648,8 +6649,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 8}
-  m_Size: {x: 6, y: 16}
+  m_Offset: {x: 0, y: 7.5}
+  m_Size: {x: 6, y: 15}
   m_Direction: 0
 --- !u!61 &9013819727544050668
 BoxCollider2D:
@@ -6683,7 +6684,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 8}
+  m_Offset: {x: 0, y: 7.5}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
@@ -6694,7 +6695,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 6, y: 16}
+  m_Size: {x: 6, y: 15}
   m_EdgeRadius: 0
 --- !u!114 &7836608653856479388
 MonoBehaviour:

@@ -34,6 +34,7 @@ public class Shapeshifting : MonoBehaviour
     [SerializeField] private Gradient color;
     private Color originalColor;
     private Material originalMaterial;
+    [SerializeField] private Material flashMaterial;
 
     private bool canShapeshift;
     private bool isThrowing = false;
@@ -171,8 +172,8 @@ public class Shapeshifting : MonoBehaviour
 
         float timer = 1f;
 
-        Material newMaterial = new Material(originalMaterial);
-        newMaterial.shader = Shader.Find("Shader Graphs/FlashShader");
+        Material newMaterial = new Material(flashMaterial);
+
         spriteRenderer.material = newMaterial;
 
         // Flash
@@ -191,7 +192,6 @@ public class Shapeshifting : MonoBehaviour
         // Set back to the original color
         spriteRenderer.material = originalMaterial;
         spriteRenderer.color = originalColor;
-
 
         // Stop emission
         emissionModule.enabled = false;

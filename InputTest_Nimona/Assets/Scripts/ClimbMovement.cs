@@ -8,6 +8,7 @@ public class ClimbMovement : MonoBehaviour
     [SerializeField] private GorillaClimb climbScript;
     [SerializeField] private Movement movement;
     [SerializeField] private float climbSpeed;
+    [SerializeField] private float climbGravity;
 
     private Rigidbody2D rb;
     private float initialXVelocity;
@@ -33,13 +34,12 @@ public class ClimbMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("Climbing");
         // Get player input for horizontal and vertical movement
         float horizontalMovement = playerActions.MoveX;
         float verticalMovement = playerActions.MoveY;
 
         // Disable gravity while climbing
-        rb.gravityScale = 0;
+        rb.gravityScale = climbGravity;
 
         // Adjust vertical velocity based on climb speed
         Vector3 currentVel = rb.velocity;
