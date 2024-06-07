@@ -14,7 +14,7 @@ public class DeathTiles : MonoBehaviour
 
         if (player != null)
         {
-            deathScript = target.GetComponentInParent<Death>();
+            deathScript = other.GetComponentInParent<Death>();
             deathScript.GameOver();
         }
     }
