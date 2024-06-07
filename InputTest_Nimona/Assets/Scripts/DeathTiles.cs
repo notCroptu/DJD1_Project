@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class DeathTiles : MonoBehaviour
 {
+    private Death deathScript;
     private void OnTriggerEnter2D(Collider2D other)
     {
         Debug.Log(other + " has collided with death tiles");
@@ -13,7 +14,8 @@ public class DeathTiles : MonoBehaviour
 
         if (player != null)
         {
-            SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
+            deathScript = target.GetComponentInParent<Death>();
+            deathScript.GameOver();
         }
     }
 }
