@@ -24,7 +24,7 @@ public class SpeedBar : MonoBehaviour
 
         float speedFlr = Mathf.Floor(speed);
 
-        Debug.Log($"X SPEED: {speedFlr} MAX X SPEED: {maxSpeed}");
+        // Debug.Log($"X SPEED: {speedFlr} MAX X SPEED: {maxSpeed}");
 
         float barFillAmount = Mathf.InverseLerp(0f,maxSpeed,speedFlr);
         speedBar.fillAmount = barFillAmount;

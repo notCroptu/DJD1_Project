@@ -100,8 +100,12 @@ public class Rhino : MonoBehaviour , IShapeColliders
         foreach(ContactPoint2D hit in collision.contacts)
         {
             float velocityAngle = Mathf.Atan2(bufferVelocity.y, bufferVelocity.x) * Mathf.Rad2Deg;
-            float hitAngle = Mathf.Atan2(hit.normal.y, -hit.normal.x) * Mathf.Rad2Deg;
+            float hitAngle = Mathf.Atan2(-hit.normal.y, -hit.normal.x) * Mathf.Rad2Deg;
             float angleDifference = Mathf.DeltaAngle(velocityAngle, hitAngle);
+
+            Debug.Log($"Velocity Angle: {velocityAngle}");
+            Debug.Log($"Hit Angle: {hitAngle}");
+            Debug.Log($"Angle Difference: {angleDifference}");
 
             if ( Mathf.Abs(angleDifference) <= breakAngle )
             {
