@@ -11,7 +11,7 @@ public class ClimbMovement : MonoBehaviour
     [SerializeField] private float climbGravity;
 
     private Rigidbody2D rb;
-    private float initialXVelocity;
+    private Vector2 initialXVelocity;
 
     // Start is called before the first frame update
     void Start()
@@ -28,7 +28,7 @@ public class ClimbMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         // Store the initial horizontal velocity
-        initialXVelocity = rb.velocity.x;
+        initialXVelocity = rb.velocity;
     }
 
     // Update is called once per frame
@@ -41,14 +41,15 @@ public class ClimbMovement : MonoBehaviour
         // Disable gravity while climbing
         rb.gravityScale = climbGravity;
 
+        initialXVelocity.x = initialXVelocity.x * 0.95f;
+        initialXVelocity.y = initialXVelocity.y * 0.9f;
+
         // Adjust vertical velocity based on climb speed
         Vector3 currentVel = rb.velocity;
-        currentVel.y = verticalMovement * climbSpeed;
-
-        initialXVelocity = initialXVelocity * 0.3f;
+        currentVel.y = verticalMovement * climbSpeed + initialXVelocity.y;
 
         // Set the new velocity of the Rigidbody2D
-        rb.velocity = new Vector3(initialXVelocity, currentVel.y, 0f);
+        rb.velocity = new Vector3(initialXVelocity.x, currentVel.y, 0f);
 
         // Check for wall jump input
         if (playerActions.Jump.WasPressed)
