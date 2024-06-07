@@ -364,6 +364,7 @@ GameObject:
   - component: {fileID: 8786279668513431141}
   - component: {fileID: 821559898152726468}
   - component: {fileID: 653492808286860330}
+  - component: {fileID: 2374406866704542441}
   - component: {fileID: 8267702688835211205}
   - component: {fileID: 8527624170488343410}
   - component: {fileID: 7237966642751362532}
@@ -524,6 +525,18 @@ MonoBehaviour:
   movement: {fileID: 8786279668513431141}
   climbSpeed: 100
   climbGravity: 2
+--- !u!114 &2374406866704542441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2474396092445469980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f7298403ef0dc9419ca56da903e910d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!198 &8267702688835211205
 ParticleSystem:
   m_ObjectHideFlags: 0
