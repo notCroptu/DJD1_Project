@@ -28,6 +28,14 @@ public class Sword : MonoBehaviour
             anim.SetTrigger("Attack");
         }
     }
+    public void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            target = null;
+            deathScript = null;
+        }
+    }
     public void Kill()
     {
         deathScript.GameOver();
