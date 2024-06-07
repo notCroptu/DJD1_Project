@@ -20,7 +20,9 @@ public class Sword : MonoBehaviour
     }
     public void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        Movement movement = other.gameObject.GetComponent<Movement>();
+
+        if (movement != null)
         {
             target = other.gameObject;
             deathScript = target.GetComponentInParent<Death>();
@@ -30,7 +32,9 @@ public class Sword : MonoBehaviour
     }
     public void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        Movement movement = other.gameObject.GetComponent<Movement>();
+
+        if (movement != null)
         {
             target = null;
             deathScript = null;
