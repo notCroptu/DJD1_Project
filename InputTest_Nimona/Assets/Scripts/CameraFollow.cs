@@ -7,10 +7,8 @@ public class cameraFollow : MonoBehaviour
     [SerializeField] private Transform objectToFollow;
     [SerializeField] private float rateToFollow = 0.5f;
     [SerializeField] private float yOffSet;
-    private bool isGrounded;
     void FixedUpdate()
     {
-
         Vector3 targetPosition = objectToFollow.position;
         targetPosition.z = transform.position.z;
 
@@ -19,5 +17,6 @@ public class cameraFollow : MonoBehaviour
         transform.position += delta * rateToFollow;
 
         transform.position = new Vector3(transform.position.x, transform.position.y + yOffSet, transform.position.z);
+
     }
 }
