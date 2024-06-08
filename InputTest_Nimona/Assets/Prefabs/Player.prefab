@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 8406045373574292493}
   m_Layer: 7
   m_Name: Dragon
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6023,7 +6023,7 @@ GameObject:
   - component: {fileID: 7746226718850344014}
   m_Layer: 7
   m_Name: Rhino
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6287,7 +6287,7 @@ GameObject:
   - component: {fileID: 5625074937594102126}
   m_Layer: 7
   m_Name: Gorilla
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6506,7 +6506,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -6516,7 +6516,7 @@ BoxCollider2D:
     m_Bits: 4294967295
   m_ContactCaptureLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 767
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -6564,7 +6564,7 @@ GameObject:
   - component: {fileID: 7836608653856479388}
   m_Layer: 7
   m_Name: Human
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

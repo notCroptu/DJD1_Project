@@ -56,6 +56,10 @@ public class Movement : MonoBehaviour
 
         playerActions = GetComponent<PlayerActions>();
     }
+    void OnEnable()
+    {
+        GroundScore = true;
+    }
 
     void FixedUpdate()
     {

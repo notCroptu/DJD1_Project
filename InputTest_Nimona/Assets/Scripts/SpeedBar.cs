@@ -12,7 +12,7 @@ public class SpeedBar : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        Movement player = FindObjectOfType<Movement>();
 
         playerRB = player.GetComponent<Rigidbody2D>();
     }

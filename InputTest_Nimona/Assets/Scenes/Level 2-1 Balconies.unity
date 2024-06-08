@@ -1271,11 +1271,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3359410053028576424, guid: 2f85fbfa2c80c5c41bcd14153351d1be, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1583
+      value: 1510.2
       objectReference: {fileID: 0}
     - target: {fileID: 3359410053028576424, guid: 2f85fbfa2c80c5c41bcd14153351d1be, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 663
+      value: 210
       objectReference: {fileID: 0}
     - target: {fileID: 3359410053028576424, guid: 2f85fbfa2c80c5c41bcd14153351d1be, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1334,7 +1334,7 @@ GameObject:
   - component: {fileID: 600055377}
   - component: {fileID: 600055376}
   - component: {fileID: 600055375}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Spikes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
