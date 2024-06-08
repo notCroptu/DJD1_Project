@@ -20,7 +20,7 @@ public class Sword : MonoBehaviour
     }
     public void OnTriggerEnter2D(Collider2D other)
     {
-        Movement movement = other.gameObject.GetComponent<Movement>();
+        Movement movement = other.gameObject.GetComponentInParent<Movement>();
 
         if (movement != null)
         {
