@@ -90,13 +90,14 @@ GameObject:
   - component: {fileID: 7686688880238732305}
   - component: {fileID: 3062152664244081189}
   - component: {fileID: 8406045373574292493}
+  - component: {fileID: 5160813104194562277}
   m_Layer: 7
   m_Name: Dragon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4427738362455485408
 Transform:
   m_ObjectHideFlags: 0
@@ -265,6 +266,27 @@ MonoBehaviour:
   jumpsAllowed: 3
   maxGlideTime: 1.5
   maxFallSpeed: 20
+--- !u!95 &5160813104194562277
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1788895623032444735}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a236232995953b243b9bad93e1c75bed, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2313281540671889592
 GameObject:
   m_ObjectHideFlags: 0
@@ -6716,7 +6738,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &201628724335176851
 Transform:
   m_ObjectHideFlags: 0
