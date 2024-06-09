@@ -52,17 +52,17 @@ public class KnightMovement : MonoBehaviour
 
             // Perform the raycast and log the result
             RaycastHit2D hit = Physics2D.Raycast(currentPosition, dirToPlayer, sightDistance, collidables);
-            Debug.Log($"Raycast hit: {hit.collider != null}");
+            //Debug.Log($"Raycast hit: {hit.collider != null}");
 
             // Visualize the raycast in the Scene view
-            Debug.DrawRay(currentPosition, dirToPlayer * sightDistance, Color.red);
+            //Debug.DrawRay(currentPosition, dirToPlayer * sightDistance, Color.red);
 
             if (hit.collider != null)
             {
                 Movement hitPlayer = hit.collider.gameObject.GetComponentInParent<Movement>();
                 if (hitPlayer != null)
                 {
-                    Debug.Log("Player detected!");
+                    //Debug.Log("Player detected!");
 
                     float distanceToPlayer = Vector2.Distance(rb.position, rbP.position);
 
@@ -83,7 +83,7 @@ public class KnightMovement : MonoBehaviour
                         rb.velocity = newVelocity;
 
                         // Log velocity change
-                        Debug.Log($"New velocity: {rb.velocity}");
+                        //Debug.Log($"New velocity: {rb.velocity}");
                     }
                     else
                     {

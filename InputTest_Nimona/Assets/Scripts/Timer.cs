@@ -19,5 +19,8 @@ public class Timer : MonoBehaviour
 
         timertext.text = string.Format("{0:00}:{1:00}:{2:00}",minutes,seconds,miliseconds);
     }
-
+    public void ResetTimer()
+    {
+        time = 0;
+    }
 }

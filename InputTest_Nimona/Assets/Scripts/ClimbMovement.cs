@@ -59,6 +59,7 @@ public class ClimbMovement : MonoBehaviour
         // Set the new velocity of the Rigidbody2D
         rb.velocity = new Vector3(initialXVelocity.x, currentVel.y, 0f);
 
+        /*
         if ( Mathf.Abs(currentVel.y) > 10 )
         {
             audioSource.clip = playerSounds.Climb;
@@ -67,7 +68,7 @@ public class ClimbMovement : MonoBehaviour
         else
         {
             audioSource.enabled = false;
-        }
+        }*/
 
         // Check for wall jump input
         if (playerActions.Jump.WasPressed)
