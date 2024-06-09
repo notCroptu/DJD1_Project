@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 6192146953323958549}
   - component: {fileID: 948152173430423240}
   m_Layer: 3
-  m_Name: Destructable
+  m_Name: DestructableH
   m_TagString: Destructibles
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 9a636ac6a08843b48a6c450ea080b645, type: 3}
+  m_Sprite: {fileID: 274608268, guid: a4ae84471a0bca74aa8c98673ad59c93, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
