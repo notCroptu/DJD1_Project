@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SoundsScript : MonoBehaviour
 {
-    [SerializeField] private AudioClip soundToPlay;
+    [field:SerializeField] public AudioClip SoundToPlay { get; set; }
     private AudioSource audioSource;
     void Start()
     {
@@ -12,7 +12,7 @@ public class SoundsScript : MonoBehaviour
     }
     public void PlayAudio()
     {
-        audioSource.clip = soundToPlay;
+        audioSource.clip = SoundToPlay;
         audioSource.Play();
     }
 }

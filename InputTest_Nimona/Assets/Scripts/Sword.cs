@@ -4,12 +4,18 @@ using UnityEngine;
 
 public class Sword : MonoBehaviour
 {
+    private KnightSounds knightSounds;
+    private SoundsScript audioPlayer;
+
     private Animator anim;
     private GameObject target;
     private Death deathScript;
     // Start is called before the first frame update
     void Start()
     {
+        audioPlayer = GetComponent<SoundsScript>();
+        knightSounds = GetComponent<KnightSounds>();
+
         anim = GetComponent<Animator>();
     }
 
@@ -27,6 +33,9 @@ public class Sword : MonoBehaviour
             target = other.gameObject;
             deathScript = target.GetComponentInParent<Death>();
 
+            audioPlayer.SoundToPlay = knightSounds.Swipe;
+            audioPlayer.PlayAudio();
+
             anim.SetTrigger("Attack");
         }
 
@@ -41,7 +50,7 @@ public class Sword : MonoBehaviour
     }
     public void OnTriggerExit2D(Collider2D other)
     {
-        Movement movement = other.gameObject.GetComponent<Movement>();
+        Movement movement = other.gameObject.GetComponentInParent<Movement>();
 
         if (movement != null)
         {

@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class ClimbMovement : MonoBehaviour
 {
-    PlayerActions playerActions;
+    private PlayerActions playerActions;
+    private SoundsScript audioPlayer;
+    private AudioSource audioSource;
+    private PlayerSounds playerSounds;
+
     [SerializeField] private GorillaClimb climbScript;
     [SerializeField] private Movement movement;
     [SerializeField] private float climbSpeed;
@@ -16,6 +20,10 @@ public class ClimbMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        audioPlayer = GetComponent<SoundsScript>();
+        playerSounds = GetComponent<PlayerSounds>();
+        audioSource = GetComponent<AudioSource>();
+
         // Initialize the Rigidbody2D component
         rb = GetComponent<Rigidbody2D>();
 
@@ -51,6 +59,16 @@ public class ClimbMovement : MonoBehaviour
         // Set the new velocity of the Rigidbody2D
         rb.velocity = new Vector3(initialXVelocity.x, currentVel.y, 0f);
 
+        if ( Mathf.Abs(currentVel.y) > 10 )
+        {
+            audioSource.clip = playerSounds.Climb;
+            audioSource.enabled = true;
+        }
+        else
+        {
+            audioSource.enabled = false;
+        }
+
         // Check for wall jump input
         if (playerActions.Jump.WasPressed)
         {
@@ -71,6 +89,9 @@ public class ClimbMovement : MonoBehaviour
     // Handles the wall jump action
     private void WallJump()
     {
+        audioPlayer.SoundToPlay = playerSounds.Jump;
+        audioPlayer.PlayAudio();
+
         // Calculate the new velocity for the wall jump
         Vector2 moveVector = rb.velocity;
 

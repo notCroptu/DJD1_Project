@@ -2,7 +2,11 @@ using UnityEngine;
 
 public class GorillaGrab : MonoBehaviour
 {
-    PlayerActions playerActions;
+    private PlayerActions playerActions;
+
+    private PlayerSounds playerSounds;
+    private SoundsScript audioPlayer;
+
     [SerializeField] private float throwForce;
     [SerializeField] private float grabRadius = 30;
     [SerializeField] private CircleCollider2D grabCollider;
@@ -19,6 +23,9 @@ public class GorillaGrab : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        audioPlayer = GetComponentInParent<SoundsScript>();
+        playerSounds = GetComponentInParent<PlayerSounds>();
+
         // Initialize player actions and set grab collider radius
         playerActions = GetComponentInParent<PlayerActions>();
         grabCollider.radius = grabRadius;
@@ -38,6 +45,9 @@ public class GorillaGrab : MonoBehaviour
         // Check for throw input
         if ( playerActions.Throw.WasPressed && grabObject != null )
         {
+            audioPlayer.SoundToPlay = playerSounds.Pickup;
+            audioPlayer.PlayAudio();
+
             Debug.Log("Grabbed");
             Debug.Log(IsGrabbing = true);
             Debug.Log(grabObject);
@@ -103,6 +113,9 @@ public class GorillaGrab : MonoBehaviour
             Vector2 throwDirection = new Vector2(Xinput, Yinput);
             throwDirection *= throwForce;
             rb.velocity = throwDirection;
+
+            audioPlayer.SoundToPlay = playerSounds.Throw;
+            audioPlayer.PlayAudio();
         }
     }
 

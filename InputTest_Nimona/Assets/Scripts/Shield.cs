@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Shield : MonoBehaviour
 {
+    private KnightSounds knightSounds;
+    private SoundsScript audioPlayer;
+
     [SerializeField] private float knockback = 2;
 
     private Rigidbody2D rb;
@@ -14,6 +17,9 @@ public class Shield : MonoBehaviour
     private float clamp;
     void Start()
     {
+        audioPlayer = GetComponent<SoundsScript>();
+        knightSounds = GetComponent<KnightSounds>();
+
         rb = GetComponent<Rigidbody2D>();
     }
     void OnCollisionEnter2D(Collision2D collision)
@@ -34,6 +40,9 @@ public class Shield : MonoBehaviour
             float parryForce = Mathf.Sign(bufferVelocity.x) * clamp - bufferVelocity.x;
             parryForce *= knockback;
             Vector2 newVelocity = new Vector2(- parryForce, 0f);
+
+            audioPlayer.SoundToPlay = knightSounds.Parry;
+            audioPlayer.PlayAudio();
 
             player.ImpulsePlayer(newVelocity);
         }

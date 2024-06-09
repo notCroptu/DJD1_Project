@@ -5,7 +5,12 @@ using InControl;
 
 public class Movement : MonoBehaviour
 {
-    PlayerActions playerActions;
+    private PlayerActions playerActions;
+
+    private PlayerSounds playerSounds;
+    private SoundsScript audioPlayer;
+    private AudioSource audioSource;
+    public AudioClip CurrentRun { get; set; }
 
     // class variables that will be changed throughout shapes
     [field:SerializeField] public BoxCollider2D GroundCheckCollider { get; set; }
@@ -49,12 +54,19 @@ public class Movement : MonoBehaviour
     private bool isJumping;
     private float deltaX;
     private bool inputEnabled;
+
+    public bool IsGliding { get; set; } = false;
     void Start()
     {
         inputEnabled = true;
         rb = GetComponent<Rigidbody2D>();
 
         playerActions = GetComponent<PlayerActions>();
+
+        audioPlayer = GetComponent<SoundsScript>();
+        playerSounds = GetComponent<PlayerSounds>();
+        audioSource = GetComponent<AudioSource>();
+        CurrentRun = playerSounds.Walk;
     }
     void OnEnable()
     {
@@ -87,6 +99,9 @@ public class Movement : MonoBehaviour
 
             if ( Jumped && canJump && IsGrounded )
             {
+                audioPlayer.SoundToPlay = playerSounds.Jump;
+                audioPlayer.PlayAudio();
+
                 rb.gravityScale = FallingGravity;
                 moveVector.y = JumpSpeed;
                 Jumped = false;
@@ -103,6 +118,17 @@ public class Movement : MonoBehaviour
             }
 
             rb.velocity = moveVector;
+
+            if ( (Mathf.Abs(rb.velocity.x) > 10 && IsGrounded) || IsGliding)
+            {
+                audioSource.clip = CurrentRun;
+                audioSource.enabled = true;
+                Debug.Log("is moving");
+            }
+            else
+            {
+                audioSource.enabled = false;
+            }
         }
 
     }

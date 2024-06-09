@@ -45,6 +45,8 @@ GameObject:
   - component: {fileID: 2924285569360815174}
   - component: {fileID: 7710622240992285793}
   - component: {fileID: 5077221921883459417}
+  - component: {fileID: 3896919474398064317}
+  - component: {fileID: -4438619384321411626}
   m_Layer: 8
   m_Name: ShieldKnight
   m_TagString: Shield
@@ -213,7 +215,36 @@ MonoBehaviour:
   speed: 100
   stopDistance: 128
   sightDistance: 256
+  enemyScore: 50
   collidables:
     serializedVersion: 2
     m_Bits: 649
   bouncy: {fileID: 6200000, guid: 1b3589290a529ff4f83dcd4cfa213a10, type: 2}
+--- !u!114 &3896919474398064317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6352767669884497346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64ea84feb48538c4893de07b1f368d32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Parry>k__BackingField: {fileID: 8300000, guid: 4fca16af8bcfc524c8352060aa37ef2c, type: 3}
+  <Swipe>k__BackingField: {fileID: 8300000, guid: 599a422d0254ef84389733b3faa6635c, type: 3}
+  <Death>k__BackingField: {fileID: 0}
+--- !u!114 &-4438619384321411626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6352767669884497346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f77fe3331c8aa8e49a0c28cbc4157dd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <SoundToPlay>k__BackingField: {fileID: 0}
