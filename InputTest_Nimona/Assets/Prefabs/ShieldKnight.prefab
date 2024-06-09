@@ -110,7 +110,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: 9146261b21c29cf4ba9a9d17d559da1e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -234,7 +234,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Parry>k__BackingField: {fileID: 8300000, guid: 4fca16af8bcfc524c8352060aa37ef2c, type: 3}
   <Swipe>k__BackingField: {fileID: 8300000, guid: 599a422d0254ef84389733b3faa6635c, type: 3}
-  <Death>k__BackingField: {fileID: 0}
+  <Death>k__BackingField: {fileID: 8300000, guid: db4956ce28a5c7b4c901c0e2312f892a, type: 3}
 --- !u!114 &-4438619384321411626
 MonoBehaviour:
   m_ObjectHideFlags: 0
