@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class NextLevel : MonoBehaviour
 {
-    [SerializeField] private bool ResetValues;
     [SerializeField] private bool ResetMusic;
     [SerializeField] private string nextRoom;
 
@@ -15,19 +14,13 @@ public class NextLevel : MonoBehaviour
 
         if (player != null)
         {
-            if ( ResetValues )
-            {
-                Timer timer = FindObjectOfType<Timer>();
-                PlayerScore score = FindObjectOfType<PlayerScore>();
-                timer.Reset();
-                score.Reset();
-            }
+
             if ( ResetMusic )
             {
                 MusicPlayer musicPlayer = FindObjectOfType<MusicPlayer>();
                 Destroy(musicPlayer.gameObject);
             }
-            
+
             SceneManager.LoadScene(nextRoom);
         }
     }

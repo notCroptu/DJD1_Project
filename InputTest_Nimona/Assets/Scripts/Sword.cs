@@ -22,7 +22,7 @@ public class Sword : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(target);
+        //Debug.Log(target);
     }
     public void OnTriggerEnter2D(Collider2D other)
     {
