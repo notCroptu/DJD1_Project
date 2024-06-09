@@ -535,6 +535,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 97a59d425a9a38b4b933619ba7d76d30, type: 3}
   - {fileID: 21300000, guid: 0127464331e6ef44f9c40f62a398350e, type: 3}
   - {fileID: 21300000, guid: 6884729a955334d449ddb223747d79e1, type: 3}
+  animatorList: []
 --- !u!114 &653492808286860330
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6130,7 +6131,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 7165292893728418409}
   m_Father: {fileID: 1127210234825377175}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &2133938430389776931
@@ -6191,6 +6193,7 @@ GameObject:
   - component: {fileID: 1969449015072125636}
   - component: {fileID: 2214102187115744988}
   - component: {fileID: 7746226718850344014}
+  - component: {fileID: 2633813854397261019}
   m_Layer: 7
   m_Name: Rhino
   m_TagString: Untagged
@@ -6365,6 +6368,27 @@ MonoBehaviour:
   desBreakPoint: 500
   shakeForce: 15
   breakAngle: 90
+--- !u!95 &2633813854397261019
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3540671578641059649}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1409c98e17943954bbb3432b34ebde03, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &4485853857263873751
 GameObject:
   m_ObjectHideFlags: 0
@@ -6455,6 +6479,7 @@ GameObject:
   - component: {fileID: 571959324221567917}
   - component: {fileID: 2605392763479240287}
   - component: {fileID: 5625074937594102126}
+  - component: {fileID: 2999754107209647088}
   m_Layer: 7
   m_Name: Gorilla
   m_TagString: Untagged
@@ -6476,7 +6501,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1532146318855992531}
-  - {fileID: 7165292893728418409}
   - {fileID: 8651405995015630132}
   m_Father: {fileID: 3359410053028576424}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6628,6 +6652,27 @@ MonoBehaviour:
   <AirCollider>k__BackingField: {fileID: 2605392763479240287}
   <GroundCheckCollider>k__BackingField: {fileID: 2133938430389776931}
   jumpSpeed: 220
+--- !u!95 &2999754107209647088
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5061011348551062651}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 54a5fc04ad0a1d44a94fbe37c9ba920e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &6924865775416864981
 GameObject:
   m_ObjectHideFlags: 0
@@ -6654,12 +6699,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6924865775416864981}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1127210234825377175}
+  m_Father: {fileID: 8651405995015630132}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &6557083072279207426
 BoxCollider2D:

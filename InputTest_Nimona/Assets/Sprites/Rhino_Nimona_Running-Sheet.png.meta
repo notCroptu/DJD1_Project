@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: dfba44af9f9a0c643be9f65f53a32b3b
+guid: e81c3cd2a85fbc74fbc60e72fc82443d
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,12 +110,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Nimona_DragonWings_Walking-Sheet_0
+      name: Rhino_Nimona_Running-Sheet_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 32
+        width: 48
         height: 32
       alignment: 7
       pivot: {x: 0.5, y: 0}
@@ -124,19 +124,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e4b821dddbddb174d889fceb8a99ec95
-      internalID: -1079432334
+      spriteID: 6d6bbf1bca3760e4ba8e5fad6f2dc4be
+      internalID: -1843705189
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Nimona_DragonWings_Walking-Sheet_1
+      name: Rhino_Nimona_Running-Sheet_1
       rect:
         serializedVersion: 2
-        x: 32
+        x: 48
         y: 0
-        width: 32
+        width: 48
         height: 32
       alignment: 7
       pivot: {x: 0.5, y: 0}
@@ -145,40 +145,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 247e59a77f626d34f9b9cfc965e80334
-      internalID: 278894984
+      spriteID: 8f79268bbe2cd8f4f8731b855c39ff08
+      internalID: 677096765
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Nimona_DragonWings_Walking-Sheet_2
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 0
-        width: 32
-        height: 32
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 644232fc313416842ab51c110dc54a58
-      internalID: 541785167
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Nimona_DragonWings_Walking-Sheet_3
+      name: Rhino_Nimona_Running-Sheet_2
       rect:
         serializedVersion: 2
         x: 96
         y: 0
-        width: 32
+        width: 48
         height: 32
       alignment: 7
       pivot: {x: 0.5, y: 0}
@@ -187,19 +166,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b2f3cff4202cf00439ea3f663f4645fa
-      internalID: -1847716895
+      spriteID: 96e0d163c2f55db4bb70e8c037fe23de
+      internalID: -1460770699
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Nimona_DragonWings_Walking-Sheet_4
+      name: Rhino_Nimona_Running-Sheet_3
       rect:
         serializedVersion: 2
-        x: 128
+        x: 144
         y: 0
-        width: 32
+        width: 48
         height: 32
       alignment: 7
       pivot: {x: 0.5, y: 0}
@@ -208,40 +187,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d79092b134ce8bf4ab93ce85abed5d6c
-      internalID: -1548789518
+      spriteID: f6e964109a2b26b478bc8fc3c1fa5794
+      internalID: 147548253
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Nimona_DragonWings_Walking-Sheet_5
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 0
-        width: 32
-        height: 32
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f9d0c64c6a417e74d8e1fc06e4ab72dd
-      internalID: -1935561534
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Nimona_DragonWings_Walking-Sheet_6
+      name: Rhino_Nimona_Running-Sheet_4
       rect:
         serializedVersion: 2
         x: 192
         y: 0
-        width: 32
+        width: 48
         height: 32
       alignment: 7
       pivot: {x: 0.5, y: 0}
@@ -250,8 +208,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 006c8e090f124ad45addda77b928719d
-      internalID: -78550134
+      spriteID: 6c69f2ea20af3a84fac5238ad1c15170
+      internalID: 1036768266
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rhino_Nimona_Running-Sheet_5
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 0
+        width: 48
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0dca4d6a7f51b1c4585ee0ac140146ff
+      internalID: -1250173081
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rhino_Nimona_Running-Sheet_6
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 0
+        width: 48
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d67d326daba979c478e32cb693fb758e
+      internalID: 833697513
       vertices: []
       indices: 
       edges: []
@@ -267,13 +267,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Nimona_DragonWings_Walking-Sheet_0: -1079432334
-      Nimona_DragonWings_Walking-Sheet_1: 278894984
-      Nimona_DragonWings_Walking-Sheet_2: 541785167
-      Nimona_DragonWings_Walking-Sheet_3: -1847716895
-      Nimona_DragonWings_Walking-Sheet_4: -1548789518
-      Nimona_DragonWings_Walking-Sheet_5: -1935561534
-      Nimona_DragonWings_Walking-Sheet_6: -78550134
+      Rhino_Nimona_Running-Sheet_0: -1843705189
+      Rhino_Nimona_Running-Sheet_1: 677096765
+      Rhino_Nimona_Running-Sheet_2: -1460770699
+      Rhino_Nimona_Running-Sheet_3: 147548253
+      Rhino_Nimona_Running-Sheet_4: 1036768266
+      Rhino_Nimona_Running-Sheet_5: -1250173081
+      Rhino_Nimona_Running-Sheet_6: 833697513
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -10,6 +10,7 @@ public class GorillaClimb : MonoBehaviour
     public bool WallCheck { get; private set; } = false;
     private Movement movScript;
     private ClimbMovement climbScript;
+    private Animator anim;
 
     public bool Jumped { get; set; }
 
@@ -20,6 +21,7 @@ public class GorillaClimb : MonoBehaviour
         movScript = GetComponentInParent<Movement>();
         climbScript = GetComponentInParent<ClimbMovement>();
         playerActions = GetComponentInParent<PlayerActions>();
+        anim = GetComponentInParent<Animator>();
         Jumped = false;
     }
 
@@ -32,6 +34,7 @@ public class GorillaClimb : MonoBehaviour
             // Disable movement script and enable climbing script
             movScript.enabled = false;
             climbScript.enabled = true;
+            anim.SetBool("isClimbing",true);
             Debug.Log("Normal Move");
         }
         else if ( !playerActions.Ability.IsPressed || !WallCheck || Jumped )
@@ -46,6 +49,7 @@ public class GorillaClimb : MonoBehaviour
             // Enable movement script and disable climbing script
             movScript.enabled = true;
             climbScript.enabled = false;
+            anim.SetBool("isClimbing",false);
         }
     }
 
@@ -75,5 +79,6 @@ public class GorillaClimb : MonoBehaviour
         // Enable movement script and disable climbing script
         movScript.enabled = true;
         climbScript.enabled = false;
+        anim.SetBool("isClimbing",false);
     }
 }
