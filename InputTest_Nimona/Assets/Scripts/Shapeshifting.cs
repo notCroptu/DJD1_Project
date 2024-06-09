@@ -41,6 +41,7 @@ public class Shapeshifting : MonoBehaviour
     [SerializeField] private Material flashMaterial;
     [SerializeField] private Portraits portraitScript;
     [SerializeField] private List<Sprite> portraitList;
+    [SerializeField] private List<Animator> animatorList;
 
     private bool canShapeshift;
     private bool isThrowing = false;
@@ -90,43 +91,21 @@ public class Shapeshifting : MonoBehaviour
 
         if ( canShapeshift )
         {
-            if (testShapeshiftPoints)
+            if (rJoystickX > 0.71f)
             {
-                if ((rJoystickX > 0.71f || Input.GetKeyDown(KeyCode.Alpha1)) && RhinoPoints > 0)
-                {
-                    ChangeShape<Rhino>(rhino,0,portraitList[1]);
-                }
-                else if (rJoystickY < -0.71f || Input.GetKeyDown(KeyCode.Alpha4))
-                {
-                    ChangeShape<Human>(human,0,portraitList[0]);
-                }
-                else if ((rJoystickY > 0.71f || Input.GetKeyDown(KeyCode.Alpha2)) && DragonPoints > 0)
-                {
-                    ChangeShape<DragonWings>(dragon,0,portraitList[2]);
-                }
-                else if ((rJoystickX < -0.71f || Input.GetKeyDown(KeyCode.Alpha3)) && GorillaPoints > 0)
-                {
-                    ChangeShape<Gorilla>(gorilla,0,portraitList[3]);
-                }
+                ChangeShape<Rhino>(rhino,90,portraitList[1]);
             }
-            else
+            else if (rJoystickY < -0.71f)
             {
-                if (rJoystickX > 0.71f)
-                {
-                    ChangeShape<Rhino>(rhino,90,portraitList[1]);
-                }
-                else if (rJoystickY < -0.71f)
-                {
-                    ChangeShape<Human>(human,0,portraitList[0]);
-                }
-                else if (rJoystickY > 0.71f)
-                {
-                    ChangeShape<DragonWings>(dragon,180,portraitList[2]);
-                }
-                else if (rJoystickX < -0.71f)
-                {
-                    ChangeShape<Gorilla>(gorilla,270,portraitList[3]);
-                }
+                ChangeShape<Human>(human,0,portraitList[0]);
+            }
+            else if (rJoystickY > 0.71f)
+            {
+                ChangeShape<DragonWings>(dragon,180,portraitList[2]);
+            }
+            else if (rJoystickX < -0.71f)
+            {
+                ChangeShape<Gorilla>(gorilla,270,portraitList[3]);
             }
         }
         
@@ -170,6 +149,10 @@ public class Shapeshifting : MonoBehaviour
         // Emit Particles and flash player
         StartCoroutine(StartAndStopEmission());
 
+        // Change to shape Animator
+        Animator newAnim = currentShape.GetComponent<Animator>();
+        movement.ChangeAnimator(newAnim);
+
         canShapeshift = false;
     }
     private IEnumerator StartAndStopEmission()
@@ -210,22 +193,17 @@ public class Shapeshifting : MonoBehaviour
         emissionModule.enabled = false;
         shapeParticleSystem.Stop();
     }
+    // For GDII
     public void DecreasePointUse(float shapePoints)
     {
         shapePoints -= 1;
         Debug.Log($"DECREASE VARIABLE TO {shapePoints}");
-    }
-    public float DecreasePointTime(float shapePoints)
-    {
-        return shapePoints - Time.deltaTime;
     }
     public void UpdateBars(float shapePoints, Image shapeBar)
     {
         float barValue = Mathf.InverseLerp(0f, maxPoints, shapePoints);
         if (shapeBar != null) shapeBar.fillAmount = barValue;
     }
-
-    // For GDII
     public void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Point"))

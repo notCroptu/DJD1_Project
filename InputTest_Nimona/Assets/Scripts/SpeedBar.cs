@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class SpeedBar : MonoBehaviour
 {
     [SerializeField] private Image speedBar;
+    [SerializeField] private TextMeshProUGUI speedText;
     private Rigidbody2D playerRB;
     private float speed;
     private float maxSpeed = 700f;
@@ -13,7 +15,6 @@ public class SpeedBar : MonoBehaviour
     void Start()
     {
         Movement player = FindObjectOfType<Movement>();
-
         playerRB = player.GetComponent<Rigidbody2D>();
     }
 
@@ -28,5 +29,6 @@ public class SpeedBar : MonoBehaviour
 
         float barFillAmount = Mathf.InverseLerp(0f,maxSpeed,speedFlr);
         speedBar.fillAmount = barFillAmount;
+        speedText.text = $"{speed:f0}";
     }
 }

@@ -44,6 +44,7 @@ public class Movement : MonoBehaviour
     [SerializeField] private float knockOutTime = 1f;
 
     private Rigidbody2D rb;
+    private Animator anim;
     private Vector3 moveVector;
     public bool IsGrounded { get; set; }
     public bool GroundScore { get; set; }
@@ -119,6 +120,9 @@ public class Movement : MonoBehaviour
 
             rb.velocity = moveVector;
 
+            // Animator
+            anim.SetFloat("AbsVelocity",moveVector.x);
+
             if ( (Mathf.Abs(rb.velocity.x) > 10 && IsGrounded) || IsGliding)
             {
                 audioSource.clip = CurrentRun;
@@ -192,6 +196,10 @@ public class Movement : MonoBehaviour
         inputEnabled = false;
         yield return new WaitForSeconds(knockOutTime);
         inputEnabled = true;
+    }
+    public void ChangeAnimator(Animator newAnim)
+    {
+        anim = newAnim;
     }
     public void ResetValues()
     {
