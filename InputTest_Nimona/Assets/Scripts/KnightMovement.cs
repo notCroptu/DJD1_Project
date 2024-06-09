@@ -93,23 +93,31 @@ public class KnightMovement : MonoBehaviour
 
     public void DieSequence()
     {
+        dead = true;
+
+        Sword sword = GetComponent<Sword>();
+        Shield shield = GetComponent<Shield>();
+
+        if (sword != null) sword.enabled = false;
+        if (shield != null) shield.enabled = false;
+
         StartCoroutine(DieSequenceCR());
-        PlayerScore.ChangeScore(enemyScore);
     }
 
     IEnumerator DieSequenceCR()
     {
-        dead = true;
         rb = GetComponent<Rigidbody2D>();
         rb.excludeLayers = excludeLayersOnDie;
         rb.sharedMaterial = bouncy;
 
-        Vector2 bounce = new Vector2(bufferVelocity.x, bufferVelocity.y + 100f * rb.mass);
+        // Vector2 bounce = new Vector2(bufferVelocity.x, bufferVelocity.y + 100f * rb.mass);
+        Vector2 bounce = new Vector2(bufferVelocity.x, 0f);
         rb.AddForce(bounce, ForceMode2D.Impulse);
         rbP.AddForce(bufferVelocity, ForceMode2D.Impulse);
 
         yield return new WaitForSeconds(1.2f);
 
+        PlayerScore.ChangeScore(enemyScore);
         Destroy(gameObject);
     }
 }
