@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 6753592993661941908}
   - component: {fileID: 1742712942501481451}
   - component: {fileID: 3831587446347993419}
+  - component: {fileID: 458252134079851575}
   - component: {fileID: 5218482986749336289}
   m_Layer: 8
   m_Name: SwordKnight
@@ -229,6 +230,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5ede9a75eca71e44eb1c5fd359acfb8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &458252134079851575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5579736201286098005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44cece97e745bee48abc5f91c1c2e31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!95 &5218482986749336289
