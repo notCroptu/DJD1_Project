@@ -114,7 +114,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 16
+        y: 48
         width: 16
         height: 16
       alignment: 0
@@ -122,12 +122,12 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape:
-      - - {x: 7, y: 7}
-        - {x: 0, y: 1}
-        - {x: 0, y: -1}
-        - {x: 7, y: -7}
-        - {x: 8, y: -8}
-        - {x: 8, y: 8}
+      - - {x: 7, y: -7}
+        - {x: 1, y: 0}
+        - {x: -1, y: 0}
+        - {x: -7, y: -7}
+        - {x: -7, y: -8}
+        - {x: 7, y: -8}
       tessellationDetail: 0
       bones: []
       spriteID: 3215b10aa26b8e04d9d865bea3ba8434
@@ -141,7 +141,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 16
-        y: 16
+        y: 48
         width: 16
         height: 16
       alignment: 0
@@ -149,12 +149,12 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape:
-      - - {x: -1, y: 0}
-        - {x: -7, y: -7}
-        - {x: -8, y: -8}
-        - {x: 8, y: -8}
+      - - {x: 0, y: -1}
         - {x: 7, y: -7}
-        - {x: 1, y: 0}
+        - {x: 8, y: -7}
+        - {x: 8, y: 7}
+        - {x: 7, y: 7}
+        - {x: 0, y: 1}
       tessellationDetail: 0
       bones: []
       spriteID: a5d29f360029e854ebd0deb1fda29bc6
@@ -168,7 +168,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
+        y: 32
         width: 16
         height: 16
       alignment: 0
@@ -176,13 +176,13 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape:
-      - - {x: -8, y: 8}
+      - - {x: -8, y: 7}
+        - {x: -8, y: -7}
+        - {x: -7, y: -7}
+        - {x: 0, y: -1}
+        - {x: 0, y: 1}
+        - {x: -1, y: 2}
         - {x: -7, y: 7}
-        - {x: -6, y: 6}
-        - {x: -1, y: 0}
-        - {x: 1, y: 0}
-        - {x: 7, y: 7}
-        - {x: 8, y: 8}
       tessellationDetail: 0
       bones: []
       spriteID: f1e1ae8394503c34c878b6e98eaed662
@@ -196,6 +196,87 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 16
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 7, y: 8}
+        - {x: -7, y: 8}
+        - {x: -7, y: 7}
+        - {x: -1, y: 0}
+        - {x: 1, y: 0}
+        - {x: 7, y: 7}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 27c792fd26dd2584e86cbf3fc3062b84
+      internalID: 1213297778
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barbedWireTileset_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -1, y: 0}
+        - {x: -7, y: -7}
+        - {x: -7, y: -8}
+        - {x: 7, y: -8}
+        - {x: 7, y: -7}
+        - {x: 1, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: bbd9d063adceab74da8b3f15a8e944a6
+      internalID: 703554006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barbedWireTileset_5
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 7, y: 7}
+        - {x: 0, y: 1}
+        - {x: 0, y: -1}
+        - {x: 7, y: -7}
+        - {x: 8, y: -7}
+        - {x: 8, y: 7}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 98d489022468c73409e501810d01d0f4
+      internalID: -1859402417
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barbedWireTileset_6
+      rect:
+        serializedVersion: 2
+        x: 0
         y: 0
         width: 16
         height: 16
@@ -204,16 +285,45 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape:
-      - - {x: -8, y: 8}
-        - {x: -8, y: -8}
+      - - {x: -7, y: 7}
+        - {x: -8, y: 7}
+        - {x: -8, y: -7}
         - {x: -7, y: -7}
         - {x: 0, y: -1}
         - {x: 0, y: 1}
-        - {x: -7, y: 7}
+        - {x: -1, y: 2}
       tessellationDetail: 0
       bones: []
-      spriteID: 27c792fd26dd2584e86cbf3fc3062b84
-      internalID: 1213297778
+      spriteID: 1b2756a2f2591af4daa5fc396934dc68
+      internalID: 1107403981
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barbedWireTileset_7
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -7, y: 8}
+        - {x: -7, y: 7}
+        - {x: -2, y: 1}
+        - {x: -1, y: 0}
+        - {x: 1, y: 0}
+        - {x: 7, y: 7}
+        - {x: 7, y: 8}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 28a2b84ee85e6f4418bb20c69a5cdb13
+      internalID: -41573912
       vertices: []
       indices: 
       edges: []
@@ -233,6 +343,10 @@ TextureImporter:
       barbedWireTileset_1: 1406634779
       barbedWireTileset_2: 1065608558
       barbedWireTileset_3: 1213297778
+      barbedWireTileset_4: 703554006
+      barbedWireTileset_5: -1859402417
+      barbedWireTileset_6: 1107403981
+      barbedWireTileset_7: -41573912
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

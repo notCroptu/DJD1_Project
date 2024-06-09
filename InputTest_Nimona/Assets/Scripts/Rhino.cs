@@ -74,26 +74,25 @@ public class Rhino : MonoBehaviour , IShapeColliders
                 DestroyTilemap(collision);
                 camera.GetComponent<Shaker>().Shake(0.7f, shake);
                 collided = true;
+                StartCoroutine(TempTimeScaleChange(0.3f, 0.1f));
             }
             else if ( knightMovement != null )
             {
                 camera.GetComponent<Shaker>().Shake(0.4f, shake);
                 knightMovement.DieSequence();
                 collided = true;
+                StartCoroutine(TempTimeScaleChange(0.3f, 0.1f));
             }
         }
     }
-    /*void OnCollisionStay2D (Collision2D collision)
+    private IEnumerator TempTimeScaleChange(float duration, float newTimeScale)
     {
-        if (bufferVelocity.magnitude >= desBreakPoint)
-        {
-            if (collision.gameObject.CompareTag("Destructibles"))
-            {
-                DestroyTilemap(collision);
-
-            }
-        }
-    }*/
+        Time.timeScale = newTimeScale;
+        Time.fixedDeltaTime = 0.02f * Time.timeScale;
+        yield return new WaitForSecondsRealtime(duration);
+        Time.timeScale = 1.0f;
+        Time.fixedDeltaTime = 0.02f;
+    }
 
     void DestroyTilemap(Collision2D collision)
     {
