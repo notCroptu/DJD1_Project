@@ -69,30 +69,42 @@ public class Rhino : MonoBehaviour , IShapeColliders
             Destructibles destructibles =
                 collision.gameObject.GetComponent<Destructibles>();
 
-            if ( destructibles != null )
+            if (destructibles != null)
             {
-                DestroyTilemap(collision);
-                camera.GetComponent<Shaker>().Shake(0.7f, shake);
-                collided = true;
-                StartCoroutine(TempTimeScaleChange(0.3f, 0.1f));
+                StartCoroutine(HandleCollision(collision, camera, shake, true, null));
             }
-            else if ( knightMovement != null )
+            else if (knightMovement != null)
             {
-                camera.GetComponent<Shaker>().Shake(0.4f, shake);
-                knightMovement.DieSequence();
-                collided = true;
-                StartCoroutine(TempTimeScaleChange(0.3f, 0.1f));
+                StartCoroutine(HandleCollision(collision, camera, shake, false, knightMovement));
             }
         }
     }
-    private IEnumerator TempTimeScaleChange(float duration, float newTimeScale)
+
+    private IEnumerator HandleCollision(Collision2D collision, Camera camera, float shake, bool isDestructible, KnightMovement knightMovement)
     {
-        Time.timeScale = newTimeScale;
-        Time.fixedDeltaTime = 0.02f * Time.timeScale;
+        yield return StartCoroutine(TempTimeScaleChange(0.1f));
+
+        if (isDestructible)
+        {
+            DestroyTilemap(collision);
+            camera.GetComponent<Shaker>().Shake(0.7f, shake);
+        }
+        else if (knightMovement != null)
+        {
+            camera.GetComponent<Shaker>().Shake(0.4f, shake);
+            knightMovement.DieSequence();
+        }
+
+        collided = true;
+    }
+
+    private IEnumerator TempTimeScaleChange(float duration)
+    {
+        Time.timeScale = 0f;
         yield return new WaitForSecondsRealtime(duration);
         Time.timeScale = 1.0f;
-        Time.fixedDeltaTime = 0.02f;
     }
+
 
     void DestroyTilemap(Collision2D collision)
     {

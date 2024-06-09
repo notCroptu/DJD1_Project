@@ -23,15 +23,6 @@ public class Die : MonoBehaviour
         if ( grabbable != null )
         {
             Destroy(gameObject);
-            StartCoroutine(TempTimeScaleChange(0.3f, 0.1f));
         }
-    }
-    private IEnumerator TempTimeScaleChange(float duration, float newTimeScale)
-    {
-        Time.timeScale = newTimeScale;
-        Time.fixedDeltaTime = 0.02f * Time.timeScale;
-        yield return new WaitForSecondsRealtime(duration);
-        Time.timeScale = 1.0f;
-        Time.fixedDeltaTime = 0.02f;
     }
 }
