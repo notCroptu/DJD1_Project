@@ -8,6 +8,7 @@ public class KnightMovement : MonoBehaviour
     [SerializeField] private float speed = 100f;
     [SerializeField] private float stopDistance = 128f;
     [SerializeField] private float sightDistance = 256f;
+    [SerializeField] private float enemyScore = 50f;
     [SerializeField] private LayerMask collidables;
     [SerializeField] private PhysicsMaterial2D bouncy;
 
@@ -93,6 +94,7 @@ public class KnightMovement : MonoBehaviour
     public void DieSequence()
     {
         StartCoroutine(DieSequenceCR());
+        PlayerScore.ChangeScore(enemyScore);
     }
 
     IEnumerator DieSequenceCR()
