@@ -11,7 +11,7 @@ public class Timer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        time = DataStorer.stcTime; 
     }
 
     // Update is called once per frame
@@ -24,5 +24,8 @@ public class Timer : MonoBehaviour
         int minutes = (int) time / 60;
 
         timertext.text = string.Format("{0:00}:{1:00}:{2:00}",minutes,seconds,miliseconds);
+
+        DataStorer.stcTime = time;
     }
+
 }
