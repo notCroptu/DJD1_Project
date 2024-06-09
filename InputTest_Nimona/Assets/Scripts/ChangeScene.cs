@@ -18,12 +18,12 @@ public class ChangeScene : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.LeftArrow))
         {
             SceneManager.LoadScene(sceneIndex - 1);
-            Debug.Log("NEXT SCENE");
+            Debug.Log("PREVIOUS SCENE");
         }
         if (Input.GetKey(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.RightArrow))
         {
             SceneManager.LoadScene(sceneIndex + 1);
-            Debug.Log("PREVIOUS SCENE");
+            Debug.Log("NEXT SCENE");
         }
     }
 }
