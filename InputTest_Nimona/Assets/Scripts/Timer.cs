@@ -7,14 +7,8 @@ using UnityEngine.UI;
 public class Timer : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI timertext;
-    private float time = 0;
-    // Start is called before the first frame update
-    void Start()
-    {
-        time = DataStorer.stcTime; 
-    }
+    private static float time = 0;
 
-    // Update is called once per frame
     void Update()
     {
         time += Time.deltaTime;
@@ -24,8 +18,6 @@ public class Timer : MonoBehaviour
         int minutes = (int) time / 60;
 
         timertext.text = string.Format("{0:00}:{1:00}:{2:00}",minutes,seconds,miliseconds);
-
-        DataStorer.stcTime = time;
     }
 
 }
