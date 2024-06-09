@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class KnightMovement : MonoBehaviour
 {
+    private KnightSounds knightSounds;
+    private SoundsScript audioPlayer;
+
     [SerializeField] private LayerMask excludeLayersOnDie;
     [SerializeField] private float speed = 100f;
     [SerializeField] private float stopDistance = 128f;
@@ -21,6 +24,9 @@ public class KnightMovement : MonoBehaviour
 
     void Start()
     {
+        audioPlayer = GetComponent<SoundsScript>();
+        knightSounds = GetComponent<KnightSounds>();
+
         rb = GetComponent<Rigidbody2D>();
         capsuleCollider = GetComponent<CapsuleCollider2D>();
     }
@@ -106,6 +112,9 @@ public class KnightMovement : MonoBehaviour
 
     IEnumerator DieSequenceCR()
     {
+        audioPlayer.SoundToPlay = knightSounds.Death;
+        audioPlayer.PlayAudio();
+
         rb = GetComponent<Rigidbody2D>();
         rb.excludeLayers = excludeLayersOnDie;
         rb.sharedMaterial = bouncy;

@@ -5,7 +5,11 @@ using UnityEngine.UI;
 
 public class Shapeshifting : MonoBehaviour
 {
-    PlayerActions playerActions;
+    private PlayerActions playerActions;
+
+    private PlayerSounds playerSounds;
+    private SoundsScript audioPlayer;
+
     [SerializeField] private GameObject rhino;
     [SerializeField] private GameObject human;
     [SerializeField] private GameObject dragon;
@@ -44,6 +48,9 @@ public class Shapeshifting : MonoBehaviour
     {
         originalColor = spriteRenderer.color;
         originalMaterial = spriteRenderer.material;
+
+        audioPlayer = GetComponent<SoundsScript>();
+        playerSounds = GetComponent<PlayerSounds>();
 
         // Initialize with human shape at the start
         ChangeShape<Human>(human,0,portraitList[0]);
@@ -167,6 +174,8 @@ public class Shapeshifting : MonoBehaviour
     }
     private IEnumerator StartAndStopEmission()
     {
+        audioPlayer.SoundToPlay = playerSounds.Shapeshift;
+        audioPlayer.PlayAudio();
 
         emissionModule = shapeParticleSystem.emission;
 

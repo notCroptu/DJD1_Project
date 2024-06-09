@@ -6,7 +6,10 @@ using UnityEngine.Tilemaps;
 
 public class Rhino : MonoBehaviour , IShapeColliders 
 {
-    PlayerActions playerActions;
+    private PlayerActions playerActions;
+
+    private PlayerSounds playerSounds;
+    private SoundsScript audioPlayer;
 
     // reference variables to change in player
     [field:SerializeField] public CapsuleCollider2D GroundCollider { get; set; }
@@ -40,8 +43,11 @@ public class Rhino : MonoBehaviour , IShapeColliders
 
     void Start()
     {
+        audioPlayer = GetComponentInParent<SoundsScript>();
+        playerSounds = GetComponentInParent<PlayerSounds>();
+
         player = transform.parent.gameObject;
-        movement = player.GetComponent<Movement>();
+        movement = player.GetComponentInParent<Movement>();
         rb = player.GetComponent<Rigidbody2D>();
         walkClamp = movement.DefaultMaxSpeed;
         // walkRate = movement.DefaultMoveRate;
@@ -83,6 +89,9 @@ public class Rhino : MonoBehaviour , IShapeColliders
     private IEnumerator HandleCollision(Collision2D collision, Camera camera, float shake, bool isDestructible, KnightMovement knightMovement)
     {
         yield return StartCoroutine(TempTimeScaleChange(0.1f));
+
+        audioPlayer.SoundToPlay = playerSounds.Ram;
+        audioPlayer.PlayAudio();
 
         if (isDestructible)
         {
@@ -181,6 +190,7 @@ public class Rhino : MonoBehaviour , IShapeColliders
             if ( (movement.MaxSpeed != runClamp) /*|| (movement.MoveRate != runRate)*/ )
             {
                 movement.MaxSpeed = runClamp;
+                movement.CurrentRun = playerSounds.Charge;
                 // movement.MoveRate = runRate;
             }
         }
@@ -189,8 +199,13 @@ public class Rhino : MonoBehaviour , IShapeColliders
             if ( (movement.MaxSpeed != walkClamp) /* || (movement.MoveRate != walkRate)*/ )
             {
                 movement.MaxSpeed = walkClamp;
+                movement.CurrentRun = playerSounds.Walk;
                 // movement.MoveRate = walkRate;
             }
         }
+    }
+    void OnDisable()
+    {
+        movement.CurrentRun = playerSounds.Walk;
     }
 }

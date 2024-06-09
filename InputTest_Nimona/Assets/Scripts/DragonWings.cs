@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class DragonWings : MonoBehaviour , IShapeColliders 
 {
-    PlayerActions playerActions;
+    private PlayerActions playerActions;
+
+    private PlayerSounds playerSounds;
+    private SoundsScript audioPlayer;
 
     // reference variables to change in player
     [field:SerializeField] public CapsuleCollider2D GroundCollider { get; set; }
@@ -34,8 +37,11 @@ public class DragonWings : MonoBehaviour , IShapeColliders
 
     void Start()
     {
+        audioPlayer = GetComponentInParent<SoundsScript>();
+        playerSounds = GetComponentInParent<PlayerSounds>();
+
         player = transform.parent.gameObject;
-        movement = player.GetComponent<Movement>();
+        movement = player.GetComponentInParent<Movement>();
         rb = player.GetComponent<Rigidbody2D>();
 
         jumpsExecuted = 0;
@@ -74,7 +80,11 @@ public class DragonWings : MonoBehaviour , IShapeColliders
 
                 rb.velocity = newJump;
 
+                audioPlayer.SoundToPlay = playerSounds.Flap;
+                audioPlayer.PlayAudio();
+
                 jumpsExecuted++;
+                Debug.Log(jumpsExecuted + " jumps");
             }
             else if ( playerActions.Ability.IsPressed && (glideTimer > 0) )
             {
@@ -91,6 +101,9 @@ public class DragonWings : MonoBehaviour , IShapeColliders
                     rb.velocity = currentVelocity;
                 }
 
+                movement.CurrentRun = playerSounds.Glide;
+                movement.IsGliding = true;
+
                 glideTimer -= Time.deltaTime;
             }
 
@@ -99,6 +112,8 @@ public class DragonWings : MonoBehaviour , IShapeColliders
                 if ( (movement.MaxSpeed == glideClamp) /*|| (movement.MoveRate == glideRate)*/ )
                 {
                     movement.MaxSpeed = movement.DefaultMaxSpeed;
+                    movement.IsGliding = false;
+                    movement.CurrentRun = playerSounds.Walk;
                     // movement.MoveRate = movement.DefaultMoveRate;
                 }
             }
@@ -108,13 +123,21 @@ public class DragonWings : MonoBehaviour , IShapeColliders
         else if ( movement.MaxSpeed == glideClamp )
         {
             movement.MaxSpeed = movement.DefaultMaxSpeed;
+            movement.IsGliding = false;
+            movement.CurrentRun = playerSounds.Walk;
         }
         
         if ( movement.GroundScore )
         {
+            Debug.Log("reset ground scroer");
             jumpsExecuted = 0;
             glideTimer = maxGlideTime;
             movement.GroundScore = false;
         }
+    }
+    void OnDisable()
+    {
+        movement.CurrentRun = playerSounds.Walk;
+        movement.IsGliding = false;
     }
 }
