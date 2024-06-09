@@ -5918,12 +5918,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Shapeshift>k__BackingField: {fileID: 8300000, guid: 826b47a0ae8fc98458d4776ef90e5ff4, type: 3}
   <Ram>k__BackingField: {fileID: 8300000, guid: 3786965955e978b4c9f333c0d807b325, type: 3}
-  <Charge>k__BackingField: {fileID: 0}
+  <Charge>k__BackingField: {fileID: 8300000, guid: 60d415f3a2bc00a44b97046f023bd620, type: 3}
   <Flap>k__BackingField: {fileID: 8300000, guid: 7f9caf8389a397a439e0627a2d7a5335, type: 3}
-  <Glide>k__BackingField: {fileID: 8300000, guid: 300dfb981eeda7144a702a9e3efa682b, type: 3}
+  <Glide>k__BackingField: {fileID: 8300000, guid: 6da77c0619b00544a9aa63190f18bc93, type: 3}
   <Jump>k__BackingField: {fileID: 8300000, guid: 385b301598a2f9541b8a9ba9414cf679, type: 3}
   <Walk>k__BackingField: {fileID: 8300000, guid: e83ea5aebba282442a7d0b5dc2ec8ba0, type: 3}
-  <Climb>k__BackingField: {fileID: 0}
+  <Climb>k__BackingField: {fileID: 8300000, guid: 56f2820baada26741af49968e55960af, type: 3}
   <Pickup>k__BackingField: {fileID: 8300000, guid: 300dfb981eeda7144a702a9e3efa682b, type: 3}
   <Throw>k__BackingField: {fileID: 8300000, guid: 9828f866bcdc51f42842e062d042ef3c, type: 3}
   <Death>k__BackingField: {fileID: 8300000, guid: c5acf236c6cf5fa48a41b1437e3c262b, type: 3}

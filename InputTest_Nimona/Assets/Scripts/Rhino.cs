@@ -77,11 +77,15 @@ public class Rhino : MonoBehaviour , IShapeColliders
 
             if (destructibles != null)
             {
-                StartCoroutine(HandleCollision(collision, camera, shake, true, null));
+                // StartCoroutine(HandleCollision(collision, camera, shake, true, null));
+                DestroyTilemap(collision);
+                camera.GetComponent<Shaker>().Shake(0.7f, shake);
             }
             else if (knightMovement != null)
             {
-                StartCoroutine(HandleCollision(collision, camera, shake, false, knightMovement));
+                // StartCoroutine(HandleCollision(collision, camera, shake, false, knightMovement));
+                camera.GetComponent<Shaker>().Shake(0.4f, shake);
+                knightMovement.DieSequence();
             }
         }
     }
@@ -91,15 +95,18 @@ public class Rhino : MonoBehaviour , IShapeColliders
         yield return StartCoroutine(TempTimeScaleChange(0.1f));
 
         audioPlayer.SoundToPlay = playerSounds.Ram;
-        audioPlayer.PlayAudio();
 
         if (isDestructible)
         {
+            audioPlayer.PlayAudio();
+
             DestroyTilemap(collision);
             camera.GetComponent<Shaker>().Shake(0.7f, shake);
         }
         else if (knightMovement != null)
         {
+            audioPlayer.PlayAudio();
+            
             camera.GetComponent<Shaker>().Shake(0.4f, shake);
             knightMovement.DieSequence();
         }
