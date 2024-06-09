@@ -29,6 +29,15 @@ public class Sword : MonoBehaviour
 
             anim.SetTrigger("Attack");
         }
+
+        Grabbable grabbable = 
+            other.gameObject.GetComponent<Grabbable>();
+
+        if ( grabbable != null )
+        {
+            KnightMovement knightMov = GetComponent<KnightMovement>();
+            knightMov.DieSequence();
+        }
     }
     public void OnTriggerExit2D(Collider2D other)
     {
