@@ -6777,6 +6777,7 @@ GameObject:
   - component: {fileID: 4158115915677998132}
   - component: {fileID: 9013819727544050668}
   - component: {fileID: 7836608653856479388}
+  - component: {fileID: 8965573296510232341}
   m_Layer: 7
   m_Name: Human
   m_TagString: Untagged
@@ -6947,6 +6948,27 @@ MonoBehaviour:
   <GroundCollider>k__BackingField: {fileID: 4158115915677998132}
   <AirCollider>k__BackingField: {fileID: 9013819727544050668}
   <GroundCheckCollider>k__BackingField: {fileID: 8635581587042535986}
+--- !u!95 &8965573296510232341
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7196989955669048276}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 73cb2b3ae211f77499ead970c4f888be, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &7738168016661761231
 GameObject:
   m_ObjectHideFlags: 0
