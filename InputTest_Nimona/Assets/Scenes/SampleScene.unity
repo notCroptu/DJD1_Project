@@ -991,16 +991,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26ba34a589419914e8c8c7fe649ffa22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 100
-  jumpSpeed: 150
-  groundCheck: {fileID: 985529841}
-  groundCheckRadius: 3.5
-  groundCheckLayers:
-    serializedVersion: 2
-    m_Bits: 8
-  maxJumpTime: 1
-  groundCollider: {fileID: 744188396}
-  airCollider: {fileID: 744188398}
 --- !u!70 &744188396
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -1108,71 +1098,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!1001 &850095097
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 2787880837050691958, guid: 5389acb17bd182c4aac1a7547a922552, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -71.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 2787880837050691958, guid: 5389acb17bd182c4aac1a7547a922552, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2787880837050691958, guid: 5389acb17bd182c4aac1a7547a922552, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -3.680065
-      objectReference: {fileID: 0}
-    - target: {fileID: 2787880837050691958, guid: 5389acb17bd182c4aac1a7547a922552, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2787880837050691958, guid: 5389acb17bd182c4aac1a7547a922552, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2787880837050691958, guid: 5389acb17bd182c4aac1a7547a922552, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2787880837050691958, guid: 5389acb17bd182c4aac1a7547a922552, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2787880837050691958, guid: 5389acb17bd182c4aac1a7547a922552, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2787880837050691958, guid: 5389acb17bd182c4aac1a7547a922552, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2787880837050691958, guid: 5389acb17bd182c4aac1a7547a922552, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5077221921883459417, guid: 5389acb17bd182c4aac1a7547a922552, type: 3}
-      propertyPath: speed
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 5077221921883459417, guid: 5389acb17bd182c4aac1a7547a922552, type: 3}
-      propertyPath: stopDistance
-      value: 128
-      objectReference: {fileID: 0}
-    - target: {fileID: 6352767669884497346, guid: 5389acb17bd182c4aac1a7547a922552, type: 3}
-      propertyPath: m_Name
-      value: ShieldKnight
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 5389acb17bd182c4aac1a7547a922552, type: 3}
 --- !u!1 &985529840
 GameObject:
   m_ObjectHideFlags: 0
@@ -1648,5 +1573,4 @@ SceneRoots:
   - {fileID: 113215954}
   - {fileID: 1576252050}
   - {fileID: 567124900777320888}
-  - {fileID: 850095097}
   - {fileID: 314691600}
