@@ -273,6 +273,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1332300490}
+        m_TargetAssemblyTypeName: SoundsScript, Assembly-CSharp
+        m_MethodName: PlayAudio
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1332300489}
         m_TargetAssemblyTypeName: MenuButtons, Assembly-CSharp
         m_MethodName: Quit
@@ -507,6 +519,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1332300488}
   - component: {fileID: 1332300489}
+  - component: {fileID: 1332300490}
   m_Layer: 5
   m_Name: Buttons
   m_TagString: Untagged
@@ -551,6 +564,19 @@ MonoBehaviour:
   buttonTwo: 
   pauseMenu: {fileID: 0}
   buttonScript: {fileID: 380424057}
+--- !u!114 &1332300490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1332300487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f77fe3331c8aa8e49a0c28cbc4157dd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <SoundToPlay>k__BackingField: {fileID: 8300000, guid: 6e54a026ed3c155428fa7b779503034b, type: 3}
 --- !u!1 &1354372736
 GameObject:
   m_ObjectHideFlags: 0
@@ -633,6 +659,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1332300490}
+        m_TargetAssemblyTypeName: SoundsScript, Assembly-CSharp
+        m_MethodName: PlayAudio
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1332300489}
         m_TargetAssemblyTypeName: MenuButtons, Assembly-CSharp
         m_MethodName: ButtonOneActive
@@ -935,6 +973,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1910538211}
   - component: {fileID: 1910538210}
+  - component: {fileID: 1910538212}
   m_Layer: 0
   m_Name: Music
   m_TagString: Untagged
@@ -952,7 +991,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: e7a9c740e4851c949ab1478cb0d45342, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 3e33167cff0073841b5078ea9983bc1b, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.15
   m_Pitch: 1
@@ -1053,6 +1092,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1910538212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1910538209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ac697560cf5dc74fad798590882bea1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
