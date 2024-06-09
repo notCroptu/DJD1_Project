@@ -10,4 +10,8 @@ public class PlayerScore : MonoBehaviour
     {
         Score += points;
     }
+    public void Reset()
+    {
+        Score = 0;
+    }
 }
