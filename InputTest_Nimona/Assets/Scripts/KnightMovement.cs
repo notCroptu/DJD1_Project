@@ -82,10 +82,7 @@ public class KnightMovement : MonoBehaviour
 
                         Vector2 newVelocity = rb.velocity;
                         newVelocity.x = Mathf.Lerp(rb.velocity.x, speed * Mathf.Sign(dirToPlayer.x), 0.3f);
-                        rb.velocity = newVelocity;
-
-                        // Animation
-                        anim.SetFloat("AbsVelocity",Mathf.Abs(newVelocity.x));
+                        rb.velocity = newVelocity;    
 
                         // Log velocity change
                         //Debug.Log($"New velocity: {rb.velocity}");
@@ -94,9 +91,11 @@ public class KnightMovement : MonoBehaviour
                     {
                         rb.velocity = Vector2.zero;
                     }
+                    
                 }
             }
-
+            // Animation
+            anim.SetFloat("AbsVelocity",Mathf.Abs(rb.velocity.x));
             // Update the bufferVelocity
             bufferVelocity = rbP.velocity;
         }
