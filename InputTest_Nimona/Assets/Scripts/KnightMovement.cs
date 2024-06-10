@@ -96,6 +96,7 @@ public class KnightMovement : MonoBehaviour
             }
             // Animation
             anim.SetFloat("AbsVelocity",Mathf.Abs(rb.velocity.x));
+            
             // Update the bufferVelocity
             bufferVelocity = rbP.velocity;
         }
