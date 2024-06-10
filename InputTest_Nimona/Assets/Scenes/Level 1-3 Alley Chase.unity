@@ -13777,10 +13777,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2463429911242610007, guid: b26e0f102adca9447bbd754451b2754a, type: 3}
-      propertyPath: m_SortingOrder
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 5579736201286098005, guid: b26e0f102adca9447bbd754451b2754a, type: 3}
       propertyPath: m_Name
       value: SwordKnight
