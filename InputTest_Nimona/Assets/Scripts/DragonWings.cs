@@ -31,6 +31,7 @@ public class DragonWings : MonoBehaviour , IShapeColliders
     private GameObject player;
     private Movement movement;
     private Rigidbody2D rb;
+    private Animator anim;
 
     // Shapeshift points mechanic
     private Shapeshifting shpshift;
@@ -43,6 +44,7 @@ public class DragonWings : MonoBehaviour , IShapeColliders
         player = transform.parent.gameObject;
         movement = player.GetComponentInParent<Movement>();
         rb = player.GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
 
         jumpsExecuted = 0;
         glideTimer = maxGlideTime;
@@ -72,6 +74,8 @@ public class DragonWings : MonoBehaviour , IShapeColliders
             if ( jumpsExecuted < jumpsAllowed && playerActions.Jump.WasPressed )
             {
                 Debug.Log("has flapped");
+
+                anim.SetTrigger("Flap");
 
                 rb.gravityScale = movement.FallingGravity;
 
@@ -134,6 +138,7 @@ public class DragonWings : MonoBehaviour , IShapeColliders
             glideTimer = maxGlideTime;
             movement.GroundScore = false;
         }
+
     }
     void OnDisable()
     {

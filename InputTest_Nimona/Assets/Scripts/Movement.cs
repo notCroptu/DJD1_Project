@@ -125,6 +125,7 @@ public class Movement : MonoBehaviour
             // Animator
             anim.SetFloat("AbsVelocity",Mathf.Abs(moveVector.x));
             anim.SetFloat("VelocityY",moveVector.y);
+            anim.SetBool("isGliding",IsGliding);
 
             if ( (Mathf.Abs(rb.velocity.x) > 10 && IsGrounded) || IsGliding)
             {

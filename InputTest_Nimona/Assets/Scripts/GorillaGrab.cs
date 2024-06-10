@@ -14,6 +14,7 @@ public class GorillaGrab : MonoBehaviour
     [SerializeField] private GameObject playerObject;
     private GameObject grabObject;
     private GameObject grabbingObject;
+    private Animator anim;
     public bool IsGrabbing { get; private set; } = false;
     public bool IsThrowing { get; private set; } = false;
 
@@ -25,6 +26,7 @@ public class GorillaGrab : MonoBehaviour
     {
         audioPlayer = GetComponentInParent<SoundsScript>();
         playerSounds = GetComponentInParent<PlayerSounds>();
+        anim = GetComponentInParent<Animator>();
 
         // Initialize player actions and set grab collider radius
         playerActions = GetComponentInParent<PlayerActions>();
@@ -86,6 +88,7 @@ public class GorillaGrab : MonoBehaviour
     // Grabbing mechanic logic
     private void GrabbingObject()
     {
+        anim.SetTrigger("Grab");
         grabbingObject.transform.position = grabPoint.transform.position;
         grabbingObject.GetComponent<Rigidbody2D>().freezeRotation = true;
 
@@ -116,6 +119,7 @@ public class GorillaGrab : MonoBehaviour
 
             audioPlayer.SoundToPlay = playerSounds.Throw;
             audioPlayer.PlayAudio();
+            anim.SetTrigger("Throw");
         }
     }
 
