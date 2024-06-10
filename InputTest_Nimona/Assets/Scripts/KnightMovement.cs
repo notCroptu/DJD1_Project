@@ -17,6 +17,7 @@ public class KnightMovement : MonoBehaviour
 
     private Rigidbody2D rb;
     private Rigidbody2D rbP;
+    private Animator anim;
     private Movement player;
     private CapsuleCollider2D capsuleCollider;
     private Vector2 bufferVelocity;
@@ -28,6 +29,7 @@ public class KnightMovement : MonoBehaviour
         knightSounds = GetComponent<KnightSounds>();
 
         rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
         capsuleCollider = GetComponent<CapsuleCollider2D>();
     }
 
@@ -82,6 +84,9 @@ public class KnightMovement : MonoBehaviour
                         newVelocity.x = Mathf.Lerp(rb.velocity.x, speed * Mathf.Sign(dirToPlayer.x), 0.3f);
                         rb.velocity = newVelocity;
 
+                        // Animation
+                        anim.SetFloat("AbsVelocity",Mathf.Abs(newVelocity.x));
+
                         // Log velocity change
                         //Debug.Log($"New velocity: {rb.velocity}");
                     }
@@ -100,6 +105,7 @@ public class KnightMovement : MonoBehaviour
     public void DieSequence()
     {
         dead = true;
+        anim.SetTrigger("Die");
 
         Sword sword = GetComponent<Sword>();
         Shield shield = GetComponent<Shield>();
