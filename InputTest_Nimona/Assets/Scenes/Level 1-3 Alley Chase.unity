@@ -13401,7 +13401,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 994772131}
-  - component: {fileID: 994772130}
   m_Layer: 12
   m_Name: Parallax
   m_TagString: Untagged
@@ -13409,18 +13408,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &994772130
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 994772129}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28bc14031da85c54e86aa9304c76072f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &994772131
 Transform:
   m_ObjectHideFlags: 0

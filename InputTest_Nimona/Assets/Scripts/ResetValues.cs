@@ -8,7 +8,7 @@ public class ResetValues : MonoBehaviour
     {
         Timer timer = FindObjectOfType<Timer>();
         PlayerScore score = FindObjectOfType<PlayerScore>();
-        timer.ResetTimer();
-        score.ResetScore();
+        if (timer != null) timer.ResetTimer();
+        if (score != null) score.ResetScore();
     }
 }
