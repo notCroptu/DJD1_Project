@@ -82,6 +82,8 @@ public class Movement : MonoBehaviour
         GroundCollider.enabled = IsGrounded;
         AirCollider.enabled = !IsGrounded;
 
+        anim.SetBool("isGrounded",IsGrounded);
+
         if ( IsGrounded ) GroundScore = true;
 
         if ( inputEnabled )
@@ -122,6 +124,7 @@ public class Movement : MonoBehaviour
 
             // Animator
             anim.SetFloat("AbsVelocity",Mathf.Abs(moveVector.x));
+            anim.SetFloat("VelocityY",moveVector.y);
 
             if ( (Mathf.Abs(rb.velocity.x) > 10 && IsGrounded) || IsGliding)
             {
