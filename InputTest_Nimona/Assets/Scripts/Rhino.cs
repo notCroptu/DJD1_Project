@@ -80,12 +80,14 @@ public class Rhino : MonoBehaviour , IShapeColliders
                 // StartCoroutine(HandleCollision(collision, camera, shake, true, null));
                 DestroyTilemap(collision);
                 camera.GetComponent<Shaker>().Shake(0.7f, shake);
+                collided = true;
             }
             else if (knightMovement != null)
             {
                 // StartCoroutine(HandleCollision(collision, camera, shake, false, knightMovement));
-                camera.GetComponent<Shaker>().Shake(0.4f, shake);
                 knightMovement.DieSequence();
+                camera.GetComponent<Shaker>().Shake(0.4f, shake);
+                collided = true;
             }
         }
     }
@@ -101,13 +103,13 @@ public class Rhino : MonoBehaviour , IShapeColliders
             audioPlayer.PlayAudio();
 
             DestroyTilemap(collision);
-            camera.GetComponent<Shaker>().Shake(0.7f, shake);
+            camera.GetComponent<Shaker>().Shake(0.8f, shake);
         }
         else if (knightMovement != null)
         {
             audioPlayer.PlayAudio();
             
-            camera.GetComponent<Shaker>().Shake(0.4f, shake);
+            camera.GetComponent<Shaker>().Shake(0.6f, shake);
             knightMovement.DieSequence();
         }
 
