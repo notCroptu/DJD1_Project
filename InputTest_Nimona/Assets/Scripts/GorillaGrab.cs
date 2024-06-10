@@ -50,6 +50,7 @@ public class GorillaGrab : MonoBehaviour
             audioPlayer.SoundToPlay = playerSounds.Pickup;
             audioPlayer.PlayAudio();
 
+            anim.SetTrigger("Grab");
             Debug.Log("Grabbed");
             Debug.Log(IsGrabbing = true);
             Debug.Log(grabObject);
@@ -88,7 +89,6 @@ public class GorillaGrab : MonoBehaviour
     // Grabbing mechanic logic
     private void GrabbingObject()
     {
-        anim.SetTrigger("Grab");
         grabbingObject.transform.position = grabPoint.transform.position;
         grabbingObject.GetComponent<Rigidbody2D>().freezeRotation = true;
 
@@ -105,6 +105,7 @@ public class GorillaGrab : MonoBehaviour
             UnGrabObject();
             TurnOnShapeshift();
         }
+
     }
 
     // Throw the grabbed object
