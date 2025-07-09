@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: 34ee658699a89db48af2432e42d6eb68
+  - enabled: 1
+    path: Assets/Scenes/Level 1-1 The Sewers.unity
+    guid: 6678f51dacfa44c4f9772068543ad875
+  - enabled: 1
+    path: Assets/Scenes/Level 1-2 Highway.unity
+    guid: e6fb7a0dc405df64aaf3d56b9e00b838
+  - enabled: 1
+    path: Assets/Scenes/Level 1-3 Alley Chase.unity
+    guid: addd1237c9d1c7e4a8578d483c0d2244
+  - enabled: 1
+    path: Assets/Scenes/Level 2-1 Balconies.unity
+    guid: 5efefe639f39df8488247df7ee6f1612
+  - enabled: 1
+    path: Assets/Scenes/Level 2-2 Crosswalk.unity
+    guid: 8f7b154c747864b4f87545b8a8e286fc
+  - enabled: 1
+    path: Assets/Scenes/Level 3-2.unity
+    guid: 13fc6797a980caf40a5537a403355e82
+  m_configObjects:
+    com.unity.input.settings: {fileID: 11400000, guid: e3c813db6094da94a8e5150b6b7d06db, type: 2}
